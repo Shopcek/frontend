@@ -2,13 +2,13 @@ import { useCart } from 'context/cart'
 import { Table, Image, Card } from 'react-bootstrap'
 
 export function Products() {
-    let { cartItems } = useCart()
+    // let { cartItems } = useCart()
 
     let price = 0
 
-    cartItems.forEach((item) => {
-        price += item.count * item.product.price
-    })
+    // cartItems.forEach((item) => {
+    //     price += item.count * item.product.price
+    // })
 
     return (
         <Card>
@@ -22,7 +22,7 @@ export function Products() {
                             </tr>
                         </thead>
                         <tbody>
-                            {cartItems.map((item: any, inx: number) => {
+                            {/* {cartItems.map((item: any, inx: number) => {
                                 return (
                                     <tr key={inx}>
                                         <td className="justify-center-center">
@@ -41,7 +41,7 @@ export function Products() {
                                         </td>
                                     </tr>
                                 )
-                            })}
+                            })} */}
                         </tbody>
                     </Table>
 

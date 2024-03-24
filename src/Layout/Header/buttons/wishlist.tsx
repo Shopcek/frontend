@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Wishlist } from 'Components/Images/Icons'
 
 export function WishList() {
-    let { wishlist } = useWishList()
+    // let { wishlist } = useWishList()
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
             <Link
@@ -17,7 +17,7 @@ export function WishList() {
             >
                 <Wishlist className="rounded-circle header-profile-user" />
                 <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">
-                    {wishlist.length}
+                    0{/* {wishlist.length} */}
                 </span>
             </Link>
         </div>

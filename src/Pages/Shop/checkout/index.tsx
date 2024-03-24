@@ -9,15 +9,15 @@ import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart'
 
 const Checkout = () => {
-    let { orderStatus, setOrderStatus, newOrderGql } = useCart()
+    // let { orderStatus, setOrderStatus, newOrderGql } = useCart()
     let navigate = useNavigate()
 
-    useEffect(() => {
-        if (orderStatus) {
-            setOrderStatus(false)
-            navigate('/account/order')
-        }
-    }, [orderStatus, newOrderGql.loading])
+    // useEffect(() => {
+    //     if (orderStatus) {
+    //         setOrderStatus(false)
+    //         navigate('/account/order')
+    //     }
+    // }, [orderStatus, newOrderGql.loading])
 
     document.title = 'Shopcek'
     return (

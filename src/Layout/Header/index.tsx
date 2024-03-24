@@ -16,7 +16,7 @@ import { Collections } from './buttons/collections'
 import { Delivery } from './icons/delivery'
 
 const Header = (props: any) => {
-    let { jwt } = useUser()
+    // let { jwt } = useUser()
 
     const [card, setCard] = useState(false)
 
@@ -36,7 +36,7 @@ const Header = (props: any) => {
 
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
-                        {jwt ? [<Account />, <WishList />] : <SignInUp />}
+                        {"jwt" ? [<Account />, <WishList />] : <SignInUp />}
                         <Cart handlecardShow={handlecardShow} />
                     </div>
                 </Container>

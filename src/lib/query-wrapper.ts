@@ -15,8 +15,10 @@ export function handle(fn: CallableFunction) {
     }
 }
 
+const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzExMTcyNjY1LCJleHAiOjE3MTM3NjQ2NjV9.trxVFZBmP3FvcORMGUoNOV4dot5m-rOQvh1g4NGw1Z4"
+
 export function useMutation(mutation: DocumentNode, options?: MutationHookOptions) {
-    let { jwt } = useUser()
+    // let { jwt } = useUser()
 
     let [fn, { data, error, loading }] = useMutationApollo(mutation, {
         ...options,
@@ -41,7 +43,7 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
 }
 
 export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
-    let { jwt } = useUser()
+    // let { jwt } = useUser()
     let { data, error, loading, refetch } = useQueryApollo(query, {
         ...options,
         context: {
@@ -65,7 +67,7 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
 }
 
 export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
-    let { jwt } = useUser()
+    // let { jwt } = useUser()
     let [lazyCallFunction, { data, error, loading, refetch, called }] = useLazyQueryApollo(query, {
         ...options,
         context: {
@@ -85,5 +87,5 @@ export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
         data = simplifyResponse(data)
     }
 
-    return [lazyCallFunction, { data, loading, error, refetch, called }]
+    return { data, loading, error, refetch, called, fn: handle(lazyCallFunction)}
 }

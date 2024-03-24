@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom'
 import { useUser } from 'context/user'
 
 export function UserSection() {
-    let { me, choosenDomain } = useUser()
+    // let { me, choosenDomain } = useUser()
 
-    console.log(choosenDomain.choosenDomain)
 
-    let {username} = me
+    let {username} = {username: "blabla"}
     let address = username
     let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
 
@@ -19,7 +18,7 @@ export function UserSection() {
                     <User className="avatar-xl p-1 bg-light mt-n3" />
                     <div>
                         <h5 className="fs-18">
-                            {choosenDomain.choosenDomain === address? sliced : choosenDomain.choosenDomain}
+                            {/* {choosenDomain.choosenDomain === address? sliced : choosenDomain.choosenDomain} */}
                             <div className="edit">
                                 <i className="bi bi-pen"></i> <p>change username</p>
                             </div>

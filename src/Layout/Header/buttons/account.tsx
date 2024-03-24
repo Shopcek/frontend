@@ -10,12 +10,12 @@ import { useEarn } from 'context/earn'
 
 export function Account() {
     let navigate = useNavigate()
-    let { xp } = useEarn()
+    // let { xp } = useEarn()
 
-    let { me, choosenDomain } = useUser()
+    // let { me, choosenDomain } = useUser()
 
 
-    let { username } = me
+    let { username } = {username: "blabla"}
     let address = username
     let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
 
@@ -32,7 +32,7 @@ export function Account() {
                         <div className="user">
                             <User className="rounded-circle header-profile-user" />
                             <div className="user-info">
-                                <span>{choosenDomain.choosenDomain === address? sliced : choosenDomain.choosenDomain}</span>
+                                {/* <span>{choosenDomain.choosenDomain === address? sliced : choosenDomain.choosenDomain}</span> */}
                                 <span>{sliced}</span>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ export function Account() {
                     >
                         <div className="xp-points">
                             <span className="align-middle">XP Points</span>
-                            {xp}
+                            {0}
                         </div>
                     </Dropdown.Item>
 

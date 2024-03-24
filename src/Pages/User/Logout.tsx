@@ -12,10 +12,10 @@ import { User } from 'Components/Images/Icons'
 
 
 const Logout = () => {
-    let { deleteJwt } = useUser()
+    // let { deleteJwt } = useUser()
 
     useEffect(()=>{
-        deleteJwt()
+        // deleteJwt()
     },[])
 
     return (

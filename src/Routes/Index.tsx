@@ -5,6 +5,10 @@ import Layout from 'Layout'
 //routes
 import { authProtectedRoutes } from './allRoutes'
 
+import { CartContextProvider } from 'new-context/cart'
+
+import { TestComponent } from 'new-context/cart'
+
 const Index = () => {
     return (
         <React.Fragment>
@@ -13,6 +17,9 @@ const Index = () => {
                     {authProtectedRoutes.map((route, idx) => (
                         <Route path={route.path} element={<Layout isLight={false}>{route.component}</Layout>} key={idx} />
                     ))}
+                </Route>
+                <Route>
+                    <Route path="/test" element={<CartContextProvider><TestComponent /></CartContextProvider>} /> 
                 </Route>
             </Routes>
         </React.Fragment>

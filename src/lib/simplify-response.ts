@@ -21,6 +21,9 @@ export function simplify<T>(value: T) {
     if (Array.isArray(value)) return value.map(simplify)
 
     if (isPlainObject(value)) {
+        if ('id' in value && 'attributes' in value){
+            return simplify({id:value.id, ...value.attributes})
+        }
         if ('data' in value) return simplify(value.data)
         if ('attributes' in value) return simplify(value.attributes)
         return objectMap(value, simplify)

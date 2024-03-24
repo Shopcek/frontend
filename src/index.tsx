@@ -4,9 +4,11 @@ import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
+import { Route, Routes } from 'react-router-dom'
+import { CartContextProvider } from 'new-context/cart'
+
 import { ApolloProvider } from 'lib/apollo-wrapper'
 import { RainbowProvider } from 'lib/rainbow'
-import { Context } from 'context'
 
 import ScrollToTop from 'lib/auto-scroll'
 
@@ -17,9 +19,7 @@ root.render(
             <RainbowProvider>
                 <ApolloProvider>
                     <ScrollToTop />
-                    <Context>
-                        <App />
-                    </Context>
+                    <App />
                 </ApolloProvider>
             </RainbowProvider>
         </BrowserRouter>

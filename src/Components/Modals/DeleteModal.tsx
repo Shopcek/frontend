@@ -13,7 +13,7 @@ export const DeleteModal = ({ removeModel, hideModal, slug, options }: any) => {
         hideModal()
     }
 
-    let { deleteItem } = useCart()
+    // let { deleteItem } = useCart()
 
     return (
         <Modal show={removeModel} onHide={hideModal} centered id="removeItemModal" className="zoomIn">
@@ -34,7 +34,7 @@ export const DeleteModal = ({ removeModel, hideModal, slug, options }: any) => {
                         className="btn w-sm btn-primary"
                         id="remove-product"
                         onClick={() => {
-                            deleteItem(slug, options, true)
+                            // deleteItem(slug, options, true)
                             handleDelete()
                         }}
                     >
@@ -52,11 +52,11 @@ export default DeleteModal
 
 //add addres modal
 export const ModalAdd = ({ addressModal, handleClose }: any) => {
-    let { recipient } = useUser()
-    let gql = useMutation(updateRecipient)
+    // let { recipient } = useUser()
+    // let gql = useMutation(updateRecipient)
 
     const formik = useFormik({
-        initialValues: recipient,
+        initialValues: {} as any,
         validationSchema: Yup.object({
             name: Yup.string().required('Please Enter Your Name'),
             address1: Yup.string().required('Please Enter Your Address'),
@@ -71,11 +71,11 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
             phone: Yup.string().matches(RegExp('[0-9]{7}')).required('Please Enter Your Phone')
         }),
         onSubmit: (values) => {
-            gql.fn({
-                variables: {
-                    recipient: values
-                }
-            })
+            // gql.fn({
+            //     variables: {
+            //         recipient: values
+            //     }
+            // })
         }
     })
 
@@ -102,7 +102,7 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.name && formik.touched.name ? <span className="text-danger">{formik.errors.name}</span> : null}
+                                {/* {formik.errors.name && formik.touched.name ? <span className="text-danger">{formik.errors.name}</span> : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -116,9 +116,9 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.address1 && formik.touched.address1 ? (
+                                {/* {formik.errors.address1 && formik.touched.address1 ? (
                                     <span className="text-danger">{formik.errors.address1}</span>
-                                ) : null}
+                                ) : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -132,9 +132,9 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.address2 && formik.touched.address2 ? (
+                                {/* {formik.errors.address2 && formik.touched.address2 ? (
                                     <span className="text-danger">{formik.errors.address2}</span>
-                                ) : null}
+                                ) : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -148,7 +148,7 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.email && formik.touched.email ? <span className="text-danger">{formik.errors.email}</span> : null}
+                                {/* {formik.errors.email && formik.touched.email ? <span className="text-danger">{formik.errors.email}</span> : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -162,9 +162,9 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.state_code && formik.touched.state_code ? (
+                                {/* {formik.errors.state_code && formik.touched.state_code ? (
                                     <span className="text-danger">{formik.errors.state_code}</span>
-                                ) : null}
+                                ) : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -178,9 +178,9 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.state_name && formik.touched.state_name ? (
+                                {/* {formik.errors.state_name && formik.touched.state_name ? (
                                     <span className="text-danger">{formik.errors.state_name}</span>
-                                ) : null}
+                                ) : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -194,9 +194,9 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.country_code && formik.touched.country_code ? (
+                                {/* {formik.errors.country_code && formik.touched.country_code ? (
                                     <span className="text-danger">{formik.errors.country_code}</span>
-                                ) : null}
+                                ) : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -210,9 +210,9 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.country_name && formik.touched.country_name ? (
+                                {/* {formik.errors.country_name && formik.touched.country_name ? (
                                     <span className="text-danger">{formik.errors.country_name}</span>
-                                ) : null}
+                                ) : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -226,7 +226,7 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.zip && formik.touched.zip ? <span className="text-danger">{formik.errors.zip}</span> : null}
+                                {/* {formik.errors.zip && formik.touched.zip ? <span className="text-danger">{formik.errors.zip}</span> : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -240,7 +240,7 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.city && formik.touched.city ? <span className="text-danger">{formik.errors.city}</span> : null}
+                                {/* {formik.errors.city && formik.touched.city ? <span className="text-danger">{formik.errors.city}</span> : null} */}
                             </div>
 
                             <div className="mb-3">
@@ -254,7 +254,7 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                 />
-                                {formik.errors.phone && formik.touched.phone ? <span className="text-danger">{formik.errors.phone}</span> : null}
+                                {/* {formik.errors.phone && formik.touched.phone ? <span className="text-danger">{formik.errors.phone}</span> : null} */}
                             </div>
                         </div>
 

@@ -17,37 +17,37 @@ interface AllContextValue {
     earn: EarnContextType
 }
 
-export const useAll = (): AllContextValue => {
-    return useContext(AllContext)
-}
+// export const useAll = (): AllContextValue => {
+//     return useContext(AllContext)
+// }
 
-export const Context = ({ children }: any) => {
-    const allContextValue: AllContextValue = {
-        user: useUser(),
-        cart: useCart(),
-        wishlist: useWishList(),
-        binance: useBinance(),
-        order: useOrder(),
-        earn: useEarn()
-    }
+// export const Context = ({ children }: any) => {
+//     const allContextValue: AllContextValue = {
+//         user: useUser(),
+//         cart: useCart(),
+//         wishlist: useWishList(),
+//         binance: useBinance(),
+//         order: useOrder(),
+//         earn: useEarn()
+//     }
 
-    return (
-        <AllContext.Provider value={allContextValue}>
-            <BinanceProvider>
-                <CartProvider>
-                    <UserProvider>
-                        <OrderProvider>
-                            <CartProvider>
-                                <UserProvider>
-                                    <EarnProvider>
-                                        <WishListProvider>{children}</WishListProvider>
-                                    </EarnProvider>
-                                </UserProvider>
-                            </CartProvider>
-                        </OrderProvider>
-                    </UserProvider>
-                </CartProvider>
-            </BinanceProvider>
-        </AllContext.Provider>
-    )
-}
+    // return (
+        // <AllContext.Provider value={allContextValue}>
+        //     <BinanceProvider>
+        //         <CartProvider>
+        //             <UserProvider>
+        //                 <OrderProvider>
+        //                     <CartProvider>
+        //                         <UserProvider>
+        //                             <EarnProvider>
+        //                                 <WishListProvider>{children}</WishListProvider>
+        //                             </EarnProvider>
+        //                         </UserProvider>
+        //                     </CartProvider>
+        //                 </OrderProvider>
+        //             </UserProvider>
+        //         </CartProvider>
+        //     </BinanceProvider>
+        // </AllContext.Provider>
+    // )
+// }

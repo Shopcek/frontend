@@ -18,9 +18,9 @@ function calculateXp(difference: number) {
 }
 
 export default function StayHereToEarn() {
-    let { time, setTime, addXpRES } = useEarn()
+    // let { time, setTime, addXpRES } = useEarn()
     const now = new Date().valueOf()
-    const difference = now - time
+    // const difference = now - time
 
     let [is1s, setis1] = useState(false)
     useEffect(() => {}, [
@@ -30,10 +30,10 @@ export default function StayHereToEarn() {
     ])
 
     // Get individual components
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-    const hours = Math.floor(difference / (1000 * 60 * 60))
-    const minutes = Math.floor(difference / (1000 * 60))
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+    // const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+    // const hours = Math.floor(difference / (1000 * 60 * 60))
+    // const minutes = Math.floor(difference / (1000 * 60))
+    // const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
     return (
         <section className="section pb-0">
@@ -46,13 +46,13 @@ export default function StayHereToEarn() {
                         <Button
                             className="btn btn btn-primary"
                             onClick={() => {
-                                addXpRES.fn({
-                                    variables: {
-                                        point: calculateXp(difference)
-                                    }
-                                })
+                                // addXpRES.fn({
+                                //     variables: {
+                                //         point: calculateXp(difference)
+                                //     }
+                                // })
 
-                                setTime(new Date().valueOf())
+                                // setTime(new Date().valueOf())
                             }}
                         >
                             Claim
@@ -63,28 +63,28 @@ export default function StayHereToEarn() {
                     <div className="blue-box-container">
                         <div className="col">
                             <div className="blue-box divider">
-                                <p>{addOneZero(days)}</p>
+                                <p>{addOneZero(0)}</p>
                             </div>
                             <p className="time">Days</p>
                         </div>
                         <div className="divider">:</div>
                         <div className="col">
                             <div className="blue-box divider">
-                                <p>{addOneZero(hours)}</p>
+                                <p>{addOneZero(0)}</p>
                             </div>
                             <p className="time">Hours</p>
                         </div>
                         <div className="divider">:</div>
                         <div className="col">
                             <div className="blue-box divider">
-                                <p>{addOneZero(minutes)}</p>
+                                <p>{addOneZero(0)}</p>
                             </div>
                             <p className="time">Minutes</p>
                         </div>
                         <div className="divider">:</div>
                         <div className="col">
                             <div className="blue-box divider">
-                                <p>{addOneZero(seconds)}</p>
+                                <p>{addOneZero(0)}</p>
                             </div>
                             <p className="time">Seconds</p>
                         </div>

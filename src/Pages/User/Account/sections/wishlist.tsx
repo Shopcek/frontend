@@ -14,7 +14,7 @@ export function WishListNav() {
 }
 
 export function WishListTab() {
-    let { wishlist, deleteWishList } = useWishList()
+    // let { wishlist, deleteWishList } = useWishList()
 
     let navigate = useNavigate()
 
@@ -34,7 +34,7 @@ export function WishListTab() {
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        {/* <tbody>
                                             {wishlist.map((item, inx) => {
                                                 return (
                                                     <tr key={inx}>
@@ -46,9 +46,6 @@ export function WishListTab() {
                                                                     </div>
                                                                 </div>
                                                                 <div className="flex-grow-1">
-                                                                    {/* <Link to="/product-details">
-                                                                        <h6 className="fs-16">{item.title}</h6>
-                                                                    </Link> */}
                                                                     <p className="mb-0 fs-13">
                                                                         <b>{item.name}</b>
                                                                     </p>
@@ -85,7 +82,7 @@ export function WishListTab() {
                                                     </tr>
                                                 )
                                             })}
-                                        </tbody>
+                                        </tbody> */}
                                     </Table>
                                 </div>
                                 <div className="hstack gap-2 justify-content-end mt-4">

@@ -14,7 +14,7 @@ export default function SpinToEarn() {
     const [prize, setPrize] = useState<string | undefined>(undefined)
     const [claimAvailable, setClaimAvailable] = useState<boolean>(false)
 
-    let { spinRES } = useEarn()
+    // let { spinRES } = useEarn()
 
     return (
         <section className="section pb-0">
@@ -29,11 +29,11 @@ export default function SpinToEarn() {
                             className="btn btn btn-secondary"
                             onClick={() => {
                                 if (prize) {
-                                    spinRES.fn({
-                                        variables: {
-                                            point: Number(prize.replace(' XP', ''))
-                                        }
-                                    })
+                                    // spinRES.fn({
+                                    //     variables: {
+                                    //         point: Number(prize.replace(' XP', ''))
+                                    //     }
+                                    // })
                                     setClaimAvailable(false)
                                 }
                             }}

@@ -19,23 +19,24 @@ export function AddressNav() {
 }
 
 export function AddressTab() {
-    let { recipient } = useUser()
+    // let { recipient } = useUser()
     let gql = useMutation(updateRecipient)
 
     const formik = useFormik({
-        initialValues: {
-            name: recipient.name,
-            address1: recipient.address1,
-            address2: recipient.address2,
-            email: recipient.email,
-            state_code: recipient.state_code,
-            state_name: recipient.state_name,
-            country_code: recipient.country_code,
-            country_name: recipient.country_name,
-            zip: recipient.zip,
-            city: recipient.city,
-            phone: recipient.phone
-        },
+        // initialValues: {
+        //     name: recipient.name,
+        //     address1: recipient.address1,
+        //     address2: recipient.address2,
+        //     email: recipient.email,
+        //     state_code: recipient.state_code,
+        //     state_name: recipient.state_name,
+        //     country_code: recipient.country_code,
+        //     country_name: recipient.country_name,
+        //     zip: recipient.zip,
+        //     city: recipient.city,
+        //     phone: recipient.phone
+        // },
+        initialValues: {} as any,
         validationSchema: Yup.object({
             name: Yup.string().required('Please Enter Your Name'),
             address1: Yup.string().required('Please Enter Your Address Line'),
@@ -52,11 +53,11 @@ export function AddressTab() {
         onSubmit: console.log
     })
 
-    useEffect(() => {
-        Object.keys(recipient).forEach((key) => {
-            ;(formik.values as any)[key] = (recipient as any)[key]
-        })
-    }, [recipient])
+    // useEffect(() => {
+    //     Object.keys(recipient).forEach((key) => {
+    //         ;(formik.values as any)[key] = (recipient as any)[key]
+    //     })
+    // }, [recipient])
 
     return (
         <Tab.Pane eventKey="address">

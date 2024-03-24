@@ -6,7 +6,7 @@ import { productListType } from 'models/ProductType'
 import { useCart } from 'context/cart'
 
 export const CardComponent = ({ data }: { data: productListType }) => {
-    let { addItem } = useCart()
+    // let { addItem } = useCart()
 
     return (
         <Card className="overflow-hidden card product-cart">

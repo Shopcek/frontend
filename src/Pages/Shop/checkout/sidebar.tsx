@@ -22,24 +22,24 @@ export function order({ newOrder }: { newOrder: any }) {
 export const Shoporder = () => {
     let navigate = useNavigate()
 
-    let { bnb } = useBinance()
-    let { cartItems } = useCart()
-    let { newOrderGQL, newOrder } = useOrder()
+    // let { bnb } = useBinance()
+    // let { cartItems } = useCart()
+    // let { newOrderGQL, newOrder } = useOrder()
 
-    useEffect(() => {
-        if (newOrder && !newOrderGQL.loading) {
-            navigate(`/shop/success/${newOrder.id}`)
-        }
-    }, [newOrderGQL.loading])
+    // useEffect(() => {
+    //     if (newOrder && !newOrderGQL.loading) {
+    //         navigate(`/shop/success/${newOrder.id}`)
+    //     }
+    // }, [newOrderGQL.loading])
 
-    let orderfn = order({ newOrder: newOrderGQL })
+    // let orderfn = order({ newOrder: newOrderGQL })
 
-    let total: number = 0
-    cartItems.forEach((item) => {
-        total = total + item.count * item.product.price
-    })
+    // let total: number = 0
+    // cartItems.forEach((item) => {
+    //     total = total + item.count * item.product.price
+    // })
 
-    let price = (total / bnb) * (103 / 100)
+    // let price = (total / bnb) * (103 / 100)
 
     return (
         <React.Fragment>
@@ -85,10 +85,10 @@ export const Shoporder = () => {
                 <Button
                     className="btn btn-hover btn-soft-info info-text"
                     onClick={() => {
-                        buyWithWallet(orderfn, price)
+                        // buyWithWallet(orderfn, price)
                     }}
                 >
-                    Pay {price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
+                    Pay {{price:0}.price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                 </Button>
             </Card>
         </React.Fragment>

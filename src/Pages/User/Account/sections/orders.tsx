@@ -16,14 +16,14 @@ export function OrdersNav() {
 }
 
 export function OrdersTab() {
-    let { orderGql } = useCart()
-    let { loading, data, refetch, error } = orderGql
-    let [order, setOrder] = useState([])
-    useEffect(() => {
-        if (!loading && data) {
-            setOrder(data)
-        }
-    }, [loading])
+    // let { orderGql } = useCart()
+    // let { loading, data, refetch, error } = orderGql
+    // let [order, setOrder] = useState([])
+    // useEffect(() => {
+    //     if (!loading && data) {
+    //         setOrder(data)
+    //     }
+    // }, [loading])
 
     let navigate = useNavigate()
 
@@ -44,7 +44,7 @@ export function OrdersTab() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {order.map((item: any, inx: any) => {
+                                    {/* {order.map((item: any, inx: any) => {
                                         let total = 0
 
                                         item.items.forEach((product: any) => {
@@ -73,7 +73,7 @@ export function OrdersTab() {
                                                 </td>
                                             </tr>
                                         )
-                                    })}
+                                    })} */}
                                 </tbody>
                             </Table>
                         </div>

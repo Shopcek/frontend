@@ -34,6 +34,7 @@ export let getProductsByCategorySlug = gql`
                 name
             }
             products {
+                id
                 price
                 name
                 slug

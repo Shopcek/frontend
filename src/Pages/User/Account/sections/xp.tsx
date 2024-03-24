@@ -14,7 +14,7 @@ export function XpNav() {
 }
 
 export function XpTab() {
-    let { xp } = useEarn()
+    // let { xp } = useEarn()
 
     return (
         <Tab.Pane eventKey="xp-points">
@@ -24,7 +24,7 @@ export function XpTab() {
                         <div className="text">
                             <div>Total</div>
                             <div>:</div>
-                            <div>{xp}</div>
+                            <div>{0}</div>
                         </div>
 
                         <div className="buttons">

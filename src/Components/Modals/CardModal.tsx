@@ -19,13 +19,8 @@ function formatNumber(num: number) {
 export const CardModal = ({ show, handleClose }: any) => {
     let navigate = useNavigate()
 
-    let { cartItems, deleteItem, addItem } = useCart()
+    // let { cartItems, deleteItem, addItem } = useCart()
 
-    // const [productcount, setProductcount] = useState(productData)
-    const [charge, setCharge] = useState(0)
-    const [dis, setDis] = useState(0)
-    const [tax, setTax] = useState(0)
-    //delete id
     const [id, setId] = useState('')
     //modal
     const [removeModel, setRemovemodel] = useState(false)
@@ -40,23 +35,6 @@ export const CardModal = ({ show, handleClose }: any) => {
 
     const CloseremoveModal = () => setRemovemodel(false)
 
-    let subtotal = 0
-    for (let i = 0; i < cartItems.length; i++) {
-        subtotal += cartItems[i].product.price * cartItems[i].count
-    }
-
-    // useEffect(() => {
-    //     let dis: any = (0.15 * subtotal).toFixed(2)
-    //     let tax = 0.125 * subtotal
-
-    //     if (subtotal !== 0) {
-    //         setCharge(65)
-    //     } else {
-    //         setCharge(0)
-    //     }
-    //     setDis(dis)
-    //     setTax(tax)
-    // }, [subtotal])
 
     let [slug, setSlug] = useState('')
     let [options, setOptions] = useState({})
@@ -66,14 +44,14 @@ export const CardModal = ({ show, handleClose }: any) => {
             <Offcanvas show={show} onHide={handleClose} placement="end">
                 <Offcanvas.Header closeButton className="border-bottom">
                     <Offcanvas.Title id="ecommerceCartLabel" as="h5">
-                        My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartItems.length}</span>
+                        My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{0}</span>
                     </Offcanvas.Title>
                 </Offcanvas.Header>
 
                 <Offcanvas.Body className=" px-0">
                     <SimpleBar className="h-100">
                         <ul className="list-group list-group-flush cartlist">
-                            {cartItems.map((item: any) => {
+                            {/* {cartItems.map((item: any) => {
                                 return (
                                     <li key={item.product.slug} className="list-group-item product">
                                         <div className="d-flex gap-3">
@@ -145,7 +123,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                         </div>
                                     </li>
                                 )
-                            })}
+                            })} */}
                         </ul>
                     </SimpleBar>
                 </Offcanvas.Body>
@@ -153,7 +131,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                     <div className="d-flex justify-content-between align-items-center mb-3">
                         <h6 className="m-0 fs-16 text-muted">Total:</h6>
                         <div className="px-2">
-                            <h6 className="m-0 fs-16 cart-total">${formatNumber(subtotal)}</h6>
+                            <h6 className="m-0 fs-16 cart-total">${formatNumber(0)}</h6>
                         </div>
                     </div>
                     <Row className="g-2">

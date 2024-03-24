@@ -16,8 +16,8 @@ export function DomainsNav() {
 
 export function DomainsTab() {
     let navigate = useNavigate()
-    let { getDomainsByUser, chooseDomainRES } = useEarn()
-    let {choosenDomain} = useUser()
+    // let { getDomainsByUser, chooseDomainRES } = useEarn()
+    // let {choosenDomain} = useUser()
 
     return (
         <Tab.Pane eventKey="domains">
@@ -33,7 +33,7 @@ export function DomainsTab() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {getDomainsByUser.map((item: any, inx: any) => {
+                                    {/* {getDomainsByUser.map((item: any, inx: any) => {
                                         return (
                                             <tr>
                                                 <td>{item.domain}</td>
@@ -56,7 +56,7 @@ export function DomainsTab() {
                                                 </td>
                                             </tr>
                                         )
-                                    })}
+                                    })} */}
                                 </tbody>
                             </Table>
                         </div>

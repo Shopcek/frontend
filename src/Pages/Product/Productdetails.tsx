@@ -225,9 +225,9 @@ function Variant({ title, options, setOption, option }: { title: string; options
 
 const Productdetails = () => {
     let { slug } = useParams()
-    let { data, loading } = useQuery(getSingleProductBySlug, {
-        variables: { slug }
-    })
+    // let { data, loading } = useQuery(getSingleProductBySlug, {
+    //     variables: { slug }
+    // })
 
     let [productData, setProductData] = useState<resultType>({
         name: '',
@@ -240,26 +240,26 @@ const Productdetails = () => {
         image: '',
         categories: []
     })
-    useEffect(() => {
-        if (data && !loading) {
-            setProductData(data)
-        }
+    // useEffect(() => {
+    //     if (data && !loading) {
+    //         setProductData(data)
+    //     }
 
-        if (productData.color.length === 1) {
-            setColor(productData.color[0])
-        }
+    //     if (productData.color.length === 1) {
+    //         setColor(productData.color[0])
+    //     }
 
-        if (productData.size.length === 1) {
-            setSize(productData.size[0])
-        }
-    }, [loading])
+    //     if (productData.size.length === 1) {
+    //         setSize(productData.size[0])
+    //     }
+    // }, [loading])
 
     const [color, setColor] = useState<string>()
     const [size, setSize] = useState<string>()
 
-    let { addWishList, deleteWishList, wishlist } = useWishList()
+    // let { addWishList, deleteWishList, wishlist } = useWishList()
 
-    let { addItem } = useCart()
+    // let { addItem } = useCart()
 
     let productsData = useQuery(products)
     const [productsList, setProductsList] = useState<any[]>([])
@@ -291,11 +291,11 @@ const Productdetails = () => {
         setSliderImg(sliderProduct.filter((selectImg: any) => selectImg.id === id))
     }
 
-    let [inList, setInList] = useState(
-        !!wishlist.find((item) => {
-            return item === slug
-        })
-    )
+    // let [inList, setInList] = useState(
+    //     !!wishlist.find((item) => {
+    //         return item === slug
+    //     })
+    // )
 
     return (
         <React.Fragment>
@@ -353,7 +353,7 @@ const Productdetails = () => {
                                 ''
                             )}
 
-                            <AddToCart
+                            {/* <AddToCart
                                 addItem={addItem}
                                 setCount={setCount}
                                 product={{
@@ -371,12 +371,12 @@ const Productdetails = () => {
                                     setInList(!inList)
                                 }}
                                 inList={inList}
-                            />
+                            /> */}
 
                             <Information icon="bi bi-eye" />
 
                             <hr />
-                            <Categories categories={!loading ? productData.categories : []} />
+                            <Categories categories={productData.categories} />
                             <Socials />
                         </div>
                     </Container>

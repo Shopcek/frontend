@@ -44,36 +44,35 @@ let prices = [
 ]
 
 export function DomainModal({ domain, setClose }: { domain: string; setClose: Function }) {
-    //@ts-ignore
-    let { bnb } = useBinance()
+    // let { bnb } = useBinance()
 
     let navigate = useNavigate()
 
-    let { addNewDomainToUserRES, addXpRES } = useEarn()
+    // let { addNewDomainToUserRES, addXpRES } = useEarn()
 
-    let checkDomainRES = useQuery(checkDomainGQL, {
-        fetchPolicy: 'no-cache', // Used for first execution
-        nextFetchPolicy: 'no-cache', // Used for subsequent executions
-        initialFetchPolicy: 'no-cache',
-        variables: {
-            domain
-        }
-    })
+    // let checkDomainRES = useQuery(checkDomainGQL, {
+    //     fetchPolicy: 'no-cache', // Used for first execution
+    //     nextFetchPolicy: 'no-cache', // Used for subsequent executions
+    //     initialFetchPolicy: 'no-cache',
+    //     variables: {
+    //         domain
+    //     }
+    // })
 
     let [checkDomain, setCheckDomain] = useState(false)
 
-    useEffect(() => {
-        if (!checkDomainRES.loading) {
-            setCheckDomain(checkDomainRES.data)
-        }
-    }, [checkDomainRES.loading])
+    // useEffect(() => {
+    //     if (!checkDomainRES.loading) {
+    //         setCheckDomain(checkDomainRES.data)
+    //     }
+    // }, [checkDomainRES.loading])
 
     let price = prices.find((price) => {
         return price.min <= domain.length && price.max >= domain.length
     }) || { min: 0, max: 0, price: 0, xp: 0 }
 
 
-    let bnbPrice = price.price / bnb
+    let bnbPrice = price.price / 10
 
     return (
         <div className="domain-modal">
@@ -114,17 +113,17 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                                 className="btn btn-primary"
                                 onClick={ () => {
                                     buyWithWallet(async() => {
-                                        await addNewDomainToUserRES.fn({
-                                            variables: {
-                                                domain
-                                            }
-                                        })
+                                        // await addNewDomainToUserRES.fn({
+                                        //     variables: {
+                                        //         domain
+                                        //     }
+                                        // })
 
-                                        await addXpRES.fn({
-                                            variables: {
-                                                point: price.xp
-                                            }
-                                        })
+                                        // await addXpRES.fn({
+                                        //     variables: {
+                                        //         point: price.xp
+                                        //     }
+                                        // })
 
                                         navigate('/account/domains')
 

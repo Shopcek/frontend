@@ -6,11 +6,11 @@ import { useEffect, useState } from 'react'
 
 import { useUser } from 'context/user'
 export function Billing() {
-    let { recipient } = useUser()
+    // let { recipient } = useUser()
     // let gql = useMutation(updateRecipient)
 
     const formik = useFormik({
-        initialValues: recipient,
+        initialValues: {} as any,
         validationSchema: Yup.object({
             name: Yup.string().required('Please Enter Your Name'),
             address1: Yup.string().required('Please Enter Your Address Line'),
@@ -29,25 +29,25 @@ export function Billing() {
 
     let [check, setCheck] = useState(false)
 
-    useEffect(() => {
-        if (!check) {
-            Object.keys(recipient).forEach((key) => {
-                ;(formik.values as any)[key] = ''
-            })
-        } else {
-            Object.keys(recipient).forEach((key) => {
-                ;(formik.values as any)[key] = (recipient as any)[key]
-            })
-        }
-    }, [check])
+    // useEffect(() => {
+    //     if (!check) {
+    //         Object.keys(recipient).forEach((key) => {
+    //             ;(formik.values as any)[key] = ''
+    //         })
+    //     } else {
+    //         Object.keys(recipient).forEach((key) => {
+    //             ;(formik.values as any)[key] = (recipient as any)[key]
+    //         })
+    //     }
+    // }, [check])
 
-    useEffect(() => {
-        if (recipient) {
-            Object.keys(recipient).forEach((key) => {
-                ;(formik.values as any)[key] = (recipient as any)[key]
-            })
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (recipient) {
+    //         Object.keys(recipient).forEach((key) => {
+    //             ;(formik.values as any)[key] = (recipient as any)[key]
+    //         })
+    //     }
+    // }, [])
 
     return (
         <Row>

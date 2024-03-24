@@ -5,18 +5,18 @@ import { useEffect, useState } from 'react'
 import { Cart as CartIcon } from 'Components/Images/Icons'
 
 export function Cart(props: { handlecardShow: any }) {
-    let { cartItems } = useCart()
+    // let { cartItems } = useCart()
     const [cartCount, setCartCount] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
-    useEffect(() => {
-        setCartCount(cartItems.length)
+    // useEffect(() => {
+    //     setCartCount(cartItems.length)
 
-        let subtotal = 0
-        for (let i = 0; i < cartItems.length; i++) {
-            subtotal += cartItems[i].product.price * cartItems[i].count
-        }
-        setTotalPrice(subtotal)
-    }, [cartItems])
+    //     let subtotal = 0
+    //     for (let i = 0; i < cartItems.length; i++) {
+    //         subtotal += cartItems[i].product.price * cartItems[i].count
+    //     }
+    //     setTotalPrice(subtotal)
+    // }, [cartItems])
 
     return (
         <div

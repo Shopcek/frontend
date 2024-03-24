@@ -24,15 +24,15 @@ const SignMethod = ({ children, label }: { children: any; label: string }) => {
 }
 
 const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; setShow: Function }) => {
-    let { status, setStatus, isConnected, login } = useUser()
+    // let { status, setStatus, isConnected, login } = useUser()
 
-    setStatus('public')
+    // setStatus('public')
 
-    useEffect(() => {
-        if (status === 'login') {
-            setShow(false)
-        }
-    }, [status, isConnected])
+    // useEffect(() => {
+    //     if (status === 'login') {
+    //         setShow(false)
+    //     }
+    // }, [status, isConnected])
 
     const passwordtype = 'password'
     const [password, setPassword] = useState('')
@@ -47,12 +47,12 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
         }),
 
         onSubmit: (values) => {
-            login.fn({
-                variables: {
-                    identifier: values.identifier,
-                    password: values.password
-                }
-            })
+            // login.fn({
+            //     variables: {
+            //         identifier: values.identifier,
+            //         password: values.password
+            //     }
+            // })
         }
     })
 
@@ -177,15 +177,15 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 }
 
 const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; setShow: Function }) => {
-    let { register, setStatus, status, isConnected } = useUser()
+    // let { register, setStatus, status, isConnected } = useUser()
 
-    setStatus('register')
+    // setStatus('register')
 
-    useEffect(() => {
-        if (status === 'login') {
-            setShow(false)
-        }
-    }, [status, isConnected])
+    // useEffect(() => {
+    //     if (status === 'login') {
+    //         setShow(false)
+    //     }
+    // }, [status, isConnected])
 
     const [passwordtype, setPasswordtype] = useState(false)
 
@@ -204,7 +204,7 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
             password: Yup.string().required('This field is required')
         }),
         onSubmit: (values) => {
-            register.fn({ variables: values })
+            // register.fn({ variables: values })
         }
     })
 
@@ -344,18 +344,18 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 export const AccountModal = ({ show, setShow, handleClose }: any) => {
     const [sign, setSign] = useState<boolean>(true)
 
-    let { isConnected } = useUser()
+    // let { isConnected } = useUser()
 
-    useEffect(() => {
-        setTimeout(() => {
-            if (!isConnected) {
-                const buttonElement = document.querySelector('button._12cbo8i6')
-                if (buttonElement) {
-                    buttonElement.classList.add('btn', 'btn-primary', 'radius-15', 'connect-button')
-                }
-            }
-        }, 10)
-    }, [show, isConnected, sign])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         if (!isConnected) {
+    //             const buttonElement = document.querySelector('button._12cbo8i6')
+    //             if (buttonElement) {
+    //                 buttonElement.classList.add('btn', 'btn-primary', 'radius-15', 'connect-button')
+    //             }
+    //         }
+    //     }, 10)
+    // }, [show, isConnected, sign])
 
     return (
         <React.Fragment>
