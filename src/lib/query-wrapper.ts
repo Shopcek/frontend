@@ -12,7 +12,6 @@ export function handle(fn: CallableFunction) {
     }
 }
 
-
 export function useMutation(mutation: DocumentNode, options?: MutationHookOptions) {
     const jwt = localStorage.getItem('jwt')
 
@@ -85,5 +84,5 @@ export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
         data = simplifyResponse(data)
     }
 
-    return { data, loading, error, refetch, called, fn: handle(lazyCallFunction)}
+    return { data, loading, error, refetch, called, fn: handle(lazyCallFunction) }
 }

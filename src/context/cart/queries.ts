@@ -7,8 +7,9 @@ export const cartId = gql`
 `
 
 export const cart = gql`
-    query getCart($id: ID!) {
+    query getCart($id: ID) {
         cart(id: $id) {
+            id
             items {
                 data {
                     id

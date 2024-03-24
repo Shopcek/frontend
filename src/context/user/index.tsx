@@ -9,6 +9,7 @@ import { wagmiConfig } from 'lib/rainbow'
 
 export const UserContext = createContext<{
     status: string
+    logout?:boolean
     clearSession?: Function
     connectWalletGQL?: any
     jwt?: string
@@ -23,39 +24,43 @@ export function useUser() {
 
 export function UserProvider({ children }: { children: any }) {
     const [jwt, setJwt] = useState(localStorage.getItem('jwt') || undefined)
+    const [logout, setLogout] = useState(false)
 
     const connectWalletGQL = useMutation(mutations.connectWallet)
     const { address, status } = useAccount({
         config: wagmiConfig
     })
 
+    const cartId = localStorage.getItem('cartId')
+
     function clearSession() {
-        setJwt(undefined)
+       
         disconnect()
-        localStorage.removeItem('jwt')
     }
 
     useEffect(() => {
         switch (status) {
             case 'connected': {
-                connectWalletGQL.fn({
-                    variables: {
-                        address
-                    }
-                })
+                console.log(jwt)
+                if (!jwt){
+                    connectWalletGQL.fn({
+                        variables: {
+                            address,
+                            cartId: cartId
+                        }
+                    })
+                }
                 break
             }
-
-            case 'disconnected': {
-                clearSession()
-            }
         }
-    }, [status])
+    }, [])
 
     useEffect(() => {
         if (!connectWalletGQL.loading && connectWalletGQL.data) {
             setJwt(connectWalletGQL.data)
             localStorage.setItem('jwt', connectWalletGQL.data)
+            localStorage.removeItem('cartId')
+            window.location.reload()
         }
     }, [connectWalletGQL.loading])
 
@@ -71,8 +76,21 @@ export function UserProvider({ children }: { children: any }) {
     }, [connectWalletGQL.error])
 
     const { disconnect } = useDisconnect({
-        config: wagmiConfig
+        config: wagmiConfig,
+        mutation: {
+            onSuccess:()=>{
+                setLogout(true)
+                setJwt(undefined)
+                localStorage.removeItem('jwt')
+                localStorage.removeItem('cartId')
+                window.location.reload()
+            }
+        }
     })
 
-    return <UserContext.Provider value={{ status, jwt, address, clearSession, connectWalletGQL }}>{children}</UserContext.Provider>
+    return (
+        <UserContext.Provider value={{ status, jwt, address, clearSession, connectWalletGQL, logout }}>
+            {children}
+        </UserContext.Provider>
+    )
 }

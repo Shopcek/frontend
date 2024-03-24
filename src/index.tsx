@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
 import { Route, Routes } from 'react-router-dom'
-import { CartContextProvider } from 'context/cart'
 
 import { ApolloProvider } from 'lib/apollo-wrapper'
 import { RainbowProvider } from 'lib/rainbow'
