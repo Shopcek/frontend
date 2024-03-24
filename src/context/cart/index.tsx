@@ -1,150 +1,67 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { cartQuery, addItemToCart, deleteItemFromCart, addManyProductToCart, newOrder, orders } from '../../lib/common-queries'
-import { useQuery, useMutation } from '../../lib/query-wrapper'
-import { useUser } from '../user'
-import { isArray } from 'lodash'
 
-import { deleteAll, deleteItemWrapper } from './delete'
-import { addItemWrapper } from './add'
+import * as mutations from './mutations'
+import * as queries from './queries'
 
-import { CartContextType } from './types'
-export type { CartContextType }
+import { useQuery, useMutation, useLazyQuery } from 'lib/query-wrapper'
 
-const CartContext = createContext<any>({})
+import type { cartType } from './types'
+import { isString } from 'lodash'
 
-export const useCart = () => {
-    return useContext(CartContext) as CartContextType
+export const CartContext = createContext<{
+    cart?: cartType
+    cartGQL?: any
+    cartId?: string
+}>({})
+
+export function useCartContext() {
+    return useContext(CartContext)
 }
-
-export const CartProvider = ({ children }: any) => {
-    let { status, jwt, register, registerWithWallet, login, loginWithWallet } = useUser()
-
-    let cartData = useQuery(cartQuery)
-
-    let addItem = useMutation(addItemToCart)
-    let addManyProduct = useMutation(addManyProductToCart)
-    let deleteItem = useMutation(deleteItemFromCart)
-
-    let newOrderGql = useMutation(newOrder)
-    let [orderStatus, setOrderStatus] = useState(false)
-
-    let orderGql = useQuery(orders)
-
+export function CartContextProvider({ children }: { children: any }) {
+    // cart ID
+    const cartIdGQL = useLazyQuery(queries.cartId)
+    const [cartId, setCartId] = useState<string | null>(localStorage.getItem('cartId'))
     useEffect(() => {
-        if (!newOrderGql.loading && newOrderGql.data) {
-            setOrderStatus(true)
+        if (!cartId) {
+            cartIdGQL.fn!({})
         }
-    }, [newOrderGql.loading])
+    }, [cartId])
 
     useEffect(() => {
-        if (orderStatus) {
-            setCartItems([])
-            orderGql.refetch()
+        if (cartIdGQL.data && !cartIdGQL.loading && cartIdGQL.called) {
+            setCartId(cartIdGQL.data)
+            localStorage.setItem('cartId', cartIdGQL.data)
         }
-    }, [orderStatus])
+    }, [cartIdGQL.called, cartIdGQL.loading])
 
-    const [cartItems, setCartItems] = useState<any[]>([])
-    const addToCart = (newItem: any) => {
-        setCartItems([...cartItems, newItem])
-    }
+    // shopping cart
+    const cartGQL = useLazyQuery(queries.cart)
+    const localCart = localStorage.getItem('cart')
+    const [cart, setCart] = useState<cartType | string | null>(isString(localCart) ? JSON.parse(localCart) : localCart)
 
-    // let [getSingleProduct, singleProduct] = useLazyQuery(getSingleProductBySlug) as any
-    let [options, setOptions] = useState<any>({})
-
-    let [count, setCount] = useState(1)
-    let [refetch, setRefetch] = useState(true)
-    let addItemFn = addItemWrapper(cartItems, setCartItems, addItem.fn, addToCart, setCount, setOptions)
-    let deleteItemFn = deleteItemWrapper(cartItems, setCartItems, deleteItem.fn)
-    let deleteAllFn = deleteAll(cartItems, deleteItemFn, setCartItems)
-
-    // store in local
     useEffect(() => {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems))
-    }, [cartItems])
-
-    // after register
-    useEffect(() => {
-        if (!jwt) {
-            return
-        }
-
-        addManyProduct.fn({
-            variables: {
-                items: cartItems.map((item) => {
-                    return {
-                        slug: item.product.slug,
-                        count: item.count,
-                        options: item.options
-                    }
-                })
-            }
-        })
-    }, [registerWithWallet?.loading, register?.loading])
-
-    // after login
-    useEffect(() => {
-        if (!jwt) {
-            return
-        }
-        cartData.refetch()
-        setRefetch(!refetch)
-    }, [loginWithWallet?.loading, login?.loading])
-
-    // store in localstorage
-
-    // first mount
-    useEffect(() => {
-        //if logged in get from backend
-        if (jwt) {
-            if (cartData.loading) {
-                return
-            }
-            if (cartData.error) {
-                return
-            }
-            if (!cartData.data) {
-                return
-            }
-
-            setCartItems(cartData.data)
-        }
-        // if not logged in get from localStorage
-        else {
-            let items = localStorage.getItem('cartItems')
-            if (items) {
-                let localCart = JSON.parse(items)
-                if (isArray(localCart)) {
-                    setCartItems(localCart)
+        if (cartId) {
+            cartGQL.fn!({
+                variables: {
+                    id: cartId
                 }
-            }
+            })
         }
-    }, [cartData.loading])
+    }, [cartId])
 
-    // if cartData.refecth called, set data
+    // if cart set to localstorage
     useEffect(() => {
-        if (cartData.data) {
-            if (JSON.stringify(cartData.data) !== JSON.stringify(cartItems)) {
-                setCartItems(cartData.data)
-            }
+        if (cartGQL.data && !cartGQL.loading && cartGQL.called) {
+            setCart(cartGQL.data)
+            localStorage.setItem('cart', JSON.stringify(cartGQL.data))
         }
-    }, [refetch])
+    }, [cartGQL.called, cartGQL.loading])
 
-    return (
-        <CartContext.Provider
-            value={{
-                cartItems,
-                deleteItem: deleteItemFn,
-                addItem: addItemFn,
-                deleteAll: deleteAllFn,
-                orderStatus,
-                newOrderGql,
-                orderGql,
-                setOrderStatus
-            }}
-        >
-            {children}
-        </CartContext.Provider>
-    )
+    console.log(cart, cartId)
+
+    return <CartContext.Provider value={{ cart: cart as cartType, cartId: cartId as string, cartGQL }}>{children}</CartContext.Provider>
 }
 
-// export type {CartContextType}
+export function TestComponent() {
+    return <div></div>
+}

@@ -13,12 +13,12 @@ import config from 'config/config'
 
 import { Slider } from 'Components/Product'
 import { products } from 'lib/common-queries'
-import { useCart } from 'context/cart'
+import { useCart } from 'oldcontext/cart'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
 
 import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/BlueSocial'
-import { useWishList } from 'context/wishlist'
+import { useWishList } from 'oldcontext/wishlist'
 
 import { colors } from 'data/colors'
 

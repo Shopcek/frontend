@@ -13,10 +13,10 @@ import length7 from '../../assets/images/earn/domain/7.png'
 import length8 from '../../assets/images/earn/domain/8.png'
 import length9 from '../../assets/images/earn/domain/9.png'
 
-import { useBinance } from 'context/binance'
+import { useBinance } from 'oldcontext/binance'
 
 import { buyWithWallet } from 'lib/rainbow'
-import { useEarn } from 'context/earn'
+import { useEarn } from 'oldcontext/earn'
 import { useNavigate } from 'react-router-dom'
 
 let images = {

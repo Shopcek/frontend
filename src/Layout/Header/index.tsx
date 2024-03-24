@@ -15,42 +15,52 @@ import { Collections } from './buttons/collections'
 
 import { Delivery } from './icons/delivery'
 
+import { UserProvider } from 'context/user'
+
 const Header = (props: any) => {
-    // let { jwt } = useUser()
+    function Component() {
+        const { status } = useUser()
 
-    const [card, setCard] = useState(false)
+        const [card, setCard] = useState(false)
 
-    const handlecardClose = () => setCard(false)
-    const handlecardShow = () => setCard(true)
+        const handlecardClose = () => setCard(false)
+        const handlecardShow = () => setCard(true)
+
+        return (
+            <React.Fragment>
+                <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
+                    <Container>
+                        <Logo />
+                        <Navbar.Collapse id="navbarSupportedContent">
+                            <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
+                                <Form.Control className="search-bar" size="lg" type="text" placeholder="Search for product" />
+                            </Nav>
+                        </Navbar.Collapse>
+
+                        <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
+                        <div className="d-flex align-items-center">
+                            {status === "connected" ? [<Account />, <WishList />] : <SignInUp />}
+                            <Cart handlecardShow={handlecardShow} />
+                        </div>
+                    </Container>
+                </Navbar>
+                <CardModal show={card} handleClose={handlecardClose} />
+
+                <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
+                    <Container className="navbar-nav">
+                        <Collections />
+                        <Pages />
+                        <Delivery />
+                    </Container>
+                </Navbar>
+            </React.Fragment>
+        )
+    }
 
     return (
-        <React.Fragment>
-            <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
-                <Container>
-                    <Logo />
-                    <Navbar.Collapse id="navbarSupportedContent">
-                        <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
-                            <Form.Control className="search-bar" size="lg" type="text" placeholder="Search for product" />
-                        </Nav>
-                    </Navbar.Collapse>
-
-                    <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
-                    <div className="d-flex align-items-center">
-                        {"jwt" ? [<Account />, <WishList />] : <SignInUp />}
-                        <Cart handlecardShow={handlecardShow} />
-                    </div>
-                </Container>
-            </Navbar>
-            <CardModal show={card} handleClose={handlecardClose} />
-
-            <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
-                <Container className="navbar-nav">
-                    <Collections />
-                    <Pages />
-                    <Delivery />
-                </Container>
-            </Navbar>
-        </React.Fragment>
+        <UserProvider>
+            <Component />
+        </UserProvider>
     )
 }
 

@@ -3,7 +3,6 @@ import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import config from 'config/config'
 import { productListType } from 'models/ProductType'
-import { useCart } from 'context/cart'
 
 export const CardComponent = ({ data }: { data: productListType }) => {
     // let { addItem } = useCart()

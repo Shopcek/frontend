@@ -1,9 +1,6 @@
 import { useMutation as useMutationApollo, useLazyQuery as useLazyQueryApollo, useQuery as useQueryApollo } from '@apollo/client'
 import { DocumentNode, MutationHookOptions, QueryHookOptions } from '@apollo/client'
-
-import config from 'config/config'
 import { simplifyResponse } from './simplify-response'
-import { useUser } from 'context/user'
 
 export function handle(fn: CallableFunction) {
     return async (options: MutationHookOptions | QueryHookOptions) => {
@@ -15,10 +12,9 @@ export function handle(fn: CallableFunction) {
     }
 }
 
-const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzExMTcyNjY1LCJleHAiOjE3MTM3NjQ2NjV9.trxVFZBmP3FvcORMGUoNOV4dot5m-rOQvh1g4NGw1Z4"
 
 export function useMutation(mutation: DocumentNode, options?: MutationHookOptions) {
-    // let { jwt } = useUser()
+    const jwt = localStorage.getItem('jwt')
 
     let [fn, { data, error, loading }] = useMutationApollo(mutation, {
         ...options,
@@ -43,7 +39,8 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
 }
 
 export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
-    // let { jwt } = useUser()
+    const jwt = localStorage.getItem('jwt')
+
     let { data, error, loading, refetch } = useQueryApollo(query, {
         ...options,
         context: {
@@ -67,7 +64,8 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
 }
 
 export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
-    // let { jwt } = useUser()
+    const jwt = localStorage.getItem('jwt')
+
     let [lazyCallFunction, { data, error, loading, refetch, called }] = useLazyQueryApollo(query, {
         ...options,
         context: {

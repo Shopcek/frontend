@@ -5,9 +5,9 @@ import Layout from 'Layout'
 //routes
 import { authProtectedRoutes } from './allRoutes'
 
-import { CartContextProvider } from 'new-context/cart'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-import { TestComponent } from 'new-context/cart'
+import { UserProvider } from 'context/user'
 
 const Index = () => {
     return (
@@ -19,7 +19,16 @@ const Index = () => {
                     ))}
                 </Route>
                 <Route>
-                    <Route path="/test" element={<CartContextProvider><TestComponent /></CartContextProvider>} /> 
+                    <Route
+                        path="/test"
+                        element={
+                            <UserProvider>
+                                <div>
+                                    <ConnectButton></ConnectButton>
+                                </div>
+                            </UserProvider>
+                        }
+                    />
                 </Route>
             </Routes>
         </React.Fragment>

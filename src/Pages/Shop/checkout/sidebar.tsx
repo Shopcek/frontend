@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-import { useBinance } from 'context/binance'
-import { useCart } from 'context/cart'
+import { useBinance } from 'oldcontext/binance'
+import { useCart } from 'oldcontext/cart'
 import { buyWithWallet } from 'lib/rainbow'
-import { useOrder } from 'context/order'
+import { useOrder } from 'oldcontext/order'
 
 export function order({ newOrder }: { newOrder: any }) {
     return ({ transaction }: { transaction: string }) => {

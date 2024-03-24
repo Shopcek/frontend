@@ -1,4 +1,4 @@
-import { useWishList } from 'context/wishlist'
+import { useWishList } from 'oldcontext/wishlist'
 import { Link } from 'react-router-dom'
 
 import { Wishlist } from 'Components/Images/Icons'

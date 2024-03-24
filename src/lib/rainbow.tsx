@@ -8,8 +8,6 @@ import { parseEther } from 'viem'
 import { sendTransaction } from '@wagmi/core'
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { useBinance } from 'context/binance'
-import { useCart } from 'context/cart'
 
 const bsc = {
     id: 97,

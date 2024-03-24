@@ -1,148 +1,78 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
+
+import { useMutation } from 'lib/query-wrapper'
+import * as mutations from './mutations'
+// import * as queries from './queries'
+
 import { useAccount, useDisconnect } from 'wagmi'
 import { wagmiConfig } from 'lib/rainbow'
 
-import {
-    loginWithWallet as loginWithWalletMutation,
-    registerWithWallet as registerWithWalletMutation,
-    login as loginMutation,
-    register as registerMutation,
-    recipient as recipientQuery,
-    me as meQuery,
-    connectWallet as connectWalletMutation,
-    choosenDomain as choosenDomainGQL
-} from 'lib/common-queries'
+export const UserContext = createContext<{
+    status: string
+    clearSession?: Function
+    connectWalletGQL?: any
+    jwt?: string
+    address?: string
+}>({
+    status: 'disconnected'
+})
 
-import { useMutation, useQuery } from 'lib/query-wrapper'
-import { UserContextType } from './types'
-
-export type { UserContextType }
-
-const UserContext = createContext<any>({})
-
-export const useUser = () => {
-    return useContext(UserContext) as UserContextType
+export function useUser() {
+    return useContext(UserContext)
 }
 
-export const UserProvider = ({ children }: any) => {
-    let [jwt, setJwt] = useState<string | undefined | null>(localStorage.getItem('jwt'))
-    let [status, setStatus] = useState<'login' | 'logout' | 'register' | 'public'>('public')
+export function UserProvider({ children }: { children: any }) {
+    const [jwt, setJwt] = useState(localStorage.getItem('jwt') || undefined)
 
-    let { disconnect } = useDisconnect({
+    const connectWalletGQL = useMutation(mutations.connectWallet)
+    const { address, status } = useAccount({
         config: wagmiConfig
     })
 
-    let { address, isConnected } = useAccount({
-        config: wagmiConfig
-    })
-
-    ///////
-    let choosenDomainRES = useQuery(choosenDomainGQL)
-    let [choosenDomain, setChoosenDomainGQL] = useState('')
-
-    useEffect(() => {
-        if (choosenDomainRES.data && !choosenDomainRES.loading && JSON.stringify(choosenDomainRES.data) !== JSON.stringify(choosenDomain)) {
-            setChoosenDomainGQL(choosenDomainRES.data.domain)
-        }
-    }, [choosenDomainRES.loading, choosenDomainRES.data])
-
-    let loginWithWallet = useMutation(loginWithWalletMutation)
-    let registerWithWallet = useMutation(registerWithWalletMutation)
-    let connectWallet = useMutation(connectWalletMutation)
-
-    let login = useMutation(loginMutation)
-    let register = useMutation(registerMutation)
-
-    let [recipientState, setRecipientState] = useState({
-        name: '',
-        address1: '',
-        address2: '',
-        city: '',
-        state_code: '',
-        state_name: '',
-        country_code: '',
-        country_name: '',
-        zip: '',
-        phone: '',
-        email: ''
-    })
-    let recipient = useQuery(recipientQuery)
-    useEffect(() => {
-        if (recipient.data && !recipient.loading) {
-            setRecipientState(recipient.data)
-        }
-    }, [recipient.loading])
-
-    let [meState, setMeState] = useState({
-        username: '',
-        email: ''
-    })
-
-    let me = useQuery(meQuery)
-    useEffect(() => {
-        if (me.data && !me.loading) {
-            setMeState(me.data)
-        }
-    }, [me.loading])
-
-    let deleteJwt = () => {
+    function clearSession() {
+        setJwt(undefined)
         disconnect()
         localStorage.removeItem('jwt')
-        setJwt(null)
     }
 
     useEffect(() => {
-        if (jwt) {
-            localStorage.setItem('jwt', jwt)
+        switch (status) {
+            case 'connected': {
+                connectWalletGQL.fn({
+                    variables: {
+                        address
+                    }
+                })
+                break
+            }
+
+            case 'disconnected': {
+                clearSession()
+            }
         }
-    }, [jwt])
+    }, [status])
 
     useEffect(() => {
-        if (isConnected) {
-            connectWallet.fn({
-                variables: {
-                    walletAddress: address
-                }
-            })
-        } else {
-            deleteJwt()
+        if (!connectWalletGQL.loading && connectWalletGQL.data) {
+            setJwt(connectWalletGQL.data)
+            localStorage.setItem('jwt', connectWalletGQL.data)
         }
-    }, [isConnected])
+    }, [connectWalletGQL.loading])
 
     useEffect(() => {
-        if (!connectWallet.data) {
-            return
-        }
-        if (!isConnected) {
-            return
-        }
+        if (connectWalletGQL.error) {
+            if (connectWalletGQL.error.message === 'You already logged in!') {
+                return
+            }
 
-        setJwt(connectWallet.data.jwt)
-    }, [connectWallet.loading])
+            clearSession()
+            console.log(connectWalletGQL.error.message)
+        }
+    }, [connectWalletGQL.error])
 
-    return (
-        <UserContext.Provider
-            value={{
-                jwt,
-                setJwt,
-                deleteJwt,
-                isConnected,
-                address: isConnected ? address : '',
-                login,
-                loginWithWallet,
-                register,
-                registerWithWallet,
-                status,
-                setStatus,
-                recipient: recipientState,
-                me: meState,
-                choosenDomain: {
-                    choosenDomain,
-                    choosenDomainRES
-                }
-            }}
-        >
-            {children}
-        </UserContext.Provider>
-    )
+    const { disconnect } = useDisconnect({
+        config: wagmiConfig
+    })
+
+    return <UserContext.Provider value={{ status, jwt, address, clearSession, connectWalletGQL }}>{children}</UserContext.Provider>
 }

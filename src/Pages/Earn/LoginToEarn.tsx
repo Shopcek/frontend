@@ -3,7 +3,7 @@ import { Image, Button, Container } from 'react-bootstrap'
 import smallReward from '../../assets/images/earn/small-reward.png'
 import mediumReward from '../../assets/images/earn/medium-reward.png'
 import largeReward from '../../assets/images/earn/large-reward.png'
-import { useEarn } from 'context/earn'
+import { useEarn } from 'oldcontext/earn'
 import { check10s } from 'lib/helpers'
 import { useState, useEffect } from 'react'
 

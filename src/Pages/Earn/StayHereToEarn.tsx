@@ -1,4 +1,4 @@
-import { useEarn } from 'context/earn'
+import { useEarn } from 'oldcontext/earn'
 import { Button } from 'react-bootstrap'
 
 import { useEffect, useState } from 'react'

@@ -1,4 +1,4 @@
-import { useEarn } from 'context/earn'
+import { useEarn } from 'oldcontext/earn'
 import { Nav } from 'react-bootstrap'
 
 import { Tab } from 'react-bootstrap'

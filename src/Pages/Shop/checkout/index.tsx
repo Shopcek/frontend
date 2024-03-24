@@ -6,7 +6,7 @@ import { Products } from './products'
 import { Billing } from './billing'
 
 import { useNavigate } from 'react-router-dom'
-import { useCart } from 'context/cart'
+import { useCart } from 'oldcontext/cart'
 
 const Checkout = () => {
     // let { orderStatus, setOrderStatus, newOrderGql } = useCart()

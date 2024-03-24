@@ -10,7 +10,7 @@ import SimpleBar from 'simplebar-react'
 import DeleteModal from 'Components/Modals/DeleteModal'
 
 import { useNavigate } from 'react-router-dom'
-import { useCart } from 'context/cart'
+import { useCart } from 'oldcontext/cart'
 
 import { Text } from '../Images/Logo'
 
