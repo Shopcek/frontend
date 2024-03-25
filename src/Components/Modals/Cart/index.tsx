@@ -29,7 +29,6 @@ export const CardModal = ({ show, handleClose }: any) => {
                 if (!data.data){
                     return
                 }
-                console.log(simplifyResponse(data.data))
                 setItems(<Items items={simplifyResponse(data.data).items}></Items>)
             })
         },[show])
@@ -39,7 +38,6 @@ export const CardModal = ({ show, handleClose }: any) => {
                 switch (cartGQL.status){
                     case 'success': {
                         cartCount = <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>
-                        console.log(cartGQL.data!.items)
                         setItems(<Items items={cartGQL.data!.items}></Items>)
                         break
                     }          
