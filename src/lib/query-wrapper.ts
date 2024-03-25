@@ -4,7 +4,7 @@ import { simplifyResponse } from './simplify-response'
 
 import { ApolloError } from '@apollo/client'
 
-type status = 'error' | 'loading' | 'success' | 'error-and-data' | 'not-called' | undefined
+type status = 'error' | 'loading' | 'success' | 'error-and-data' | 'not-called' | 'not-found' | undefined
 
 export function handle(fn: CallableFunction) {
     return async (options: MutationHookOptions | QueryHookOptions) => {
@@ -18,7 +18,8 @@ export function handle(fn: CallableFunction) {
 
 export function useMutation<DType>(
     mutation: DocumentNode,
-    options?: MutationHookOptions
+    options?: MutationHookOptions,
+    notFound?: (data: any) => boolean
 ): {
     status: status
     fn: CallableFunction
@@ -48,7 +49,11 @@ export function useMutation<DType>(
     } else if (error) {
         status = 'error'
     } else if (data) {
-        status = 'success'
+        if (notFound && notFound(data)) {
+            status = 'not-found'
+        } else {
+            status = 'success'
+        }
     } else if (!called) {
         status = 'not-called'
     } else {
@@ -67,7 +72,8 @@ export function useMutation<DType>(
 
 export function useQuery<DType>(
     query: DocumentNode,
-    options?: QueryHookOptions
+    options?: QueryHookOptions,
+    notFound?: (data: any) => boolean
 ): {
     status: status
     refetch: CallableFunction
@@ -97,7 +103,11 @@ export function useQuery<DType>(
     } else if (error) {
         status = 'error'
     } else if (data) {
-        status = 'success'
+        if (notFound && notFound(data)) {
+            status = 'not-found'
+        } else {
+            status = 'success'
+        }
     } else if (!called) {
         status = 'not-called'
     } else {
@@ -116,7 +126,8 @@ export function useQuery<DType>(
 
 export function useLazyQuery<DType>(
     query: DocumentNode,
-    options?: QueryHookOptions
+    options?: QueryHookOptions,
+    notFound?: (data: any) => boolean
 ): {
     status: status
     fn: CallableFunction
@@ -147,7 +158,11 @@ export function useLazyQuery<DType>(
     } else if (error) {
         status = 'error'
     } else if (data) {
-        status = 'success'
+        if (notFound && notFound(data)) {
+            status = 'not-found'
+        } else {
+            status = 'success'
+        }
     } else if (!called) {
         status = 'not-called'
     } else {
