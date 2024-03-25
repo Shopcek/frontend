@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <React.Fragment>
             <Section />
-            <Slider items={data || []} title="Best Sellers" />
+            <Slider items={data as any || []} title="Best Sellers" />
             <Products items={data || []} title="Hot Deals" />
         </React.Fragment>
     )

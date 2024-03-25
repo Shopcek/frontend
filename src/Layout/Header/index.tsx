@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Navbar, Nav, Form } from 'react-bootstrap'
 
-import { CardModal } from 'Components/Modals/CardModal'
+import { CardModal } from 'Components/Modals/Cart'
 
 import { useUser } from 'context/user'
 

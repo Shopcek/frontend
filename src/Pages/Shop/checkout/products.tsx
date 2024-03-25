@@ -1,4 +1,4 @@
-import { useCart } from 'oldcontext/cart'
+// import { useCart } from 'oldcontext/cart'
 import { Table, Image, Card } from 'react-bootstrap'
 
 export function Products() {

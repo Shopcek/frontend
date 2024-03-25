@@ -2,8 +2,6 @@ import React from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useCart } from 'oldcontext/cart'
-import { useUser } from 'oldcontext/user'
 import { useMutation } from 'lib/query-wrapper'
 import { updateRecipient } from 'lib/common-queries'
 

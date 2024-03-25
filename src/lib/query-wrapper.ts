@@ -2,6 +2,10 @@ import { useMutation as useMutationApollo, useLazyQuery as useLazyQueryApollo, u
 import { DocumentNode, MutationHookOptions, QueryHookOptions } from '@apollo/client'
 import { simplifyResponse } from './simplify-response'
 
+import { ApolloError } from '@apollo/client'
+
+type status = 'error' | 'loading' | 'success' | 'error-and-data' | 'not-called' | undefined
+
 export function handle(fn: CallableFunction) {
     return async (options: MutationHookOptions | QueryHookOptions) => {
         try {
@@ -12,10 +16,20 @@ export function handle(fn: CallableFunction) {
     }
 }
 
-export function useMutation(mutation: DocumentNode, options?: MutationHookOptions) {
+export function useMutation<DType>(
+    mutation: DocumentNode,
+    options?: MutationHookOptions
+): {
+    status: status
+    fn: CallableFunction
+    data?: DType
+    error?: ApolloError
+    loading?: boolean
+    called?: boolean
+} {
     const jwt = localStorage.getItem('jwt')
 
-    let [fn, { data, error, loading }] = useMutationApollo(mutation, {
+    let [fn, { data, error, loading, called }] = useMutationApollo(mutation, {
         ...options,
         context: {
             headers: jwt
@@ -26,21 +40,45 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
         }
     })
 
-    if (error) {
-        return { data, error, loading, fn: handle(fn) }
+    let status: status
+    if (loading) {
+        status = 'loading'
+    } else if (error && data) {
+        status = 'error-and-data'
+    } else if (error) {
+        status = 'error'
+    } else if (data) {
+        status = 'success'
+    } else if (!called) {
+        status = 'not-called'
+    } else {
+        status = undefined
     }
 
-    if (!loading && data) {
-        data = simplifyResponse(data)
+    return {
+        data: data ? simplifyResponse(data) : data,
+        error,
+        loading,
+        called,
+        fn: handle(fn),
+        status
     }
-
-    return { data, error, loading, fn: handle(fn) }
 }
 
-export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
+export function useQuery<DType>(
+    query: DocumentNode,
+    options?: QueryHookOptions
+): {
+    status: status
+    refetch: CallableFunction
+    data?: DType
+    error?: ApolloError
+    loading?: boolean
+    called?: boolean
+} {
     const jwt = localStorage.getItem('jwt')
 
-    let { data, error, loading, refetch } = useQueryApollo(query, {
+    let { data, error, loading, refetch, called } = useQueryApollo(query, {
         ...options,
         context: {
             headers: jwt
@@ -51,18 +89,43 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
         }
     })
 
-    if (error) {
-        return { data, loading, error, refetch }
+    let status: status
+    if (loading) {
+        status = 'loading'
+    } else if (error && data) {
+        status = 'error-and-data'
+    } else if (error) {
+        status = 'error'
+    } else if (data) {
+        status = 'success'
+    } else if (!called) {
+        status = 'not-called'
+    } else {
+        status = undefined
     }
 
-    if (!loading && data) {
-        data = simplifyResponse(data)
+    return {
+        data: data ? simplifyResponse(data) : data,
+        error,
+        loading,
+        called,
+        refetch: handle(refetch),
+        status
     }
-
-    return { data, loading, error, refetch }
 }
 
-export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
+export function useLazyQuery<DType>(
+    query: DocumentNode,
+    options?: QueryHookOptions
+): {
+    status: status
+    fn: CallableFunction
+    refetch: CallableFunction
+    data?: DType
+    error?: ApolloError
+    loading?: boolean
+    called?: boolean
+} {
     const jwt = localStorage.getItem('jwt')
 
     let [lazyCallFunction, { data, error, loading, refetch, called }] = useLazyQueryApollo(query, {
@@ -76,13 +139,28 @@ export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
         }
     })
 
-    if (called && error) {
-        return { data, loading, error, refetch }
+    let status: status
+    if (loading) {
+        status = 'loading'
+    } else if (error && data) {
+        status = 'error-and-data'
+    } else if (error) {
+        status = 'error'
+    } else if (data) {
+        status = 'success'
+    } else if (!called) {
+        status = 'not-called'
+    } else {
+        status = undefined
     }
 
-    if (called && !loading && data) {
-        data = simplifyResponse(data)
+    return {
+        data: data ? simplifyResponse(data) : data,
+        error,
+        loading,
+        refetch: handle(refetch),
+        status,
+        called,
+        fn: handle(lazyCallFunction)
     }
-
-    return { data, loading, error, refetch, called, fn: handle(lazyCallFunction) }
 }

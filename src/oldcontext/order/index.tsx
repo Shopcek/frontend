@@ -25,22 +25,22 @@ export function OrderProvider({ children }: { children: any }) {
     let [order, setOrder] = useState()
     let [orders, setOrders] = useState()
 
-    useEffect(() => {
-        if (!newOrderRES.loading && newOrderRES.data) {
-            setNewOrder(newOrderRES.data)
-        }
-    }, [newOrderRES.loading])
+    // useEffect(() => {
+    //     if (!newOrderRES.loading && newOrderRES.data) {
+    //         setNewOrder(newOrderRES.data)
+    //     }
+    // }, [newOrderRES.loading])
 
-    useEffect(() => {
-        if (!orderRES.loading && orderRES.data) {
-            setOrder(orderRES.data)
-        }
-    }, [orderRES.loading])
-    useEffect(() => {
-        if (!ordersRES.loading && ordersRES.data) {
-            setOrders(ordersRES.data)
-        }
-    }, [ordersRES.loading])
+    // useEffect(() => {
+    //     if (!orderRES.loading && orderRES.data) {
+    //         setOrder(orderRES.data)
+    //     }
+    // }, [orderRES.loading])
+    // useEffect(() => {
+    //     if (!ordersRES.loading && ordersRES.data) {
+    //         setOrders(ordersRES.data)
+    //     }
+    // }, [ordersRES.loading])
 
     return (
         <OrderContext.Provider

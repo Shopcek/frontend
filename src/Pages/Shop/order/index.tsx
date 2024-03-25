@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 export default function Success() {
     let { id } = useParams()
 
-    let { data, loading, error } = useQuery(order, {
+    let { data, loading, error } = useQuery<any>(order, {
         variables: {
             id
         }

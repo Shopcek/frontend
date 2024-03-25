@@ -18,9 +18,22 @@ export const cart = gql`
                             data {
                                 id
                                 attributes {
+                                    color {
+                                        data {
+                                            attributes {
+                                                value
+                                            }
+                                        }
+                                    }
+                                    size {
+                                        data {
+                                            attributes {
+                                                value
+                                            }
+                                        }
+                                    }
                                     product {
                                         data {
-                                              
                                             attributes {
                                                 name
                                                 price

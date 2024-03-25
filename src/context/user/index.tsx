@@ -10,7 +10,7 @@ import { wagmiConfig } from 'lib/rainbow'
 export const UserContext = createContext<{
     status: string
     logout?:boolean
-    clearSession?: Function
+    disconnect?: Function
     connectWalletGQL?: any
     jwt?: string
     address?: string
@@ -26,7 +26,7 @@ export function UserProvider({ children }: { children: any }) {
     const [jwt, setJwt] = useState(localStorage.getItem('jwt') || undefined)
     const [logout, setLogout] = useState(false)
 
-    const connectWalletGQL = useMutation(mutations.connectWallet)
+    const connectWalletGQL = useMutation<any>(mutations.connectWallet)
     const { address, status } = useAccount({
         config: wagmiConfig
     })
@@ -34,14 +34,15 @@ export function UserProvider({ children }: { children: any }) {
     const cartId = localStorage.getItem('cartId')
 
     function clearSession() {
-       
-        disconnect()
+        setLogout(true)
+        setJwt(undefined)
+        localStorage.removeItem('jwt')
+        localStorage.removeItem('cartId')
     }
 
     useEffect(() => {
         switch (status) {
             case 'connected': {
-                console.log(jwt)
                 if (!jwt){
                     connectWalletGQL.fn({
                         variables: {
@@ -69,9 +70,7 @@ export function UserProvider({ children }: { children: any }) {
             if (connectWalletGQL.error.message === 'You already logged in!') {
                 return
             }
-
-            clearSession()
-            console.log(connectWalletGQL.error.message)
+            disconnect()
         }
     }, [connectWalletGQL.error])
 
@@ -79,17 +78,14 @@ export function UserProvider({ children }: { children: any }) {
         config: wagmiConfig,
         mutation: {
             onSuccess:()=>{
-                setLogout(true)
-                setJwt(undefined)
-                localStorage.removeItem('jwt')
-                localStorage.removeItem('cartId')
+                clearSession()
                 window.location.reload()
             }
         }
     })
 
     return (
-        <UserContext.Provider value={{ status, jwt, address, clearSession, connectWalletGQL, logout }}>
+        <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout }}>
             {children}
         </UserContext.Provider>
     )

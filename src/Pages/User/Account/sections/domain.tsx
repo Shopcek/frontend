@@ -1,8 +1,8 @@
 import { Tab, Card, Table, Nav } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useEarn } from 'oldcontext/earn'
-import { useUser } from 'oldcontext/user'
+// import { useEarn } from 'oldcontext/earn'
+// import { useUser } from 'oldcontext/user'
 
 export function DomainsNav() {
     return (

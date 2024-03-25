@@ -19,7 +19,7 @@ export function useCart() {
 export function CartProvider({ children }: { children: any }) {
     function Component() {
         const { status, logout } = useUser()
-        const cartGQL = useLazyQuery(queries.cart)
+        const cartGQL = useLazyQuery<any>(queries.cart)
         const [cartId, setCartId] = useState(localStorage.getItem('cartId') || undefined)
 
         function defineCartId(value: string) {
@@ -59,7 +59,6 @@ export function CartProvider({ children }: { children: any }) {
 
             defineCartId(cartGQL.data.id)
         }, [cartGQL.loading, cartGQL.called])
-
         return <CartContext.Provider value={{ cartGQL, cartId }}>{children}</CartContext.Provider>
     }
 

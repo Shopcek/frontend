@@ -5,7 +5,7 @@ import wheel from '../../assets/images/earn/wheel.png'
 // @ts-ignore
 import WheelComponent from 'react-wheel-of-prizes'
 import { useState } from 'react'
-import { useEarn } from 'oldcontext/earn'
+// import { useEarn } from 'oldcontext/earn'
 
 export default function SpinToEarn() {
     const segments = ['10 XP', '20 XP', '30 XP', '40 XP', '50 XP', '60 XP']

@@ -9,7 +9,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 
 export function Account() {
     function Component() {
-        let {address, clearSession} = useUser()
+        let {address, disconnect} = useUser()
         let navigate = useNavigate()
         address = address!
         let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
@@ -79,7 +79,7 @@ export function Account() {
                         </div>
                         <Dropdown.Item
                             onClick={() => {
-                                clearSession!()
+                                disconnect!()
                             }}
                         >
                             <span className="align-middle" data-key="t-logout">

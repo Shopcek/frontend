@@ -27,7 +27,7 @@ export function WishListProvider({ children }: { children: any }) {
     // first mount
     useEffect(() => {
         if (!wishlistGql.loading && wishlistGql.data) {
-            setWishlistData(wishlistGql.data)
+            // setWishlistData(wishlistGql.data)
         }
     }, [wishlistGql.loading])
 
