@@ -3,14 +3,13 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import { Col, Modal, Row, Card, Offcanvas, Table, Form, Button, Image, Container, Spinner } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
 
 //component
-import DeleteModal from 'Components/Modals/DeleteModal'
 
 import { useNavigate } from 'react-router-dom'
 import { useCart, CartProvider } from 'context/cart'
+import { simplifyResponse } from 'lib/simplify-response'
 
 import { Items } from './Items'
 
@@ -23,37 +22,30 @@ export const CardModal = ({ show, handleClose }: any) => {
         let navigate = useNavigate()
         const { cartGQL } = useCart()
 
+        const [items, setItems] = useState<any>()
+        let cartCount
+        useEffect(()=>{
+            cartGQL?.refetch().then((data:any)=>{
+                if (!data.data){
+                    return
+                }
+                console.log(simplifyResponse(data.data))
+                setItems(<Items items={simplifyResponse(data.data).items}></Items>)
+            })
+        },[show])
 
-
-        // let { cartItems, deleteItem, addItem } = useCart()
-
-        const [id, setId] = useState('')
-        //modal
-        const [removeModel, setRemovemodel] = useState(false)
-        const RemoveModel = (id: any) => {
-            setRemovemodel(true)
-            setId(id)
-        }
-
-        const deleteData = () => {
-            // setProductcount(productData?.filter((delet: any) => delet.id !== id))
-        }
-
-        const CloseremoveModal = () => setRemovemodel(false)
-
-        let [slug, setSlug] = useState('')
-        let [options, setOptions] = useState({})
-
-        let cartCount, items
-        if (cartGQL){
-            switch (cartGQL.status){
-                case 'success': {
-                    cartCount = <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>
-                    items = <Items items={cartGQL.data!.items}></Items>
-                    break
-                }          
+        useEffect(()=>{
+            if (cartGQL){
+                switch (cartGQL.status){
+                    case 'success': {
+                        cartCount = <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>
+                        console.log(cartGQL.data!.items)
+                        setItems(<Items items={cartGQL.data!.items}></Items>)
+                        break
+                    }          
+                }
             }
-        }
+        }, [cartGQL])
 
         return (
             <React.Fragment>
@@ -107,7 +99,6 @@ export const CardModal = ({ show, handleClose }: any) => {
                         </Row>
                     </div>
                 </Offcanvas>
-                <DeleteModal hideModal={CloseremoveModal} removeModel={removeModel} deleteData={deleteData} slug={slug} options={options} />
             </React.Fragment>
         )
     }
