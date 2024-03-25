@@ -53,6 +53,11 @@ export function UserProvider({ children }: { children: any }) {
                 }
                 break
             }
+        }
+    }, [])
+
+    useEffect(() => {
+        switch (status) {
             case 'disconnected': {
                 if (jwt){
                     disconnect()
