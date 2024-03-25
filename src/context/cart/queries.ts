@@ -20,6 +20,7 @@ export const cart = gql`
                             data {
                                 id
                                 attributes {
+                                    price
                                     color {
                                         data {
                                             attributes {
