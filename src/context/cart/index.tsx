@@ -17,8 +17,12 @@ export function useCart() {
 export function CartProvider({ children }: { children: any }) {
     function Component() {
         const { status, logout } = useUser()
-        const cartGQL = useLazyQuery<cart>(queries.cart)
         const [cartId, setCartId] = useState(localStorage.getItem('cartId') || undefined)
+        const cartGQL = useLazyQuery<cart>(queries.cart, {
+            variables: {
+                id: cartId
+            }
+        })
 
         function defineCartId(value: string) {
             setCartId(value)
@@ -26,12 +30,11 @@ export function CartProvider({ children }: { children: any }) {
         }
 
         useEffect(() => {
-            const variables = cartId ? { id: cartId } : {}
+            const variables = { id: cartId } 
             cartGQL.fn!({
                 variables
             })
         }, [])
-
 
         useEffect(() => {
             if (status !== 'disconnected') {
@@ -50,7 +53,7 @@ export function CartProvider({ children }: { children: any }) {
                 return
             }
 
-            if (logout){
+            if (logout) {
                 return
             }
 

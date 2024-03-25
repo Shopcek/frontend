@@ -1,5 +1,6 @@
 export type cart = {
     id
+    price
     items: {
         id
         count

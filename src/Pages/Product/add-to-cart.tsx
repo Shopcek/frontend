@@ -115,7 +115,9 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
                         addItemGQL?.fn({
                             variables: { cartId, variantId: variant!.id, count }
                         })
-                        cartGQL?.refetch()
+                        cartGQL?.refetch({
+                            variables: { id: cartId }
+                        })
                     }}
                     disabled={!variant || addItemGQL?.loading || cartGQL?.loading}
                 >

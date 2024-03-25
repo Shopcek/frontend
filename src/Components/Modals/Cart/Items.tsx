@@ -13,7 +13,9 @@ export function Items({ items }: { items: any[] }) {
             if (updateCountGQL)
                 switch (updateCountGQL.status) {
                     case 'success': {
-                        cartGQL!.refetch()
+                        cartGQL!.refetch({
+                            variables:{ id: cartId }
+                        })
                     }
                 }
         }, [updateCountGQL?.status])
@@ -22,7 +24,9 @@ export function Items({ items }: { items: any[] }) {
             if (deleteItemGQL)
                 switch (deleteItemGQL.status) {
                     case 'success': {
-                        cartGQL!.refetch()
+                        cartGQL!.refetch({
+                            variables: { id: cartId }
+                        })
                     }
                 }
         }, [deleteItemGQL?.status])
@@ -62,7 +66,6 @@ export function Items({ items }: { items: any[] }) {
                                                             itemId: item.id
                                                         }
                                                     })
-
                                                 }}
                                                 disabled={updateCountGQL?.loading && cartGQL?.loading}
                                             >
@@ -97,7 +100,8 @@ export function Items({ items }: { items: any[] }) {
                                         onClick={() => {
                                             deleteItemGQL?.fn({
                                                 variables: {
-                                                    itemId: item.id
+                                                    itemId: item.id,
+                                                    cartId
                                                 }
                                             })
                                         }}

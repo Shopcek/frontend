@@ -10,29 +10,12 @@ export const CartOperationsContext = createContext<{
     deleteItemGQL?: ReturnType<typeof useMutation<operation>>
     updateCountGQL?: ReturnType<typeof useMutation<operation>>
     emptyCartGQL?: ReturnType<typeof useMutation<operation>>
-    addItem?: any
 }>({})
 
 export function useCartOperations() {
     return useContext(CartOperationsContext)
 }
 
-function addItem({
-    addItemGQL,
-    cartId,
-    setVariantId
-}: {
-    addItemGQL: ReturnType<typeof useMutation<operation>>
-    cartId: number | string
-    setVariantId: CallableFunction
-}) {
-    return ({ variantId }: { variantId: number }) => {
-        setVariantId(variantId)
-        addItemGQL.fn({
-            variables: { variantId, cartId }
-        })
-    }
-}
 
 export function CartOperationsProvider({ children }: { children: any }) {
     function Component() {
@@ -44,15 +27,10 @@ export function CartOperationsProvider({ children }: { children: any }) {
         const updateCountGQL = useMutation<operation>(mutations.updateCount)
         const emptyCartGQL = useMutation<operation>(mutations.emptyCart)
 
-        function addItem({ variantId, count }: { variantId: number; count: number }) {
-            addItemGQL.fn({
-                variables: { variantId, cartId, count }
-            })
-            // cartGQL?.refetch()
-        }
+
 
         return (
-            <CartOperationsContext.Provider value={{ addItemGQL, deleteItemGQL, updateCountGQL, emptyCartGQL, addItem }}>
+            <CartOperationsContext.Provider value={{ addItemGQL, deleteItemGQL, updateCountGQL, emptyCartGQL }}>
                 {children}
             </CartOperationsContext.Provider>
         )

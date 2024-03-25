@@ -17,13 +17,20 @@ import { Delivery } from './icons/delivery'
 
 import { UserProvider } from 'context/user'
 
+import { useReducer } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 const Header = (props: any) => {
     function Component() {
+        const navigate = useNavigate()
         const { status } = useUser()
 
         const [card, setCard] = useState(false)
-
-        const handlecardClose = () => setCard(false)
+        const [_, forceUpdate] = useReducer(x => x + 1, 0);
+        const handlecardClose = () => {
+            setCard(false)
+            navigate(window.location.pathname)
+        }
         const handlecardShow = () => setCard(true)
 
         return (

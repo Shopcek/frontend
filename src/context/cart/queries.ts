@@ -11,6 +11,7 @@ export const cart = gql`
         cart(id: $id) {
             id
             count
+            price
             items {
                 data {
                     id

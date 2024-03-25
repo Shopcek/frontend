@@ -53,8 +53,13 @@ export function UserProvider({ children }: { children: any }) {
                 }
                 break
             }
+            case 'disconnected': {
+                if (jwt){
+                    disconnect()
+                }
+            }
         }
-    }, [])
+    }, [status])
 
     useEffect(() => {
         if (!connectWalletGQL.loading && connectWalletGQL.data) {

@@ -26,25 +26,65 @@ function Items({ items }: { items: any[] }) {
     })
 }
 
+function Prices({ price }: { price: number }) {
+    return [
+        <Table className="table-borderless mb-0 fs-15">
+            <tbody>
+                <tr className="table-active">
+                    <th>Shipping</th>
+                    <td className="text-end">
+                        <span className="fw-semibold cart-total">${((price / 100) * 5).toFixed(2)}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </Table>,
+
+        <Table className="table-borderless mb-0 fs-15">
+            <tbody>
+                <tr className="table-active">
+                    <th>Subtotal</th>
+                    <td className="text-end">
+                        <span className="fw-semibold cart-total">${price.toFixed(2)}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </Table>,
+
+        <hr />,
+
+        <Table className="table-borderless mb-0 fs-15">
+            <tbody>
+                <tr className="table-active">
+                    <th>
+                        <h6>Total</h6>
+                    </th>
+                    <td className="text-end">
+                        <span className="fw-semibold cart-total">${(price + (price / 100) * 5).toFixed(2)}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </Table>
+    ]
+}
+
 export function Products() {
-
-
     function Compnent() {
         const { cartGQL } = useCart()
-        
-        const [items, setItems] = useState<any>()
 
-        useEffect(()=>{
-            if (cartGQL){
-                switch (cartGQL?.status){
-                    case 'success':{
-                        setItems(<Items items={cartGQL!.data!.items}/>)
+        const [items, setItems] = useState<any>()
+        const [prices, setPrices] = useState<any>()
+
+        useEffect(() => {
+            if (cartGQL) {
+                switch (cartGQL?.status) {
+                    case 'success': {
+                        setItems(<Items items={cartGQL!.data!.items} />)
+                        setPrices(<Prices price={cartGQL!.data!.price} />)
                     }
                 }
             }
         }, [cartGQL?.status])
 
-        let price = 0
         return (
             <Card>
                 <Card.Body>
@@ -58,43 +98,7 @@ export function Products() {
                             </thead>
                             <tbody>{items}</tbody>
                         </Table>
-
-                        <Table className="table-borderless mb-0 fs-15">
-                            <tbody>
-                                <tr className="table-active">
-                                    <th>Shipping</th>
-                                    <td className="text-end">
-                                        <span className="fw-semibold cart-total">${((price / 100) * 5).toFixed(2)}</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
-
-                        <Table className="table-borderless mb-0 fs-15">
-                            <tbody>
-                                <tr className="table-active">
-                                    <th>Subtotal</th>
-                                    <td className="text-end">
-                                        <span className="fw-semibold cart-total">${price.toFixed(2)}</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
-
-                        <hr />
-
-                        <Table className="table-borderless mb-0 fs-15">
-                            <tbody>
-                                <tr className="table-active">
-                                    <th>
-                                        <h6>Total</h6>
-                                    </th>
-                                    <td className="text-end">
-                                        <span className="fw-semibold cart-total">${(price + (price / 100) * 5).toFixed(2)}</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                        {prices}
                     </div>
                 </Card.Body>
             </Card>

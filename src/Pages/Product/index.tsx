@@ -35,10 +35,13 @@ function ProductDetails() {
                             })}
                         />
                     )
+
+                    console.log(pictures, details)
                     break
                 }
 
                 case 'error': {
+                    console.log(productGQL.error)
                     break
                 }
 

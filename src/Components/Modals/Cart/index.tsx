@@ -20,15 +20,19 @@ function formatNumber(num: number) {
 export const CardModal = ({ show, handleClose }: any) => {
     function Component() {
         let navigate = useNavigate()
-        const { cartGQL } = useCart()
+        const { cartGQL, cartId } = useCart()
 
         const [items, setItems] = useState<any>()
         let cartCount
         useEffect(()=>{
-            cartGQL?.refetch().then((data:any)=>{
+            cartGQL?.refetch({
+                variables: { id: cartId }
+            }).then((data:any)=>{
                 if (!data.data){
                     return
                 }
+
+                console.log(simplifyResponse(data.data))
                 setItems(<Items items={simplifyResponse(data.data).items}></Items>)
             })
         },[show])
