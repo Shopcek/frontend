@@ -41,6 +41,7 @@ export const product = gql`
             }
             image
             description
+            price
         }
     }
 `

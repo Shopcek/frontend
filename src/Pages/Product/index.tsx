@@ -1,29 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Col, Container, Row, Tab, Nav, Table, Form, Image, Dropdown } from 'react-bootstrap'
-
-import { Link } from 'react-router-dom'
-// //scss
-// import 'swiper/css'
-// import 'swiper/css/thumbs'
-// import 'swiper/css/navigation'
+import { Col, Container, Row, Tab, Nav } from 'react-bootstrap'
 
 import { useParams } from 'react-router-dom'
 
-import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/BlueSocial'
-
-import { colors } from 'data/colors'
-
-import ModalImage from 'react-modal-image'
 import { ProductProvider, useProduct } from './context'
-
-import type { Product, Option } from './context/types'
-
 import { Details } from './details'
 import { Pictures } from './pictures'
 
-
-
-function Productdetails() {
+function ProductDetails() {
     function Component() {
         let { slug } = useParams()
         const { productGQL } = useProduct()
@@ -38,15 +22,22 @@ function Productdetails() {
             }
         }, [])
 
+        console.log(productGQL)
+
         let details, pictures
         if (productGQL) {
             switch (productGQL.status) {
                 case 'success': {
-                    details = <Details data={productGQL.data!}/>
+                    details = <Details data={productGQL.data!} />
 
-                    pictures = <Pictures image={productGQL.data!.image} images={productGQL.data!.variants.map((variant)=>{
-                        return variant.image
-                    })} />
+                    pictures = (
+                        <Pictures
+                            image={productGQL.data!.image}
+                            images={productGQL.data!.variants.map((variant) => {
+                                return variant.image
+                            })}
+                        />
+                    )
                     break
                 }
 
@@ -63,51 +54,20 @@ function Productdetails() {
                 }
 
                 case 'not-called': {
+                    break
+                }
+                case 'not-found': {
+                    break
                 }
             }
         }
-
-        // let { addWishList, deleteWishList, wishlist } = useWishList()
-
-        // let { addItem } = useCart()
-
-        // let productsData = useQuery(products)
-        // const [productsList, setProductsList] = useState<any[]>([])
-        // useEffect(() => {
-        //     if (JSON.stringify(productsData.data) !== JSON.stringify(productsList) && !productsData.loading && !productsData.error) {
-        //         setProductsList(productsData.data)
-        //     }
-        // }, [productsData.data])
-
-        // let sliderProduct = productData.color.map((color: any, index: number) => {
-        //     let item = productData.variants.find((item) => {
-        //         return item.color === color
-        //     })
-
-        //     return {
-        //         id: index + 1,
-        //         image: item.image
-        //     }
-        // })
-
-
-        const [count, setCount] = useState(1)
-
-
-
-        // let [inList, setInList] = useState(
-        //     !!wishlist.find((item) => {
-        //         return item === slug
-        //     })
-        // )
 
         return (
             <React.Fragment>
                 <div className="product-details-page">
                     <section className="section">
                         <Container className="product-details-container">
-                            
-                            
+                            {pictures}
                             {details}
                         </Container>
                     </section>
@@ -165,4 +125,4 @@ function Productdetails() {
     )
 }
 
-export default Productdetails
+export default ProductDetails

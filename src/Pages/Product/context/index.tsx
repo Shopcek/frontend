@@ -14,9 +14,9 @@ export function useProduct() {
 }
 
 export function ProductProvider({ children }: { children: any }) {
-    const productGQL = useLazyQuery<Product>(queries.product, {
-        // fetchPolicy: 'no-cache'
-    })
-
+    function productNotFound(data: any) {
+        return !data.product
+    }
+    const productGQL = useLazyQuery<Product>(queries.product, {}, productNotFound)
     return <ProductContext.Provider value={{ productGQL }}>{children}</ProductContext.Provider>
 }

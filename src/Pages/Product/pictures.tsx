@@ -12,6 +12,8 @@ export function Pictures({images, image}: {images:string[], image: string}) {
         setSliderImg(images.filter((selectImg: any) => selectImg.id === id))
     }
 
+    console.log(image, images)
+
     return (
         <div className="pictures">
             <div className="small-pictures">

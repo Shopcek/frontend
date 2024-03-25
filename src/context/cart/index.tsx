@@ -52,7 +52,6 @@ export function CartProvider({ children }: { children: any }) {
                 return
             }
 
-            console.log(logout)
             if (logout){
                 return
             }
