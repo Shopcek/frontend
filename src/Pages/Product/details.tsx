@@ -109,25 +109,3 @@ export function Details({ data }: { data: Product }) {
         </div>
     )
 }
-
-{
-    /* <AddToCart
-                                    addItem={addItem}
-                                    setCount={setCount}
-                                    product={{
-                                        product: data,
-                                        count,
-                                        options: {
-                                            size,
-                                            color
-                                        }
-                                    }}
-                                />
-                                <AddToWishList
-                                    wishListOnClick={() => {
-                                        ;(inList ? deleteWishList : addWishList)(productData.slug)
-                                        setInList(!inList)
-                                    }}
-                                    inList={inList}
-                                /> */
-}
