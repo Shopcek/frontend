@@ -13,7 +13,7 @@ export function Items({ items }: { items: any[] }) {
             if (updateCountGQL)
                 switch (updateCountGQL.status) {
                     case 'success': {
-                        console.log(cartGQL!.refetch().then(console.log(cartGQL)))
+                        cartGQL!.refetch()
                     }
                 }
         }, [updateCountGQL?.status])

@@ -5,6 +5,7 @@ import { colors } from 'data/colors'
 
 import { useCartOperations, CartOperationsProvider } from 'context/cart-operations'
 import { useProduct } from './context'
+import { useCart } from 'context/cart'
 
 export function Colors({ colorsList, setColor }: { colorsList: Option[]; setColor: Function }) {
     return (
@@ -85,8 +86,8 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
             setCount(value)
         }
 
-        const { addItem, addItemGQL } = useCartOperations()
-
+        const { cartId, cartGQL } = useCart()
+        const { addItemGQL } = useCartOperations()
 
         let variant
         if (color && size) {
@@ -111,9 +112,12 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
                     variant="primary"
                     className="btn btn-hover w-100 operation"
                     onClick={() => {
-                        addItem({ variantId: variant!.id, count })
+                        addItemGQL?.fn({
+                            variables: { cartId, variantId: variant!.id, count }
+                        })
+                        cartGQL?.refetch()
                     }}
-                    disabled={!variant}
+                    disabled={!variant || addItemGQL?.loading || cartGQL?.loading}
                 >
                     <div className="text">Add To Cart</div>
                 </Button>
