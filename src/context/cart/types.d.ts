@@ -1,6 +1,10 @@
-export type cartType = {
+export type cart = {
+    id
     items: {
+        id
+        count
         variant: {
+            id
             product: {
                 colors: {
                     value: string
@@ -14,5 +18,5 @@ export type cartType = {
                 image: string
             }
         }[]
-    }
+    }[]
 }

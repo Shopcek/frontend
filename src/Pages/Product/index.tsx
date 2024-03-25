@@ -22,14 +22,11 @@ function ProductDetails() {
             }
         }, [])
 
-        console.log(productGQL)
-
         let details, pictures
         if (productGQL) {
             switch (productGQL.status) {
                 case 'success': {
                     details = <Details data={productGQL.data!} />
-
                     pictures = (
                         <Pictures
                             image={productGQL.data!.image}

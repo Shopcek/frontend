@@ -45,21 +45,14 @@ export const CardModal = ({ show, handleClose }: any) => {
         let [options, setOptions] = useState({})
 
         let cartCount, items
-        if (!cartGQL.loading && cartGQL.data && !cartGQL.error && cartGQL.called) {
-            cartCount = <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data.items.length}</span>
-            items = <Items items={cartGQL.data.items}></Items>
-        } else {
-            cartCount = (
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
-            )
-
-            items = (
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
-            )
+        if (cartGQL){
+            switch (cartGQL.status){
+                case 'success': {
+                    cartCount = <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>
+                    items = <Items items={cartGQL.data!.items}></Items>
+                    break
+                }          
+            }
         }
 
         return (

@@ -10,10 +10,12 @@ export const cart = gql`
     query getCart($id: ID) {
         cart(id: $id) {
             id
+            count
             items {
                 data {
                     id
                     attributes {
+                        count
                         variant {
                             data {
                                 id
