@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext } from 'react'
 import * as mutations from './mutations'
 
 import { useMutation } from 'lib/query-wrapper'

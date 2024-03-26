@@ -1,12 +1,10 @@
-import { Nav, Tab, Row, Col, Card, Form, FormCheck, Button } from 'react-bootstrap'
+import { Nav, Tab, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import * as Yup from 'yup'
 
 import { useFormik } from 'formik'
 
-// import { useUser } from 'oldcontext/user'
 import { useMutation } from 'lib/query-wrapper'
 import { updateRecipient } from 'lib/common-queries'
-import { useEffect } from 'react'
 
 export function AddressNav() {
     return (

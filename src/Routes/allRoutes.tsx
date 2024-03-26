@@ -9,21 +9,21 @@ import Order from 'pages/shop/order'
 import Account from 'pages/user/account'
 
 //Productdetails
-import Productdetails from 'pages/product'
+import ProductDetails from 'pages/product'
 
-import Earn from 'pages/earn'
+// import Earn from 'pages/earn'
 
 const authProtectedRoutes = [
     { path: '/shop/checkout', component: <Checkout /> },
     { path: '/shop/order/:id', component: <Order /> },
 
-    { path: '/earn', component: <Earn /> },
+    // { path: '/earn', component: <Earn /> },
 
     { path: '/account', component: <Account /> },
     { path: '/account/:section', component: <Account /> },
     { path: '/', component: <Home /> },
     { path: '*', component: <Navigate to="/" /> },
 
-    { path: '/product-details/:slug', component: <Productdetails /> }
+    { path: '/product-details/:slug', component: <ProductDetails /> }
 ]
 export { authProtectedRoutes }

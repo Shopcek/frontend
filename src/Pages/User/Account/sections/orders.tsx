@@ -1,10 +1,6 @@
 import { Tab, Card, Table, Nav } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
-// import { useCart } from 'oldcontext/cart'
-
-import { useEffect, useState } from 'react'
-
 export function OrdersNav() {
     return (
         <Nav.Item as="li">
@@ -16,15 +12,6 @@ export function OrdersNav() {
 }
 
 export function OrdersTab() {
-    // let { orderGql } = useCart()
-    // let { loading, data, refetch, error } = orderGql
-    // let [order, setOrder] = useState([])
-    // useEffect(() => {
-    //     if (!loading && data) {
-    //         setOrder(data)
-    //     }
-    // }, [loading])
-
     let navigate = useNavigate()
 
     return (

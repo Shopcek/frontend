@@ -1,10 +1,7 @@
-import { useWishList } from 'oldcontext/wishlist'
 import { Link } from 'react-router-dom'
-
 import { Wishlist } from 'Components/Images/Icons'
 
 export function WishList() {
-    // let { wishlist } = useWishList()
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
             <Link

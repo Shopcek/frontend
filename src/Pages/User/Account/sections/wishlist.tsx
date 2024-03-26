@@ -1,7 +1,5 @@
-import { Nav, Row, Col, Card, Table, Image, Button, Tab } from 'react-bootstrap'
+import { Nav, Row, Col, Card, Table, Tab } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-
-import { useWishList } from 'oldcontext/wishlist'
 
 export function WishListNav() {
     return (
@@ -14,8 +12,6 @@ export function WishListNav() {
 }
 
 export function WishListTab() {
-    // let { wishlist, deleteWishList } = useWishList()
-
     let navigate = useNavigate()
 
     return (
