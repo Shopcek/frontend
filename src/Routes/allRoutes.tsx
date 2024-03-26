@@ -1,21 +1,21 @@
 import { Navigate } from 'react-router-dom'
 
-import Home from 'Pages/Home'
+import Home from 'pages/home'
 
-import Checkout from 'Pages/Shop/checkout'
-import Success from 'Pages/Shop/order'
+import Checkout from 'pages/shop/checkout'
+import Order from 'pages/shop/order'
 
 //pages /user
-import Account from 'Pages/User/account'
+import Account from 'pages/user/account'
 
 //Productdetails
-import Productdetails from 'Pages/Product'
+import Productdetails from 'pages/product'
 
-import Earn from 'Pages/Earn'
+import Earn from 'pages/earn'
 
 const authProtectedRoutes = [
     { path: '/shop/checkout', component: <Checkout /> },
-    { path: '/shop/order/:id', component: <Success /> },
+    { path: '/shop/order/:id', component: <Order /> },
 
     { path: '/earn', component: <Earn /> },
 

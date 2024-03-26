@@ -111,24 +111,24 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                         {checkDomain ? (
                             <button
                                 className="btn btn-primary"
-                                onClick={ () => {
-                                    buyWithWallet(async() => {
-                                        // await addNewDomainToUserRES.fn({
-                                        //     variables: {
-                                        //         domain
-                                        //     }
-                                        // })
+                                // onClick={ () => {
+                                //     buyWithWallet(async() => {
+                                //         // await addNewDomainToUserRES.fn({
+                                //         //     variables: {
+                                //         //         domain
+                                //         //     }
+                                //         // })
 
-                                        // await addXpRES.fn({
-                                        //     variables: {
-                                        //         point: price.xp
-                                        //     }
-                                        // })
+                                //         // await addXpRES.fn({
+                                //         //     variables: {
+                                //         //         point: price.xp
+                                //         //     }
+                                //         // })
 
-                                        navigate('/account/domains')
+                                //         navigate('/account/domains')
 
-                                    }, bnbPrice)
-                                }}
+                                //     }, bnbPrice)
+                                // }}
                             >
                                 Pay {bnbPrice.toFixed(5)} BNB
                             </button>

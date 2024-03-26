@@ -25,6 +25,6 @@
         "noEmit": true,
         "jsx": "react-jsx"
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/Pages/Product/Email Product"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/product/Email Product"],
     "exclude": ["node_modules"]
 }

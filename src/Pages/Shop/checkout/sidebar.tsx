@@ -6,6 +6,8 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 import { useBinance, BinanceProvider } from 'context/binance'
 import { useCart, CartProvider } from 'context/cart'
+import { useOrder, OrderProvider } from '../context'
+
 import { buyWithWallet } from 'lib/rainbow'
 // import { useOrder } from 'oldcontext/order'
 
@@ -21,10 +23,13 @@ export function order({ newOrder }: { newOrder: any }) {
 
 export const Shoporder = () => {
     function Component() {
-        let navigate = useNavigate()
+        const navigate = useNavigate()
 
-        let { bnb } = useBinance()
-        let { cartGQL, cartId } = useCart()
+        const { bnb } = useBinance()
+        const { cartGQL, cartId } = useCart()
+        const { placeOrderGQL } = useOrder()
+        const [payment, setPayment] = useState(false)
+
         useEffect(() => {
             cartGQL?.fn({
                 variables: {
@@ -33,7 +38,20 @@ export const Shoporder = () => {
             })
         }, [])
 
-        console.log(bnb)
+        useEffect(() => {
+            if (placeOrderGQL) {
+                switch (placeOrderGQL.status) {
+                    case 'success': {
+                        setPayment(false)
+                        break
+                    }
+                    case 'error': {
+                        setPayment(false)
+                        break
+                    }
+                }
+            }
+        }, [placeOrderGQL?.status])
 
         const [pay, setPay] = useState<any>()
 
@@ -43,39 +61,53 @@ export const Shoporder = () => {
                     case 'success': {
                         const price = cartGQL!.data!.price / bnb
 
-                        if (bnb===0){
+                        if (bnb === 0) {
                             break
                         }
-
-                        setPay(
-                            <Button
-                                className="btn btn-hover btn-soft-info info-text"
-                                onClick={() => {
-                                    buyWithWallet(console.log, price)
-                                }}
-                            >
-                                Pay {price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
-                            </Button>
-                        )
+                        console.log(payment)
+                        if (!payment) {
+                            setPay(
+                                <Button
+                                    className="btn btn-hover btn-soft-info info-text"
+                                    onClick={() => {
+                                        buyWithWallet(
+                                            () => {
+                                                setPayment(true)
+                                            },
+                                            ({ transaction }) => {
+                                                placeOrderGQL?.fn({
+                                                    variables: {
+                                                        transaction
+                                                    }
+                                                })
+                                            },
+                                            price
+                                        )
+                                    }}
+                                >
+                                    Pay {price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
+                                </Button>
+                            )
+                        } else {
+                            setPay(
+                                <Button className="btn btn-hover btn-soft-info info-text" disabled>
+                                    Payment process in progress <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
+                                </Button>
+                            )
+                        }
                         break
                     }
 
                     default: {
                         setPay(
-                            <Button
-                                className="btn btn-hover btn-soft-info info-text"
-                                onClick={() => {
-                                    buyWithWallet(console.log, cartGQL!.data!.price)
-                                }}
-                                disabled
-                            >
+                            <Button className="btn btn-hover btn-soft-info info-text" disabled>
                                 Price calculating... <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                             </Button>
                         )
                     }
                 }
             }
-        }, [cartGQL?.status, bnb])
+        }, [cartGQL?.status, bnb, payment])
 
         return (
             <React.Fragment>
@@ -126,7 +158,9 @@ export const Shoporder = () => {
     return (
         <CartProvider>
             <BinanceProvider>
-                <Component />
+                <OrderProvider>
+                    <Component />
+                </OrderProvider>
             </BinanceProvider>
         </CartProvider>
     )

@@ -6,7 +6,7 @@ import { order } from 'lib/common-queries'
 
 import { useState, useEffect } from 'react'
 
-export default function Success() {
+export default function Order() {
     let { id } = useParams()
 
     let { data, loading, error } = useQuery<any>(order, {
