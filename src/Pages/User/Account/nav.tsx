@@ -3,8 +3,6 @@ import {
     OrdersTab,
     WishListNav,
     WishListTab,
-    ProfileNav,
-    ProfileTab,
     XpNav,
     XpTab,
     AddressNav,
@@ -22,27 +20,24 @@ export function UserNav() {
 
     return (
         <Container>
-            <Tab.Container id="left-tabs-example" defaultActiveKey={section ? section : 'profile'}>
+            <Tab.Container id="left-tabs-example" defaultActiveKey={section ? section : 'domains'}>
                 <Row>
                     <Col lg={3}>
                         <Card>
                             <Card.Body>
                                 <Nav variant="pills" className="flex-column gap-3">
-                                    <ProfileNav />
+                                    <DomainsNav />
                                     <WishListNav />
                                     <OrdersNav />
                                     <XpNav />
-                                    <StakeNav />
                                     <AddressNav />
-                                    <LogoutNav />
-                                    <DomainsNav />
+                                    <StakeNav />
                                 </Nav>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col sm={9}>
                         <Tab.Content>
-                            <ProfileTab />
                             <WishListTab />
                             <OrdersTab />
                             <AddressTab />

@@ -1,8 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 
-import { useMutation } from 'lib/query-wrapper'
+import { useLazyQuery, useMutation } from 'lib/query-wrapper'
 import * as mutations from './mutations'
-// import * as queries from './queries'
+import * as queries from './queries'
 
 import { useAccount, useDisconnect } from 'wagmi'
 import { wagmiConfig } from 'lib/rainbow'
@@ -12,6 +12,7 @@ export const UserContext = createContext<{
     logout?: boolean
     disconnect?: Function
     connectWalletGQL?: any
+    userOrdersGQL?: ReturnType<typeof useLazyQuery<any>>
     jwt?: string
     address?: string
 }>({
@@ -30,6 +31,8 @@ export function UserProvider({ children }: { children: any }) {
     const { address, status } = useAccount({
         config: wagmiConfig
     })
+
+    const userOrdersGQL = useLazyQuery<any>(queries.userOrders)
 
     const cartId = localStorage.getItem('cartId')
 
@@ -94,5 +97,5 @@ export function UserProvider({ children }: { children: any }) {
         }
     })
 
-    return <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout }}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout, userOrdersGQL }}>{children}</UserContext.Provider>
 }

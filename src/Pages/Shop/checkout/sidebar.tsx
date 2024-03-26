@@ -64,7 +64,6 @@ export const Shoporder = () => {
                         if (bnb === 0) {
                             break
                         }
-                        console.log(payment)
                         if (!payment) {
                             setPay(
                                 <Button

@@ -1,23 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Shoporder } from 'pages/shop/checkout/sidebar'
 
 import { Products } from './products'
-import { Billing } from './billing'
+import { Address } from 'Components/address'
+
 
 import { useNavigate } from 'react-router-dom'
 
 const Checkout = () => {
     let navigate = useNavigate()
+    const [values, setValues] = useState()
 
-    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <section className="section">
                 <Container>
                     <Row>
                         <Col lg={8}>
-                            <Billing />
+                            <Address setData={setValues} initialValues={{}}></Address>
                         </Col>
                         <Col lg={4}>
                             <Products />

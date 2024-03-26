@@ -1,10 +1,15 @@
 import { Nav, Tab, Row, Col, Card, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function ProfileNav() {
+    const navigate = useNavigate()
+
+
     return (
         <Nav.Item as="li">
-            <Nav.Link as="a" eventKey="profile" className="fs-15" role="presentation">
+            <Nav.Link as="a" onClick={()=>{
+                navigate('/account/profile')
+            }}  eventKey="profile" className="fs-15" role="presentation">
                 <i className="bi bi-person-circle align-middle me-1"></i> Account Details
             </Nav.Link>
         </Nav.Item>

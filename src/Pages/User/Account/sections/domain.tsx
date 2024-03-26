@@ -4,10 +4,16 @@ import { Link, useNavigate } from 'react-router-dom'
 // import { useEarn } from 'oldcontext/earn'
 // import { useUser } from 'oldcontext/user'
 
+import NameService from 'pages/earn/NameServices'
+
 export function DomainsNav() {
+    const navigate = useNavigate()
+
     return (
         <Nav.Item as="li">
-            <Nav.Link as="a" eventKey="domains" className="fs-15" role="presentation">
+            <Nav.Link as="a" onClick={()=>{
+                navigate('/account/domains')
+            }} eventKey="domains" className="fs-15" role="presentation">
                 <i className="bi bi-bag align-middle me-1"></i> Domains
             </Nav.Link>
         </Nav.Item>
@@ -20,10 +26,11 @@ export function DomainsTab() {
     // let {choosenDomain} = useUser()
 
     return (
-        <Tab.Pane eventKey="domains">
+        <Tab.Pane eventKey="domains" className='domains'>
             <div className="tab-pane fade show" id="custom-v-pills-order" role="tabpanel">
                 <Card>
                     <Card.Body>
+                    <NameService />
                         <div className="table-responsive table-card">
                             <Table className="fs-15 align-middle table-nowrap">
                                 <thead>

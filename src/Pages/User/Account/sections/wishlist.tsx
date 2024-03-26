@@ -2,9 +2,13 @@ import { Nav, Row, Col, Card, Table, Tab } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
 export function WishListNav() {
+    const navigate = useNavigate()
+
     return (
         <Nav.Item as="li">
-            <Nav.Link as="a" eventKey="wishlist" className="fs-15" role="presentation">
+            <Nav.Link as="a" onClick={()=>{
+                navigate('/account/wishlist')
+            }} eventKey="wishlist" className="fs-15" role="presentation">
                 <i className="bi bi-bookmark-check align-middle me-1"></i> Wish list
             </Nav.Link>
         </Nav.Item>

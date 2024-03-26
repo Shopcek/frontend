@@ -2,11 +2,16 @@
 import { Nav } from 'react-bootstrap'
 
 import { Tab } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 export function XpNav() {
+    const navigate = useNavigate()
+
     return (
         <Nav.Item as="li">
-            <Nav.Link as="a" eventKey="xp-points" className="fs-15" role="presentation">
+            <Nav.Link onClick={()=>{
+                navigate('/account/xp-points')
+            }} as="a" eventKey="xp-points" className="fs-15" role="presentation">
                 <i className="bi bi-coin align-middle me-1"></i> XP Points
             </Nav.Link>
         </Nav.Item>

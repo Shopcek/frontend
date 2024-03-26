@@ -34,7 +34,6 @@ export const CardModal = ({ show, handleClose }: any) => {
                         return
                     }
 
-                    console.log(simplifyResponse(data.data))
                     setItems(<Items items={simplifyResponse(data.data).items}></Items>)
                 })
         }, [show])

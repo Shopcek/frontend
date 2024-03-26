@@ -1,10 +1,17 @@
 import { Tab, Card, Table, Nav } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { useUser } from 'context/user'
+import { useEffect, useState } from 'react'
+
 export function OrdersNav() {
+    const navigate = useNavigate()
+
     return (
         <Nav.Item as="li">
-            <Nav.Link as="a" eventKey="order" className="fs-15" role="presentation">
+            <Nav.Link as="a" onClick={()=>{
+                navigate('/account/order')
+            }}  eventKey="order" className="fs-15" role="presentation">
                 <i className="bi bi-bag align-middle me-1"></i> Orders
             </Nav.Link>
         </Nav.Item>
@@ -13,6 +20,49 @@ export function OrdersNav() {
 
 export function OrdersTab() {
     let navigate = useNavigate()
+    const { userOrdersGQL } = useUser()
+
+    useEffect(() => {
+        userOrdersGQL?.fn()
+    }, [])
+
+    const [orders, setOrders] = useState<any>()
+    useEffect(() => {
+        if (userOrdersGQL) {
+            switch (userOrdersGQL.status) {
+                case 'success': {
+                    const { data } = userOrdersGQL
+                    console.log(data)
+                    setOrders(
+                        <tbody>
+                            {data.map((item: any, inx: any) => {
+                                return (
+                                    <tr key={inx}>
+                                        <td>{item.id}</td>
+                                        <td>{item.createdAt.slice(0, 10)}</td>
+                                        <td className={`text-${item.error ? 'danger' : 'success'}`}>{item.error ? 'failed' : 'success'}</td>
+                                        <td>
+                                            <span className="text-primary">{item.price.toFixed(2)}$</span> for {item.count} item.
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => {
+                                                    navigate(`/shop/order/${item.id}`)
+                                                }}
+                                                className="btn btn-primary w-100"
+                                            >
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    )
+                }
+            }
+        }
+    }, [userOrdersGQL?.status])
 
     return (
         <Tab.Pane eventKey="order">
@@ -30,42 +80,11 @@ export function OrdersTab() {
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {/* {order.map((item: any, inx: any) => {
-                                        let total = 0
-
-                                        item.items.forEach((product: any) => {
-                                            total = total + product.product.price
-                                        })
-
-                                        return (
-                                            <tr>
-                                                <td>{item.id}</td>
-                                                <td>{item.createdAt.slice(0, 10)}</td>
-                                                <td className={`text-${item.printful ? 'success' : 'danger'}`}>
-                                                    {item.printful ? 'success' : 'failed'}
-                                                </td>
-                                                <td>
-                                                    <span className="text-primary">{total.toFixed(2)}$</span> for {item.items.length} item.
-                                                </td>
-                                                <td>
-                                                    <button
-                                                        onClick={() => {
-                                                            navigate(`/shop/success/${item.id}`)
-                                                        }}
-                                                        className="btn btn-primary w-100"
-                                                    >
-                                                        View
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })} */}
-                                </tbody>
+                                {orders}
                             </Table>
                         </div>
                         <div className="text-end mt-4">
-                            <Link to={'/products-grid'} className="btn btn-hover btn-primary">
+                            <Link to={'/'} className="btn btn-hover btn-primary">
                                 Continue Shopping <i className="ri-arrow-right-line align-middle ms-1"></i>
                             </Link>
                         </div>

@@ -1,4 +1,4 @@
-import { Container} from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { User } from 'Components/Images/Icons'
 import { Link } from 'react-router-dom'
 
@@ -14,7 +14,6 @@ export function UserSection() {
                     <User className="avatar-xl p-1 bg-light mt-n3" />
                     <div>
                         <h5 className="fs-18">
-                            {/* {choosenDomain.choosenDomain === address? sliced : choosenDomain.choosenDomain} */}
                             <div className="edit">
                                 <i className="bi bi-pen"></i> <p>change username</p>
                             </div>
