@@ -255,8 +255,8 @@ export let chooseDomain = gql`
     }
 `
 export let connectWallet = gql`
-    mutation connectWallet($walletAddress: String!){
-        connectWallet(walletAddress:$walletAddress) {
+    mutation connectWallet($walletAddress: String!) {
+        connectWallet(walletAddress: $walletAddress) {
             jwt
         }
     }

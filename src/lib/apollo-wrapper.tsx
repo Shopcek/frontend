@@ -11,4 +11,3 @@ export const client = new ApolloClient({
 export function ApolloProvider({ children }: any) {
     return <ApolloProviderApollo client={client}>{children}</ApolloProviderApollo>
 }
-

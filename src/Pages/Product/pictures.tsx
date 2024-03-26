@@ -1,9 +1,9 @@
-import ModalImage from "react-modal-image"
-import { useState } from "react"
+import ModalImage from 'react-modal-image'
+import { useState } from 'react'
 
-import { Button } from "react-bootstrap"
+import { Button } from 'react-bootstrap'
 
-export function Pictures({images, image}: {images:string[], image: string}) {
+export function Pictures({ images, image }: { images: string[]; image: string }) {
     const [sliderImg, setSliderImg] = useState(images)
     const [sliderId, setSliderId] = useState(1)
 
@@ -16,7 +16,7 @@ export function Pictures({images, image}: {images:string[], image: string}) {
         <div className="pictures">
             <div className="small-pictures">
                 {(images.length <= 4 ? images : images.slice(sliderId - 1, sliderId + 3))?.map((item: any, idx: number) => {
-                    return <ModalImage small={item} large={item} key={idx}/>
+                    return <ModalImage small={item} large={item} key={idx} />
                 })}
                 <div className="buttons">
                     <Button

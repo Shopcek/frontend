@@ -27,5 +27,5 @@ export type UserContextType = {
     recipient: recipientTpye
     me: any
 
-    choosenDomain:any
+    choosenDomain: any
 }

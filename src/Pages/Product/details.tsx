@@ -102,7 +102,7 @@ export function Details({ data }: { data: Product }) {
             {data.sizes.length !== 1 ? <Variant title="Choose an option" options={data.sizes} option={size} setOption={setSize} /> : ''}
 
             <Information icon="bi bi-eye" />
-            <AddToCart color={color} size={size} variants={data.variants}/>
+            <AddToCart color={color} size={size} variants={data.variants} />
             <hr />
             <Categories categories={[]} />
             <Socials />

@@ -14,7 +14,7 @@ export function Items({ items }: { items: any[] }) {
                 switch (updateCountGQL.status) {
                     case 'success': {
                         cartGQL!.refetch({
-                            variables:{ id: cartId }
+                            variables: { id: cartId }
                         })
                     }
                 }

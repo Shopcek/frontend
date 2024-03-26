@@ -51,7 +51,6 @@ export default function StayHereToEarn() {
                                 //         point: calculateXp(difference)
                                 //     }
                                 // })
-
                                 // setTime(new Date().valueOf())
                             }}
                         >

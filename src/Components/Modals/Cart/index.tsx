@@ -24,27 +24,29 @@ export const CardModal = ({ show, handleClose }: any) => {
 
         const [items, setItems] = useState<any>()
         let cartCount
-        useEffect(()=>{
-            cartGQL?.refetch({
-                variables: { id: cartId }
-            }).then((data:any)=>{
-                if (!data.data){
-                    return
-                }
+        useEffect(() => {
+            cartGQL
+                ?.refetch({
+                    variables: { id: cartId }
+                })
+                .then((data: any) => {
+                    if (!data.data) {
+                        return
+                    }
 
-                console.log(simplifyResponse(data.data))
-                setItems(<Items items={simplifyResponse(data.data).items}></Items>)
-            })
-        },[show])
+                    console.log(simplifyResponse(data.data))
+                    setItems(<Items items={simplifyResponse(data.data).items}></Items>)
+                })
+        }, [show])
 
-        useEffect(()=>{
-            if (cartGQL){
-                switch (cartGQL.status){
+        useEffect(() => {
+            if (cartGQL) {
+                switch (cartGQL.status) {
                     case 'success': {
                         cartCount = <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>
                         setItems(<Items items={cartGQL.data!.items}></Items>)
                         break
-                    }          
+                    }
                 }
             }
         }, [cartGQL])
@@ -59,11 +61,9 @@ export const CardModal = ({ show, handleClose }: any) => {
                     </Offcanvas.Header>
 
                     <Offcanvas.Body className=" px-0">
-                        <SimpleBar className="h-100">
-                        {items}
-                        </SimpleBar>
+                        <SimpleBar className="h-100">{items}</SimpleBar>
                     </Offcanvas.Body>
-                    
+
                     <div className="offcanvas-footer border-top p-3 text-center">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             <h6 className="m-0 fs-16 text-muted">Total:</h6>
@@ -71,7 +71,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                 <h6 className="m-0 fs-16 cart-total">${formatNumber(0)}</h6>
                             </div>
                         </div>
-                        
+
                         <Row className="g-2">
                             <Col xs={6}>
                                 <Button

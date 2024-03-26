@@ -30,7 +30,7 @@ export function CartProvider({ children }: { children: any }) {
         }
 
         useEffect(() => {
-            const variables = { id: cartId } 
+            const variables = { id: cartId }
             cartGQL.fn!({
                 variables
             })

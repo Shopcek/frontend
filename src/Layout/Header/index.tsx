@@ -26,7 +26,7 @@ const Header = (props: any) => {
         const { status } = useUser()
 
         const [card, setCard] = useState(false)
-        const [_, forceUpdate] = useReducer(x => x + 1, 0);
+        const [_, forceUpdate] = useReducer((x) => x + 1, 0)
         const handlecardClose = () => {
             setCard(false)
             navigate(window.location.pathname)
@@ -46,7 +46,7 @@ const Header = (props: any) => {
 
                         <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                         <div className="d-flex align-items-center">
-                            {status === "connected" ? [<Account />, <WishList />] : <SignInUp />}
+                            {status === 'connected' ? [<Account />, <WishList />] : <SignInUp />}
                             <Cart handlecardShow={handlecardShow} />
                         </div>
                     </Container>

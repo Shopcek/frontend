@@ -16,7 +16,6 @@ export function useCartOperations() {
     return useContext(CartOperationsContext)
 }
 
-
 export function CartOperationsProvider({ children }: { children: any }) {
     function Component() {
         const { cartId } = useCart()
@@ -26,8 +25,6 @@ export function CartOperationsProvider({ children }: { children: any }) {
         const deleteItemGQL = useMutation<operation>(mutations.deleteItem)
         const updateCountGQL = useMutation<operation>(mutations.updateCount)
         const emptyCartGQL = useMutation<operation>(mutations.emptyCart)
-
-
 
         return (
             <CartOperationsContext.Provider value={{ addItemGQL, deleteItemGQL, updateCountGQL, emptyCartGQL }}>

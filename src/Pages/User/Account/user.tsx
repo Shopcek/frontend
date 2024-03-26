@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom'
 export function UserSection() {
     // let { me, choosenDomain } = useUser()
 
-
-    let {username} = {username: "blabla"}
+    let { username } = { username: 'blabla' }
     let address = username
     let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
 
@@ -23,9 +22,7 @@ export function UserSection() {
                                 <i className="bi bi-pen"></i> <p>change username</p>
                             </div>
                         </h5>
-                        <div className="text-muted">
-                            {sliced}
-                        </div>
+                        <div className="text-muted">{sliced}</div>
                     </div>
                     <div className="ms-md-auto">
                         <Link to="/" className="btn btn-primary btn-hover">

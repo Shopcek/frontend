@@ -5,7 +5,7 @@ import { simplifyResponse } from './simplify-response'
 import { ApolloError } from '@apollo/client'
 import { useState } from 'react'
 
-type status = 'error' | 'loading' | 'success' | 'error-and-data' | 'not-called' | 'not-found' | 'error-and-not-found' |  undefined
+type status = 'error' | 'loading' | 'success' | 'error-and-data' | 'not-called' | 'not-found' | 'error-and-not-found' | undefined
 
 export function handle(fn: CallableFunction) {
     return async (options: MutationHookOptions | QueryHookOptions) => {
@@ -41,7 +41,7 @@ export function useMutation<DType>(
                 : {}
         }
     })
-    const [stateData, setStateData] = useState<DType>() 
+    const [stateData, setStateData] = useState<DType>()
     let status: status
     if (loading) {
         status = 'loading'
@@ -101,7 +101,7 @@ export function useQuery<DType>(
                 : {}
         }
     })
-    const [stateData, setStateData] = useState<DType>() 
+    const [stateData, setStateData] = useState<DType>()
     let status: status
     if (loading) {
         status = 'loading'
@@ -145,8 +145,8 @@ export function useLazyQuery<DType>(
     status: status
     fn: CallableFunction
     refetch: CallableFunction
-    data?: DType,
-    setData?: (value:DType)=>void
+    data?: DType
+    setData?: (value: DType) => void
     error?: ApolloError
     loading?: boolean
     called?: boolean
@@ -164,7 +164,7 @@ export function useLazyQuery<DType>(
         }
     })
 
-    const [stateData, setStateData] = useState<DType>() 
+    const [stateData, setStateData] = useState<DType>()
 
     let status: status
     if (loading) {

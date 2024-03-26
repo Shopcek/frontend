@@ -1,12 +1,7 @@
-import { useEffect } from 'react'
-import { Button, Card, Image } from 'react-bootstrap'
+import { Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import config from 'config/config'
-import { productListType } from 'models/ProductType'
 
-export const CardComponent = ({ data }: { data: productListType }) => {
-    // let { addItem } = useCart()
-
+export const CardComponent = ({ data }: { data: any }) => {
     return (
         <Card className="overflow-hidden card product-cart">
             <div className={`rounded-top py-4`}>

@@ -9,7 +9,7 @@ import { wagmiConfig } from 'lib/rainbow'
 
 export const UserContext = createContext<{
     status: string
-    logout?:boolean
+    logout?: boolean
     disconnect?: Function
     connectWalletGQL?: any
     jwt?: string
@@ -43,7 +43,7 @@ export function UserProvider({ children }: { children: any }) {
     useEffect(() => {
         switch (status) {
             case 'connected': {
-                if (!jwt){
+                if (!jwt) {
                     connectWalletGQL.fn({
                         variables: {
                             address,
@@ -59,7 +59,7 @@ export function UserProvider({ children }: { children: any }) {
     useEffect(() => {
         switch (status) {
             case 'disconnected': {
-                if (jwt){
+                if (jwt) {
                     disconnect()
                 }
             }
@@ -87,16 +87,12 @@ export function UserProvider({ children }: { children: any }) {
     const { disconnect } = useDisconnect({
         config: wagmiConfig,
         mutation: {
-            onSuccess:()=>{
+            onSuccess: () => {
                 clearSession()
                 window.location.reload()
             }
         }
     })
 
-    return (
-        <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout }}>
-            {children}
-        </UserContext.Provider>
-    )
+    return <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout }}>{children}</UserContext.Provider>
 }

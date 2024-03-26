@@ -71,7 +71,6 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
         return price.min <= domain.length && price.max >= domain.length
     }) || { min: 0, max: 0, price: 0, xp: 0 }
 
-
     let bnbPrice = price.price / 10
 
     return (

@@ -24,7 +24,6 @@ const authProtectedRoutes = [
     { path: '/', component: <Home /> },
     { path: '*', component: <Navigate to="/" /> },
 
-    { path: '/product-details/:slug', component: <Productdetails /> },
-
+    { path: '/product-details/:slug', component: <Productdetails /> }
 ]
 export { authProtectedRoutes }

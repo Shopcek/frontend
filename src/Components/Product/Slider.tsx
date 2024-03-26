@@ -7,11 +7,10 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 import { CardComponent } from 'Components/CardComponent'
-import { productListType } from 'models/ProductType'
 
 import { CommonTitle } from 'Components/CommonTitle'
 
-const Slider = ({ items, title }: { items: productListType[]; title: string }) => {
+const Slider = ({ items, title }: { items: any[]; title: string }) => {
     return (
         <React.Fragment>
             <Container>
