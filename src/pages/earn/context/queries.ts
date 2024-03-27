@@ -42,3 +42,10 @@ export const checkDomain = gql`
         checkDomain(username: $username)
     }
 `
+
+
+export const userDomains = gql`
+    query {
+        userDomains
+    }
+`
