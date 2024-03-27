@@ -8,7 +8,7 @@ export const claim = gql`
 
 export const startSession = gql`
     mutation {
-        startSession
+        startSessionTime
     }
 `
 
