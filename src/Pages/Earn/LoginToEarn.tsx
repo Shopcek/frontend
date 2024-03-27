@@ -3,8 +3,6 @@ import { Image, Button, Container } from 'react-bootstrap'
 import smallReward from '../../assets/images/earn/small-reward.png'
 import mediumReward from '../../assets/images/earn/medium-reward.png'
 import largeReward from '../../assets/images/earn/large-reward.png'
-// import { useEarn } from 'oldcontext/earn'
-import { check10s } from 'lib/helpers'
 import { useState, useEffect } from 'react'
 
 import { useUser } from 'context/user'
@@ -96,7 +94,7 @@ export default function LoginToEarn() {
         useEffect(() => {
             switch (lastClaimGQL.status){
                 case 'success': {
-                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'seconds') <= 15)
+                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'hours') <= 24)
                     break
                 }
                 default: {

@@ -16,19 +16,11 @@ function addOneZero(time: number) {
     }
 }
 
-function calculateXp(difference: number) {
-    let seconds = Math.floor(difference / 1000)
-
-    return seconds
-}
-
 export default function StayHereToEarn() {
     function Component() {
         const navigate = useNavigate()
         const { xpGQL, time, claimGQL, lastClaimGQL } = useEarn()
         const { sessionStartTime, status } = useUser()
-
-        console.log(sessionStartTime)
 
         const [disabled, setDisabled] = useState(true)
         useEffect(() => {
@@ -38,7 +30,6 @@ export default function StayHereToEarn() {
 
             switch (lastClaimGQL.status) {
                 case 'success': {
-                    console.log(lastClaimGQL.data.createdAt)
                     setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'hours') <= 24)
                     break
                 }
@@ -97,7 +88,7 @@ export default function StayHereToEarn() {
                         </div>
                         <div className="claim">
                             <Button
-                                className="btn btn btn-primary"
+                                className="btn btn-primary"
                                 onClick={() => {
                                     claimGQL.fn({
                                         variables: {
@@ -105,8 +96,14 @@ export default function StayHereToEarn() {
                                         }
                                     }).then(
                                         ()=>{
-                                            navigate('/')
-                                            window.location.reload()
+                                            setDisabled(true)
+                                            lastClaimGQL.refetch()
+                                            setPastTime({
+                                                minutes: 0,
+                                                hours: 0,
+                                                seconds: 0,
+                                                days: 0
+                                            })
                                         }
                                     )
                                 }}

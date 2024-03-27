@@ -16,29 +16,29 @@ const EarnContext = createContext<{
     startSessionGQL: ReturnType<typeof useMutation<any>>
     loginRewardsGQL: ReturnType<typeof useQuery<any>>
     time: any
-}>({} as any)
+//@ts-ignore
+}>()
 
-
-export function useEarn(){
+export function useEarn() {
     return useContext(EarnContext)
 }
 
 export function EarnProvider({ children }: { children: any }) {
     function Component() {
-        const [time, setTime] = useState(Date.now());
+        const [time, setTime] = useState(Date.now())
 
         useEffect(() => {
-        const interval = setInterval(() => setTime(Date.now()), 1000);
-        return () => {
-            clearInterval(interval);
-        };
-        }, []);
+            const interval = setInterval(() => setTime(Date.now()), 1000)
+            return () => {
+                clearInterval(interval)
+            }
+        }, [])
 
-        const {status} = useUser()
+        const { status } = useUser()
 
-        useEffect(()=>{
-            switch(status){
-                case 'connected':{
+        useEffect(() => {
+            switch (status) {
+                case 'connected': {
                     startSessionGQL.fn()
                     break
                 }
@@ -52,12 +52,16 @@ export function EarnProvider({ children }: { children: any }) {
         const xpGQL = useLazyQuery<any>(queries.xp)
         const loginRewardsGQL = useQuery<any>(queries.loginRewards)
 
-        return <EarnContext.Provider value={{ streakGQL, lastClaimGQL, claimGQL, startSessionGQL, xpGQL, loginRewardsGQL, time }}>{children}</EarnContext.Provider>
+        return (
+            <EarnContext.Provider value={{ streakGQL, lastClaimGQL, claimGQL, startSessionGQL, xpGQL, loginRewardsGQL, time }}>
+                {children}
+            </EarnContext.Provider>
+        )
     }
 
     return (
         <UserProvider>
-            <Component/>
+            <Component />
         </UserProvider>
     )
 }
