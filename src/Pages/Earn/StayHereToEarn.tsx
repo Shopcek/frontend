@@ -1,7 +1,12 @@
 // import { useEarn } from 'oldcontext/earn'
 import { Button } from 'react-bootstrap'
+import moment from 'moment'
 
 import { useEffect, useState } from 'react'
+
+import { EarnProvider, useEarn } from './context'
+import { useUser } from 'context/user'
+import { useNavigate } from 'react-router-dom'
 
 function addOneZero(time: number) {
     if (time < 10) {
@@ -18,78 +23,138 @@ function calculateXp(difference: number) {
 }
 
 export default function StayHereToEarn() {
-    // let { time, setTime, addXpRES } = useEarn()
-    const now = new Date().valueOf()
-    // const difference = now - time
+    function Component() {
+        const navigate = useNavigate()
+        const { xpGQL, time, claimGQL, lastClaimGQL } = useEarn()
+        const { sessionStartTime, status } = useUser()
 
-    let [is1s, setis1] = useState(false)
-    useEffect(() => {}, [
-        setInterval(() => {
-            setis1(!is1s)
-        }, 1000)
-    ])
+        console.log(sessionStartTime)
 
-    // Get individual components
-    // const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-    // const hours = Math.floor(difference / (1000 * 60 * 60))
-    // const minutes = Math.floor(difference / (1000 * 60))
-    // const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+        const [disabled, setDisabled] = useState(true)
+        useEffect(() => {
+            if (!sessionStartTime) {
+                setDisabled(true)
+            }
 
-    return (
-        <section className="section pb-0">
-            <div className="stay-here-to-earn">
-                <div className="top-container">
-                    <div className="title">
-                        <h1>Stay Here To Earn</h1>
-                    </div>
-                    <div className="claim">
-                        <Button
-                            className="btn btn btn-primary"
-                            onClick={() => {
-                                // addXpRES.fn({
-                                //     variables: {
-                                //         point: calculateXp(difference)
-                                //     }
-                                // })
-                                // setTime(new Date().valueOf())
-                            }}
-                        >
-                            Claim
-                        </Button>
-                        <p>Earn rewards based on the time you spend here</p>
-                    </div>
+            switch (lastClaimGQL.status) {
+                case 'success': {
+                    console.log(lastClaimGQL.data.createdAt)
+                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'hours') <= 24)
+                    break
+                }
+                default: {
+                    setDisabled(true)
+                }
+            }
+        }, [lastClaimGQL.status, time])
 
-                    <div className="blue-box-container">
-                        <div className="col">
-                            <div className="blue-box divider">
-                                <p>{addOneZero(0)}</p>
-                            </div>
-                            <p className="time">Days</p>
+        const [pastTime, setPastTime] = useState({
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0
+        })
+        useEffect(() => {
+            if (!sessionStartTime) {
+                return
+            }
+
+            if (disabled){
+                return
+            }
+
+            const days = moment().diff(moment(sessionStartTime), 'days')
+            const hours = moment().diff(moment(sessionStartTime), 'hours') % 24
+            const minutes = moment().diff(moment(sessionStartTime), 'minutes') % 60
+            const seconds = moment().diff(moment(sessionStartTime), 'seconds') % 60
+
+            setPastTime({
+                days,
+                hours,
+                minutes,
+                seconds
+            })
+        }, [time])
+
+        useEffect(() => {
+            switch (status) {
+                case 'connected': {
+                    lastClaimGQL.fn({
+                        variables: {
+                            service: 'stay'
+                        }
+                    })
+                }
+            }
+        }, [status])
+
+        return (
+            <section className="section pb-0">
+                <div className="stay-here-to-earn">
+                    <div className="top-container">
+                        <div className="title">
+                            <h1>Stay Here To Earn</h1>
                         </div>
-                        <div className="divider">:</div>
-                        <div className="col">
-                            <div className="blue-box divider">
-                                <p>{addOneZero(0)}</p>
-                            </div>
-                            <p className="time">Hours</p>
+                        <div className="claim">
+                            <Button
+                                className="btn btn btn-primary"
+                                onClick={() => {
+                                    claimGQL.fn({
+                                        variables: {
+                                            service: 'stay'
+                                        }
+                                    }).then(
+                                        ()=>{
+                                            navigate('/')
+                                            window.location.reload()
+                                        }
+                                    )
+                                }}
+                                disabled={disabled}
+                            >
+                                Claim
+                            </Button>
+                            <p>Earn rewards based on the time you spend here</p>
                         </div>
-                        <div className="divider">:</div>
-                        <div className="col">
-                            <div className="blue-box divider">
-                                <p>{addOneZero(0)}</p>
+
+                        <div className="blue-box-container">
+                            <div className="col">
+                                <div className="blue-box divider">
+                                    <p>{addOneZero(pastTime.days)}</p>
+                                </div>
+                                <p className="time">Days</p>
                             </div>
-                            <p className="time">Minutes</p>
-                        </div>
-                        <div className="divider">:</div>
-                        <div className="col">
-                            <div className="blue-box divider">
-                                <p>{addOneZero(0)}</p>
+                            <div className="divider">:</div>
+                            <div className="col">
+                                <div className="blue-box divider">
+                                    <p>{addOneZero(pastTime.hours)}</p>
+                                </div>
+                                <p className="time">Hours</p>
                             </div>
-                            <p className="time">Seconds</p>
+                            <div className="divider">:</div>
+                            <div className="col">
+                                <div className="blue-box divider">
+                                    <p>{addOneZero(pastTime.minutes)}</p>
+                                </div>
+                                <p className="time">Minutes</p>
+                            </div>
+                            <div className="divider">:</div>
+                            <div className="col">
+                                <div className="blue-box divider">
+                                    <p>{addOneZero(pastTime.seconds)}</p>
+                                </div>
+                                <p className="time">Seconds</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        )
+    }
+
+    return (
+        <EarnProvider>
+            <Component></Component>
+        </EarnProvider>
     )
 }

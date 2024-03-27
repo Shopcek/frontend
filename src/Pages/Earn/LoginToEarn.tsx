@@ -63,27 +63,27 @@ export default function LoginToEarn() {
         useEffect(() => {
             switch (loginRewardsGQL.status) {
                 case 'success': {
-                    setDays(
-                        loginRewardsGQL.data.rewards.map((reward: any, idx: number) => {
-                            return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward}></Box>
-                        })
-                    )
+                    if (loginRewardsGQL.data?.rewards)
+                        setDays(
+                            loginRewardsGQL.data.rewards.map((reward: any, idx: number) => {
+                                return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward}></Box>
+                            })
+                        )
                 }
             }
         }, [loginRewardsGQL.status])
-
-
 
         const [disabled, setDisabled] = useState(true)
 
         useEffect(() => {
             switch (streakGQL.status) {
                 case 'success': {
-                    setDays(
-                        loginRewardsGQL.data.rewards.map((reward: any, idx: number) => {
-                            return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward} streak={idx === streakGQL.data}></Box>
-                        })
-                    )
+                    if (loginRewardsGQL.data?.rewards)
+                        setDays(
+                            loginRewardsGQL.data.rewards.map((reward: any, idx: number) => {
+                                return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward} streak={idx === streakGQL.data}></Box>
+                            })
+                        )
                     break
                 }
 
@@ -94,7 +94,15 @@ export default function LoginToEarn() {
         }, [streakGQL.status, claimGQL.status, lastClaimGQL.status, time])
 
         useEffect(() => {
-            setDisabled(!(lastClaimGQL.status === 'success' && moment().diff(moment(lastClaimGQL.data.createdAt), 'seconds') >= 10))
+            switch (lastClaimGQL.status){
+                case 'success': {
+                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'seconds') <= 15)
+                    break
+                }
+                default: {
+                    setDisabled(true)
+                }
+            }
         }, [lastClaimGQL.status, time])
 
         useEffect(() => {

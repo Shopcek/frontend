@@ -15,6 +15,7 @@ export const UserContext = createContext<{
     userOrdersGQL?: ReturnType<typeof useLazyQuery<any>>
     jwt?: string
     address?: string
+    sessionStartTime?: string
 }>({
     status: 'disconnected'
 })
@@ -28,6 +29,7 @@ export function UserProvider({ children }: { children: any }) {
     const [logout, setLogout] = useState(false)
 
     const connectWalletGQL = useMutation<any>(mutations.connectWallet)
+    const startSessionGQL = useMutation<any>(mutations.startSession)
     const { address, status } = useAccount({
         config: wagmiConfig
     })
@@ -47,17 +49,34 @@ export function UserProvider({ children }: { children: any }) {
         switch (status) {
             case 'connected': {
                 if (!jwt) {
-                    connectWalletGQL.fn({
-                        variables: {
-                            address,
-                            cartId: cartId
-                        }
-                    })
+                    connectWalletGQL
+                        .fn({
+                            variables: {
+                                address,
+                                cartId: cartId
+                            }
+                        })
+                        .then((data: any) => {
+                            startSessionGQL.fn()
+                        })
+                } else {
+                    startSessionGQL.fn()
                 }
                 break
             }
         }
     }, [])
+
+    const [sessionStartTime, setSessionStartTime] = useState()
+    useEffect(() => {
+        if (startSessionGQL.status) {
+            switch (startSessionGQL.status) {
+                case 'success': {
+                    if (startSessionGQL.data.sessionStart) setSessionStartTime(startSessionGQL.data.sessionStart)
+                }
+            }
+        }
+    }, [startSessionGQL.status])
 
     useEffect(() => {
         switch (status) {
@@ -97,5 +116,9 @@ export function UserProvider({ children }: { children: any }) {
         }
     })
 
-    return <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout, userOrdersGQL }}>{children}</UserContext.Provider>
+    return (
+        <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout, userOrdersGQL, sessionStartTime }}>
+            {children}
+        </UserContext.Provider>
+    )
 }

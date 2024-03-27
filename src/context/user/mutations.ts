@@ -5,3 +5,10 @@ export const connectWallet = gql`
         connectWallet(address: $address, cartId: $cartId)
     }
 `
+
+
+export const startSession = gql`
+    mutation {
+        startSessionTime
+    }
+`
