@@ -36,3 +36,9 @@ export const loginRewards = gql`
         }
     }
 `
+
+export const checkDomain = gql`
+    query ($username: String!) {
+        checkDomain(username: $username)
+    }
+`

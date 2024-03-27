@@ -2,9 +2,6 @@ import { Form, Button, Image } from 'react-bootstrap'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useEffect, useState } from 'react'
 
-import { checkDomain as checkDomainGQL } from 'lib/common-queries'
-import { useQuery } from 'lib/query-wrapper'
-
 import length3 from '../../assets/images/earn/domain/3.png'
 import length4 from '../../assets/images/earn/domain/4.png'
 import length5 from '../../assets/images/earn/domain/5.png'
@@ -13,10 +10,11 @@ import length7 from '../../assets/images/earn/domain/7.png'
 import length8 from '../../assets/images/earn/domain/8.png'
 import length9 from '../../assets/images/earn/domain/9.png'
 
-import { useBinance } from 'context/binance'
-
+import { BinanceProvider, useBinance } from 'context/binance'
 import { buyWithWallet } from 'lib/rainbow'
-// import { useEarn } from 'oldcontext/earn'
+
+import { useEarn, EarnProvider } from './context'
+
 import { useNavigate } from 'react-router-dom'
 
 let images = {
@@ -44,34 +42,80 @@ let prices = [
 ]
 
 export function DomainModal({ domain, setClose }: { domain: string; setClose: Function }) {
-    // let { bnb } = useBinance()
+    const navigate = useNavigate()
+    const { buyDomainGQL, checkDomainGQL } = useEarn()
+    const [checkDomain, setCheckDomain] = useState(false)
+    const [bnbPrice, setBnbPrice] = useState(0)
+    const [price, setPrice] = useState({ min: 0, max: 0, price: 0, xp: 0 })
+    const { bnb } = useBinance()
 
-    let navigate = useNavigate()
+    const [process, setProcess] = useState(false)
 
-    // let { addNewDomainToUserRES, addXpRES } = useEarn()
+    useEffect(() => {
+        setPrice(
+            prices.find((price) => {
+                return price.min <= domain.length && price.max >= domain.length
+            }) || { min: 0, max: 0, price: 0, xp: 0 }
+        )
 
-    // let checkDomainRES = useQuery(checkDomainGQL, {
-    //     fetchPolicy: 'no-cache', // Used for first execution
-    //     nextFetchPolicy: 'no-cache', // Used for subsequent executions
-    //     initialFetchPolicy: 'no-cache',
-    //     variables: {
-    //         domain
-    //     }
-    // })
+        setBnbPrice(price.price / bnb)
 
-    let [checkDomain, setCheckDomain] = useState(false)
+        checkDomainGQL.fn({
+            variables: {
+                username: domain
+            }
+        })
+    }, [domain, bnb])
 
-    // useEffect(() => {
-    //     if (!checkDomainRES.loading) {
-    //         setCheckDomain(checkDomainRES.data)
-    //     }
-    // }, [checkDomainRES.loading])
+    useEffect(() => {
+        if (checkDomainGQL.status) {
+            switch (checkDomainGQL.status) {
+                case 'success': {
+                    console.log(checkDomainGQL.data)
+                    setCheckDomain(checkDomainGQL.data)
+                }
+            }
+        }
+    }, [checkDomainGQL.status])
 
-    let price = prices.find((price) => {
-        return price.min <= domain.length && price.max >= domain.length
-    }) || { min: 0, max: 0, price: 0, xp: 0 }
-
-    let bnbPrice = price.price / 10
+    const [buyButton, setBuyButton] = useState<any>()
+    useEffect(() => {
+        console.log(bnb)
+        if (bnbPrice == 0) {
+            setBuyButton(
+                <Button className="btn btn-primary" disabled={true}>
+                    Price Calculating
+                </Button>
+            )
+        } else {
+            setBuyButton(
+                <Button
+                    className="btn btn-primary"
+                    onClick={() => {
+                        buyWithWallet(
+                            () => {},
+                            ({ transaction }) => {
+                                buyDomainGQL
+                                    .fn({
+                                        variables: {
+                                            transaction,
+                                            username: domain
+                                        }
+                                    })
+                                    .then(() => {
+                                        navigate('/account/domains')
+                                    })
+                            },
+                            bnbPrice
+                        )
+                    }}
+                    disabled={process}
+                >
+                    Pay {bnbPrice.toFixed(5)} BNB
+                </Button>
+            )
+        }
+    }, [process, bnb, bnbPrice])
 
     return (
         <div className="domain-modal">
@@ -99,41 +143,15 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                     <p>Payment Method</p>
                     <ConnectButton />
                     <div className="actions">
-                        <button
+                        <Button
                             className="btn btn-secondary"
                             onClick={() => {
                                 setClose(true)
                             }}
                         >
                             Cancel
-                        </button>
-                        {checkDomain ? (
-                            <button
-                                className="btn btn-primary"
-                                // onClick={ () => {
-                                //     buyWithWallet(async() => {
-                                //         // await addNewDomainToUserRES.fn({
-                                //         //     variables: {
-                                //         //         domain
-                                //         //     }
-                                //         // })
-
-                                //         // await addXpRES.fn({
-                                //         //     variables: {
-                                //         //         point: price.xp
-                                //         //     }
-                                //         // })
-
-                                //         navigate('/account/domains')
-
-                                //     }, bnbPrice)
-                                // }}
-                            >
-                                Pay {bnbPrice.toFixed(5)} BNB
-                            </button>
-                        ) : (
-                            ''
-                        )}
+                        </Button>
+                        {buyButton}
                     </div>
                 </div>
             </div>
@@ -142,67 +160,77 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
 }
 
 export default function NameService() {
-    let [close, setClose] = useState(true)
-    let [domain, setDomain] = useState('')
+    function Component() {
+        const [close, setClose] = useState(true)
+        const [domain, setDomain] = useState('')
+
+        return (
+            <section className="section pb-0">
+                <div className="name-services">
+                    <div className="top-container">
+                        <h1>Shopcek Domain Service</h1>
+                        <div className="claim">
+                            <p>Increase XP Gain multiplier</p>
+                        </div>
+                    </div>
+
+                    <div className="input">
+                        <Form.Control
+                            size="lg"
+                            type="text"
+                            placeholder="Enter a Handle"
+                            value={domain}
+                            onChange={(e) => {
+                                setDomain(e.target.value)
+                            }}
+                        />
+                        <Button
+                            className="btn btn btn-secondary"
+                            onClick={() => {
+                                setClose(false)
+                            }}
+                            disabled={!(domain.length >= 3 && domain.length <= 15)}
+                        >
+                            SEARCH
+                        </Button>
+                    </div>
+
+                    {!close ? (
+                        <DomainModal domain={domain} setClose={setClose} />
+                    ) : (
+                        <div className="payment">
+                            <div className="prices">
+                                {prices.map((price) => {
+                                    return (
+                                        <div className="price">
+                                            <p>
+                                                {price.min} - {price.max} digits:
+                                            </p>
+                                            <p className="lined-text">00000000000</p>
+                                            <p>{price.price} USD</p>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+
+                            <div className="vl" />
+
+                            <div className="method">
+                                <p>Payment Method</p>
+                                <ConnectButton />
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </section>
+        )
+    }
 
     return (
-        <section className="section pb-0">
-            <div className="name-services">
-                <div className="top-container">
-                    <h1>Shopcek Domain Service</h1>
-                    <div className="claim">
-                        <p>Increase XP Gain multiplier</p>
-                    </div>
-                </div>
-
-                <div className="input">
-                    <Form.Control
-                        size="lg"
-                        type="text"
-                        placeholder="Enter a Handle"
-                        value={domain}
-                        onChange={(e) => {
-                            setDomain(e.target.value)
-                        }}
-                    />
-                    <Button
-                        className="btn btn btn-secondary"
-                        onClick={() => {
-                            setClose(false)
-                        }}
-                        disabled={!(domain.length >= 3 && domain.length <= 15)}
-                    >
-                        SEARCH
-                    </Button>
-                </div>
-
-                {!close ? (
-                    <DomainModal domain={domain} setClose={setClose} />
-                ) : (
-                    <div className="payment">
-                        <div className="prices">
-                            {prices.map((price) => {
-                                return (
-                                    <div className="price">
-                                        <p>
-                                            {price.min} - {price.max} digits:
-                                        </p>
-                                        <p className="lined-text">00000000000</p>
-                                        <p>{price.price} USD</p>
-                                    </div>
-                                )
-                            })}
-                        </div>
-
-                        <div className="vl" />
-
-                        <div className="method">
-                            <p>Payment Method</p>
-                            <ConnectButton />
-                        </div>
-                    </div>
-                )}
-            </div>
-        </section>
+        <BinanceProvider>
+            <EarnProvider>
+                <Component />
+            </EarnProvider>
+        </BinanceProvider>
     )
 }
