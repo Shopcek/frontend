@@ -30,7 +30,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                     variables: { id: cartId }
                 })
                 .then((data: any) => {
-                    if (!data.data) {
+                    if (!data?.data) {
                         return
                     }
 

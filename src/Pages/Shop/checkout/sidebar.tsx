@@ -9,6 +9,7 @@ import { useCart, CartProvider } from 'context/cart'
 import { useOrder, OrderProvider } from '../context'
 
 import { buyWithWallet } from 'lib/rainbow'
+import { useUser } from 'context/user'
 // import { useOrder } from 'oldcontext/order'
 
 export function order({ newOrder }: { newOrder: any }) {
@@ -28,7 +29,9 @@ export const Shoporder = () => {
         const { bnb } = useBinance()
         const { cartGQL, cartId } = useCart()
         const { placeOrderGQL } = useOrder()
+        const {status} = useUser()
         const [payment, setPayment] = useState(false)
+
 
         useEffect(() => {
             cartGQL?.fn({
@@ -83,6 +86,9 @@ export const Shoporder = () => {
                                             price
                                         )
                                     }}
+                                    disabled={!(status==="connected")}
+
+
                                 >
                                     Pay {price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                                 </Button>
@@ -106,7 +112,7 @@ export const Shoporder = () => {
                     }
                 }
             }
-        }, [cartGQL?.status, bnb, payment])
+        }, [cartGQL?.status, bnb, payment, status])
 
         return (
             <React.Fragment>

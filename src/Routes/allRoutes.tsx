@@ -11,13 +11,13 @@ import Account from 'pages/user/account'
 //Productdetails
 import ProductDetails from 'pages/product'
 
-// import Earn from 'pages/earn'
+import Earn from 'pages/earn'
 
 const authProtectedRoutes = [
     { path: '/shop/checkout', component: <Checkout /> },
     { path: '/shop/order/:id', component: <Order /> },
 
-    // { path: '/earn', component: <Earn /> },
+    { path: '/earn', component: <Earn /> },
 
     { path: '/account', component: <Account /> },
     { path: '/account/:section', component: <Account /> },
