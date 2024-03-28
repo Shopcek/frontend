@@ -1,11 +1,13 @@
 import { useCart } from 'context/cart'
 import { CartOperationsProvider, useCartOperations } from 'context/cart-operations'
+import { useRefetch } from 'context/refetch'
 import { useEffect, useState } from 'react'
 import { Image, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export function Items({ items }: { items: any[] }) {
     function Component() {
+        const { cart } = useRefetch()
         const { cartId, cartGQL } = useCart()
         const { updateCountGQL, deleteItemGQL } = useCartOperations()
 
@@ -13,9 +15,7 @@ export function Items({ items }: { items: any[] }) {
             if (updateCountGQL)
                 switch (updateCountGQL.status) {
                     case 'success': {
-                        cartGQL!.refetch({
-                            variables: { id: cartId }
-                        })
+                        cart.refetch()
                     }
                 }
         }, [updateCountGQL?.status])
@@ -24,9 +24,7 @@ export function Items({ items }: { items: any[] }) {
             if (deleteItemGQL)
                 switch (deleteItemGQL.status) {
                     case 'success': {
-                        cartGQL!.refetch({
-                            variables: { id: cartId }
-                        })
+                        cart.refetch()
                     }
                 }
         }, [deleteItemGQL?.status])

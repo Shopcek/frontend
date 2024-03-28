@@ -1,5 +1,6 @@
 // import { useCart } from 'oldcontext/cart'
 import { CartProvider, useCart } from 'context/cart'
+import { useRefetch } from 'context/refetch'
 import { useEffect, useState } from 'react'
 import { Table, Image, Card } from 'react-bootstrap'
 
@@ -70,6 +71,7 @@ function Prices({ price }: { price: number }) {
 export function Products() {
     function Compnent() {
         const { cartGQL } = useCart()
+        const {cart} = useRefetch()
 
         const [items, setItems] = useState<any>()
         const [prices, setPrices] = useState<any>()
@@ -83,7 +85,7 @@ export function Products() {
                     }
                 }
             }
-        }, [cartGQL?.status])
+        }, [cartGQL?.status, cart.refetch])
 
         return (
             <Card>

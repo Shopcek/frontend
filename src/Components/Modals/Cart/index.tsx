@@ -12,6 +12,7 @@ import { useCart, CartProvider } from 'context/cart'
 import { simplifyResponse } from 'lib/simplify-response'
 
 import { Items } from './Items'
+import { useRefetch } from 'context/refetch'
 
 function formatNumber(num: number) {
     return num.toFixed(2)
@@ -21,34 +22,22 @@ export const CardModal = ({ show, handleClose }: any) => {
     function Component() {
         let navigate = useNavigate()
         const { cartGQL, cartId } = useCart()
+        const { cart } = useRefetch()
 
         const [items, setItems] = useState<any>()
-        let cartCount
-        useEffect(() => {
-            cartGQL
-                ?.refetch({
-                    variables: { id: cartId }
-                })
-                .then((data: any) => {
-                    if (!data?.data) {
-                        return
-                    }
 
-                    setItems(<Items items={simplifyResponse(data.data).items}></Items>)
-                })
-        }, [show])
-
+        const [cartCount, setCartCount] = useState<any>()
         useEffect(() => {
             if (cartGQL) {
                 switch (cartGQL.status) {
                     case 'success': {
-                        cartCount = <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>
+                        setCartCount(<span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>)
                         setItems(<Items items={cartGQL.data!.items}></Items>)
                         break
                     }
                 }
             }
-        }, [cartGQL])
+        }, [cartGQL, cart.refetched])
 
         return (
             <React.Fragment>
