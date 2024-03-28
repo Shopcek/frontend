@@ -1,5 +1,5 @@
 import { Nav, Tab, Button, Card } from 'react-bootstrap'
-import { Address } from 'Components/address'
+import { Address } from 'components/address'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

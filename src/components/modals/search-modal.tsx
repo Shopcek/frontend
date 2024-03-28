@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
 
 //component
-import DeleteModal from 'Components/Modals/DeleteModal'
+import DeleteModal from 'components/modals/delete-modal'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Text } from '../Images/Logo'
+import { Text } from '../images/Logo'
 
 export const SearchModal = ({ show, handleClose }: any) => {
     const [value, setValue] = useState('')

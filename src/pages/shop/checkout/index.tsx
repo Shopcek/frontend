@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { Shoporder } from 'pages/shop/checkout/sidebar'
 
 import { Products } from './products'
-import { Address } from 'Components/address'
+import { Address } from 'components/address'
 
 import { useNavigate } from 'react-router-dom'
 

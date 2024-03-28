@@ -2,7 +2,7 @@ import React from 'react'
 
 import './assets/scss/themes.scss'
 
-import Route from './Routes/Index'
+import Route from './routes'
 function App() {
     return (
         <React.Fragment>

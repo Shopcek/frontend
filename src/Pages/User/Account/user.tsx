@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap'
-import { User } from 'Components/Images/Icons'
+import { User } from 'components/images/Icons'
 import { Link } from 'react-router-dom'
 
 import { useUser } from 'context/user'

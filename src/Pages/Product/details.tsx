@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/BlueSocial'
+import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'components/images/BlueSocial'
 import type { Product, Option } from './context/types'
 import { Variant, AddToCart, Colors } from './add-to-cart'
 import { WishlistProvider, useWishlist } from 'context/wishlist'

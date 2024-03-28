@@ -2,7 +2,7 @@ import { Container, Carousel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-import { Campaign1, Campaign2, Campaign3, Campaign4, Campaign5 } from 'Components/Images/Campaign'
+import { Campaign1, Campaign2, Campaign3, Campaign4, Campaign5 } from 'components/images/Campaign'
 
 const Collection = () => {
     return (
