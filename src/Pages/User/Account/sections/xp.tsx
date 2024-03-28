@@ -69,7 +69,9 @@ export function XpTab() {
         )
     }
 
-    return <EarnProvider>
-        <Component></Component>
-    </EarnProvider>
+    return (
+        <EarnProvider>
+            <Component></Component>
+        </EarnProvider>
+    )
 }

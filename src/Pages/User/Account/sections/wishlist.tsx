@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react'
 import { useUser } from 'context/user'
 import { useRefetch } from 'context/refetch'
 
-
-
 export function WishListNav() {
     const navigate = useNavigate()
 
@@ -33,7 +31,7 @@ export function WishListTab() {
         const navigate = useNavigate()
         const { userWishlistGQL, removeFromWishlistGQL } = useWishlist()
         const { status } = useUser()
-        const {wishlist:wishlistRefetch} = useRefetch()
+        const { wishlist: wishlistRefetch } = useRefetch()
 
         useEffect(() => {
             switch (status) {
@@ -49,7 +47,7 @@ export function WishListTab() {
                 case 'success': {
                     setWishlist(
                         <tbody>
-                            {userWishlistGQL.data.items.map((item:any, inx:number) => {
+                            {userWishlistGQL.data.items.map((item: any, inx: number) => {
                                 return (
                                     <tr key={inx}>
                                         <td>
@@ -83,13 +81,15 @@ export function WishListTab() {
                                                 <li>
                                                     <Button
                                                         onClick={() => {
-                                                            removeFromWishlistGQL.fn({
-                                                                variables: {
-                                                                    slug: item.slug
-                                                                }
-                                                            }).then((data:any)=>{
-                                                                wishlistRefetch.refetch()
-                                                            })
+                                                            removeFromWishlistGQL
+                                                                .fn({
+                                                                    variables: {
+                                                                        slug: item.slug
+                                                                    }
+                                                                })
+                                                                .then((data: any) => {
+                                                                    wishlistRefetch.refetch()
+                                                                })
                                                         }}
                                                         className="btn btn-soft-danger btn-icon btn-xl"
                                                     >

@@ -119,21 +119,25 @@ export function AddToWishList({ slug }: { slug: string }) {
                     console.log('clicked')
 
                     if (!In) {
-                        addToWishlistGQL.fn({
-                            variables: {
-                                slug
-                            }
-                        }).then((data:any)=>{
-                            wishlist.refetch()
-                        })
+                        addToWishlistGQL
+                            .fn({
+                                variables: {
+                                    slug
+                                }
+                            })
+                            .then((data: any) => {
+                                wishlist.refetch()
+                            })
                     } else {
-                        removeFromWishlistGQL.fn({
-                            variables: {
-                                slug
-                            }
-                        }).then((data:any)=>{
-                            wishlist.refetch()
-                        })
+                        removeFromWishlistGQL
+                            .fn({
+                                variables: {
+                                    slug
+                                }
+                            })
+                            .then((data: any) => {
+                                wishlist.refetch()
+                            })
                     }
                 }}
             >

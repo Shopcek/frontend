@@ -36,37 +36,35 @@ export function DomainsTab() {
                     setDomains(
                         <tbody>
                             {userDomainsGQL.data.map((item: any, inx: any) => {
-                        return (
-                            <tr>
-                                <td>{item.username}</td>
-                                <td>
-                                    <button
-                                        onClick={() => {
-                                            chooseDomainGQL.fn({
-                                                variables: {
-                                                    username: item.username
-                                                }
-                                            })
-                                        }}
-                                        
-
-                                        className="btn btn-primary w-100"
-                                    >
-                                        Choose
-                                    </button>
-                                </td>
-                            </tr>
-                        )
-                    })}
+                                return (
+                                    <tr>
+                                        <td>{item.username}</td>
+                                        <td>
+                                            <button
+                                                onClick={() => {
+                                                    chooseDomainGQL.fn({
+                                                        variables: {
+                                                            username: item.username
+                                                        }
+                                                    })
+                                                }}
+                                                className="btn btn-primary w-100"
+                                            >
+                                                Choose
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     )
                 }
             }
         }, [userDomainsGQL.status])
 
-        useEffect(()=>{
+        useEffect(() => {
             userDomainsGQL.refetch()
-        },[])
+        }, [])
 
         return (
             <Tab.Pane eventKey="domains" className="domains">

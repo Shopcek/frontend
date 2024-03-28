@@ -11,9 +11,15 @@ export function AddressNav() {
 
     return (
         <Nav.Item as="li">
-            <Nav.Link onClick={()=>{
-                navigate('/account/address')
-            }} as="a" eventKey="address" className="fs-15" role="presentation">
+            <Nav.Link
+                onClick={() => {
+                    navigate('/account/address')
+                }}
+                as="a"
+                eventKey="address"
+                className="fs-15"
+                role="presentation"
+            >
                 <i className="bi bi-building-add align-middle me-1"></i> Address
             </Nav.Link>
         </Nav.Item>
@@ -51,7 +57,6 @@ export function AddressTab() {
         </Tab.Pane>
     )
 }
-<Card>
-<Card.Body>
-</Card.Body>
+;<Card>
+    <Card.Body></Card.Body>
 </Card>

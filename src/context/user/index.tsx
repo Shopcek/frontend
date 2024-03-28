@@ -120,7 +120,9 @@ export function UserProvider({ children }: { children: any }) {
     })
 
     return (
-        <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout, userOrdersGQL, sessionStartTime, recipientGQL, updateRecipientGQL }}>
+        <UserContext.Provider
+            value={{ status, jwt, address, disconnect, connectWalletGQL, logout, userOrdersGQL, sessionStartTime, recipientGQL, updateRecipientGQL }}
+        >
             {children}
         </UserContext.Provider>
     )

@@ -1,7 +1,7 @@
 import { Nav, Tab, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 export function Address({ setData, initialValues }: { setData: (values: any) => any; initialValues: any }) {
     const formik = useFormik({
@@ -22,9 +22,9 @@ export function Address({ setData, initialValues }: { setData: (values: any) => 
         })
     })
 
-    useEffect(()=>{
-        formik.values=initialValues
-    },[])
+    useEffect(() => {
+        formik.values = initialValues
+    }, [])
 
     function handleChange(value: any) {
         setData(formik.values)

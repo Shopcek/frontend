@@ -29,9 +29,8 @@ export const Shoporder = () => {
         const { bnb } = useBinance()
         const { cartGQL, cartId } = useCart()
         const { placeOrderGQL } = useOrder()
-        const {status} = useUser()
+        const { status } = useUser()
         const [payment, setPayment] = useState(false)
-
 
         useEffect(() => {
             cartGQL?.fn({
@@ -86,9 +85,7 @@ export const Shoporder = () => {
                                             price
                                         )
                                     }}
-                                    disabled={!(status==="connected")}
-
-
+                                    disabled={!(status === 'connected')}
                                 >
                                     Pay {price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                                 </Button>

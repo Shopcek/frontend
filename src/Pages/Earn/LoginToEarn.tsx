@@ -40,7 +40,7 @@ export default function LoginToEarn() {
         const { streakGQL, loginRewardsGQL, claimGQL, lastClaimGQL, time } = useEarn()
         const { status } = useUser()
         const [days, setDays] = useState<any>()
-        const {xp} = useRefetch()
+        const { xp } = useRefetch()
 
         useEffect(() => {
             switch (status) {
@@ -94,7 +94,7 @@ export default function LoginToEarn() {
         }, [streakGQL.status, claimGQL.status, lastClaimGQL.status, time])
 
         useEffect(() => {
-            switch (lastClaimGQL.status){
+            switch (lastClaimGQL.status) {
                 case 'success': {
                     setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'seconds') <= 15)
                     break
@@ -133,13 +133,15 @@ export default function LoginToEarn() {
                                 <Button
                                     className="btn btn btn-secondary"
                                     onClick={() => {
-                                        claimGQL.fn({
-                                            variables: {
-                                                service: 'login'
-                                            }
-                                        }).then((data:any)=>{
-                                            xp.refetch()
-                                        })
+                                        claimGQL
+                                            .fn({
+                                                variables: {
+                                                    service: 'login'
+                                                }
+                                            })
+                                            .then((data: any) => {
+                                                xp.refetch()
+                                            })
                                     }}
                                     disabled={disabled}
                                 >

@@ -71,7 +71,7 @@ function Prices({ price }: { price: number }) {
 export function Products() {
     function Compnent() {
         const { cartGQL } = useCart()
-        const {cart} = useRefetch()
+        const { cart } = useRefetch()
 
         const [items, setItems] = useState<any>()
         const [prices, setPrices] = useState<any>()

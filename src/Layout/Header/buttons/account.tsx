@@ -46,8 +46,8 @@ export function Account() {
 
         const [username, setUsername] = useState<any>()
         useEffect(() => {
-            switch(choosenGQL.status){
-                case 'success':{
+            switch (choosenGQL.status) {
+                case 'success': {
                     setUsername(choosenGQL.data.username)
                 }
             }

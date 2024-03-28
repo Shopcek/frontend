@@ -10,7 +10,7 @@ export default function SpinToEarn() {
     function Component() {
         const segments = ['10 XP', '20 XP', '30 XP', '40 XP', '50 XP', '60 XP']
         const segColors = ['#13c5f0', '#f556b7', '#13c5f0', '#f556b7', '#13c5f0', '#f556b7']
-        
+
         const { claimGQL, lastClaimGQL } = useEarn()
         const [prize, setPrize] = useState<string | undefined>(undefined)
         const [wheel, setWheel] = useState<any>()
@@ -42,7 +42,7 @@ export default function SpinToEarn() {
                 const wheelRef = document.getElementById('canvas')
 
                 wheelRef!.addEventListener('click', function (event) {
-                    alert('You can\ spin but can\'t claim!')
+                    alert("You can spin but can't claim!")
                 })
             }
         }, [wheel])

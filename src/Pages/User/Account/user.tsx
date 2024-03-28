@@ -9,28 +9,20 @@ import { useEffect, useState } from 'react'
 export function UserSection() {
     function Component() {
         const { address } = useUser()
-        const {choosenGQL} = useEarn()
+        const { choosenGQL } = useEarn()
 
-        useEffect(()=>{
-
+        useEffect(() => {
             choosenGQL.fn()
-
         }, [])
 
         const [username, setUsername] = useState()
-        useEffect(
-            ()=>{
-
-                switch(choosenGQL.status){
-                    case 'success':{
-                        setUsername(choosenGQL.data.username)
-                    }
+        useEffect(() => {
+            switch (choosenGQL.status) {
+                case 'success': {
+                    setUsername(choosenGQL.data.username)
                 }
-
-
-            },
-            [choosenGQL.status]
-        )
+            }
+        }, [choosenGQL.status])
 
         //@ts-ignore
         let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`

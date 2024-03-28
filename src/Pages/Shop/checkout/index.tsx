@@ -37,9 +37,7 @@ const Checkout = () => {
                 <section className="section">
                     <Container>
                         <Row>
-                            <Col lg={8}>
-                                {address}
-                            </Col>
+                            <Col lg={8}>{address}</Col>
                             <Col lg={4}>
                                 <Products />
                                 <Shoporder />

@@ -114,11 +114,13 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
                     variant="primary"
                     className="btn btn-hover w-100 operation"
                     onClick={() => {
-                        addItemGQL?.fn({
-                            variables: { cartId, variantId: variant!.id, count }
-                        }).then((data:any)=>{
-                            cart.refetch()
-                        })
+                        addItemGQL
+                            ?.fn({
+                                variables: { cartId, variantId: variant!.id, count }
+                            })
+                            .then((data: any) => {
+                                cart.refetch()
+                            })
                     }}
                     disabled={!variant || addItemGQL?.loading}
                 >

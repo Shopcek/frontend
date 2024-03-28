@@ -87,18 +87,13 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                     Price Calculating
                 </Button>
             )
-
-        }else if (process) {
+        } else if (process) {
             setBuyButton(
-                <Button
-                    className="btn btn-primary"
-                    disabled
-                >
+                <Button className="btn btn-primary" disabled>
                     Payment process in progress
-                    
                 </Button>
             )
-        }  else {
+        } else {
             setBuyButton(
                 <Button
                     className="btn btn-primary"

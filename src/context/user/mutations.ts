@@ -6,7 +6,6 @@ export const connectWallet = gql`
     }
 `
 
-
 export const startSession = gql`
     mutation {
         startSessionTime

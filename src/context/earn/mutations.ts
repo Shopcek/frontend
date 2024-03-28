@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const claim = gql`
-    mutation ($service:String!){
+    mutation ($service: String!) {
         claim(service: $service)
     }
 `
@@ -13,13 +13,13 @@ export const startSession = gql`
 `
 
 export const buyDomain = gql`
-    mutation ($username: String!, $transaction: String!){
+    mutation ($username: String!, $transaction: String!) {
         buyDomain(username: $username, transaction: $transaction)
     }
 `
 
 export const chooseDomain = gql`
-    mutation ($username: String!){
+    mutation ($username: String!) {
         chooseDomain(username: $username)
     }
 `

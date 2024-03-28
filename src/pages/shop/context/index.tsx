@@ -5,9 +5,8 @@ import * as queries from './queries'
 import { useMutation, useLazyQuery } from 'lib/query-wrapper'
 
 export const OrderContex = createContext<{
-    placeOrderGQL?: ReturnType<typeof useMutation<any>>,
-    orderGQL?: ReturnType<typeof useLazyQuery<any>>,
-
+    placeOrderGQL?: ReturnType<typeof useMutation<any>>
+    orderGQL?: ReturnType<typeof useLazyQuery<any>>
 }>({})
 
 export function useOrder() {
@@ -16,7 +15,7 @@ export function useOrder() {
 
 export function OrderProvider({ children }: { children: any }) {
     const placeOrderGQL = useMutation<any>(mutations.placeOrder)
-    const orderGQL = useLazyQuery<any>(queries.order, {}, (data:any)=>{
+    const orderGQL = useLazyQuery<any>(queries.order, {}, (data: any) => {
         return !data.order.data
     })
 

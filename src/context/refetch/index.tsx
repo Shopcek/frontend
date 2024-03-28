@@ -3,22 +3,20 @@ import { useLazyQuery } from 'lib/query-wrapper'
 
 import * as queries from './queries'
 
-
 type refetch = {
-    refetch: CallableFunction,
+    refetch: CallableFunction
     refetched: boolean
 }
 
 //@ts-ignore
 export const RefetchContext = createContext<{
-    wishlist:refetch
-    cart:refetch
-    xp:refetch
-    recipient:refetch
+    wishlist: refetch
+    cart: refetch
+    xp: refetch
+    recipient: refetch
 }>()
 
-
-export function useRefetch(){
+export function useRefetch() {
     return useContext(RefetchContext)
 }
 
@@ -34,7 +32,7 @@ export function RefetchProvider({ children }: { children: any }) {
     const [cartRefetch, setCartRefetch] = useState(false)
     const cartGQL = useLazyQuery(queries.cart.cart)
     useEffect(() => {
-        cartGQL.refetch().then((data: any)=>{
+        cartGQL.refetch().then((data: any) => {
             setCartRefetch(!cartRefetch)
         })
     }, [cart])
@@ -44,7 +42,7 @@ export function RefetchProvider({ children }: { children: any }) {
     const [wishlistRefetch, setWishlistRefetch] = useState(false)
     const wishlistGQL = useLazyQuery(queries.wishlist.userWishlist)
     useEffect(() => {
-        wishlistGQL.refetch().then((data: any)=>{
+        wishlistGQL.refetch().then((data: any) => {
             setWishlistRefetch(!wishlistRefetch)
         })
     }, [wishlist])
@@ -54,7 +52,7 @@ export function RefetchProvider({ children }: { children: any }) {
     const [xpRefetch, setXpRefetch] = useState(false)
     const xpGQL = useLazyQuery(queries.earn.xp)
     useEffect(() => {
-        xpGQL.refetch().then((data: any)=>{
+        xpGQL.refetch().then((data: any) => {
             setXpRefetch(!xpRefetch)
         })
     }, [xp])
@@ -64,7 +62,7 @@ export function RefetchProvider({ children }: { children: any }) {
     const [recipientRefetch, setRecipientRefetch] = useState(false)
     const recipientGQL = useLazyQuery(queries.user.recipient)
     useEffect(() => {
-        recipientGQL.refetch().then((data: any)=>{
+        recipientGQL.refetch().then((data: any) => {
             setRecipientRefetch(!recipientRefetch)
         })
     }, [recipient])
@@ -78,7 +76,7 @@ export function RefetchProvider({ children }: { children: any }) {
                 },
                 wishlist: {
                     refetch: refetch(wishlist, setWishlist),
-                    refetched: wishlistRefetch     
+                    refetched: wishlistRefetch
                 },
                 xp: {
                     refetch: refetch(xp, setXp),

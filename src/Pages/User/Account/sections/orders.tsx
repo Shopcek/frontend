@@ -9,9 +9,15 @@ export function OrdersNav() {
 
     return (
         <Nav.Item as="li">
-            <Nav.Link as="a" onClick={()=>{
-                navigate('/account/order')
-            }}  eventKey="order" className="fs-15" role="presentation">
+            <Nav.Link
+                as="a"
+                onClick={() => {
+                    navigate('/account/order')
+                }}
+                eventKey="order"
+                className="fs-15"
+                role="presentation"
+            >
                 <i className="bi bi-bag align-middle me-1"></i> Orders
             </Nav.Link>
         </Nav.Item>

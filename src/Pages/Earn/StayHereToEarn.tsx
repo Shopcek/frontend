@@ -19,7 +19,7 @@ function addOneZero(time: number) {
 
 export default function StayHereToEarn() {
     function Component() {
-        const {xp} = useRefetch()
+        const { xp } = useRefetch()
         const navigate = useNavigate()
         const { xpGQL, time, claimGQL, lastClaimGQL } = useEarn()
         const { sessionStartTime, status } = useUser()
@@ -52,7 +52,7 @@ export default function StayHereToEarn() {
                 return
             }
 
-            if (disabled){
+            if (disabled) {
                 return
             }
 
@@ -92,12 +92,13 @@ export default function StayHereToEarn() {
                             <Button
                                 className="btn btn-primary"
                                 onClick={() => {
-                                    claimGQL.fn({
-                                        variables: {
-                                            service: 'stay'
-                                        }
-                                    }).then(
-                                        ()=>{
+                                    claimGQL
+                                        .fn({
+                                            variables: {
+                                                service: 'stay'
+                                            }
+                                        })
+                                        .then(() => {
                                             setDisabled(true)
                                             lastClaimGQL.refetch()
                                             setPastTime({
@@ -107,8 +108,7 @@ export default function StayHereToEarn() {
                                                 days: 0
                                             })
                                             xp.refetch()
-                                        }
-                                    )
+                                        })
                                 }}
                                 disabled={disabled}
                             >
