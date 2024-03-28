@@ -14,6 +14,8 @@ export const RefetchContext = createContext<{
     cart: refetch
     xp: refetch
     recipient: refetch
+    choosen: refetch
+    domains: refetch
 }>()
 
 export function useRefetch() {
@@ -67,6 +69,26 @@ export function RefetchProvider({ children }: { children: any }) {
         })
     }, [recipient])
 
+    //choosen
+    const [choosen, setChoosen] = useState(false)
+    const [choosenRefetch, setChoosenRefetch] = useState(false)
+    const choosenGQL = useLazyQuery(queries.earn.choosen)
+    useEffect(() => {
+        choosenGQL.refetch().then((data: any) => {
+            setChoosenRefetch(!choosenRefetch)
+        })
+    }, [choosen])
+
+
+    //domains
+    const [domains, setDomains] = useState(false)
+    const [domainsRefetch, setDomainsRefetch] = useState(false)
+    const domainsGQL = useLazyQuery(queries.earn.userDomains)
+    useEffect(() => {
+        domainsGQL.refetch().then((data: any) => {
+            setDomainsRefetch(!domainsRefetch)
+        })
+    }, [domains])
     return (
         <RefetchContext.Provider
             value={{
@@ -85,7 +107,15 @@ export function RefetchProvider({ children }: { children: any }) {
                 recipient: {
                     refetch: refetch(recipient, setRecipient),
                     refetched: recipientRefetch
-                }
+                },
+                choosen: {
+                    refetch: refetch(choosen, setChoosen),
+                    refetched: choosenRefetch
+                },
+                domains: {
+                    refetch: refetch(domains, setDomains),
+                    refetched: domainsRefetch
+                },
             }}
         >
             {children}
