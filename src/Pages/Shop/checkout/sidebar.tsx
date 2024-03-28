@@ -47,8 +47,7 @@ export const Shoporder = () => {
                 switch (placeOrderGQL.status) {
                     case 'success': {
                         setPayment(false)
-                        cart.refetch()
-                        (placeOrderGQL.data)
+                        cart.refetch(placeOrderGQL.data)
                         navigate(`/shop/order/${placeOrderGQL.data}`)
                         break
                     }
