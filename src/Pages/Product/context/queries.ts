@@ -3,6 +3,7 @@ import { gql } from '@apollo/client'
 export const product = gql`
     query ($slug: String!) {
         product(slug: $slug) {
+            slug
             variants {
                 data {
                     id

@@ -58,7 +58,6 @@ export function EarnProvider({ children }: { children: any }) {
         const buyDomainGQL = useMutation<any>(mutations.buyDomain)
         const userDomainsGQL = useLazyQuery<any>(queries.userDomains)
         const choosenGQL = useLazyQuery<any>(queries.choosen, {}, (data: any)=>{
-            console.log(data)
             return !data.choosen
         })
         const chooseDomainGQL = useMutation<any>(mutations.chooseDomain)

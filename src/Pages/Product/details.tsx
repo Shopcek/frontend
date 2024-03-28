@@ -1,11 +1,10 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
 import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/BlueSocial'
 import type { Product, Option } from './context/types'
-
 import { Variant, AddToCart, Colors } from './add-to-cart'
+import { WishlistProvider, useWishlist } from 'context/wishlist'
+import { useUser } from 'context/user'
 
 export function Information(props: { icon?: string; className?: string }) {
     const { icon } = props
@@ -79,12 +78,69 @@ export function ProductInfo(props: { price: string; name: string }) {
     return [<span className="lh-base mb-1 info">{name}</span>, <h5 className="text-primary info">${price}</h5>]
 }
 
-export function AddToWishList({ wishListOnClick, inList }: { wishListOnClick: any; inList: boolean }) {
+export function AddToWishList({ slug }: { slug: string }) {
+    function Component() {
+
+        const iconFill = <i className="bi bi-heart-fill"></i>
+        const icon = <i className="bi bi-heart"></i>
+
+        const { userWishlistGQL, addToWishlistGQL, removeFromWishlistGQL } = useWishlist()
+        const { status } = useUser()
+
+        useEffect(() => {
+            switch (status) {
+                case 'connected': {
+                    userWishlistGQL.fn()
+                    break
+                }
+            }
+        }, [status])
+
+
+        const [In, setIn] = useState(false)
+        useEffect(() => {
+            switch (userWishlistGQL.status) {
+                case 'success': {
+                    console.log(userWishlistGQL.data)
+                    const item = userWishlistGQL.data.items.find((item:any)=>{
+                        return slug === item.slug
+                    })
+
+                    setIn(!!item)
+                }
+            }
+        }, [userWishlistGQL.status])
+
+        return (
+            <div className="wishlist btn-hover" onClick={
+                ()=>{
+                    console.log('clicked')
+
+                    if (!In){
+                        addToWishlistGQL.fn({
+                            variables: {
+                                slug
+                            }
+                        })
+                    }else {
+                        removeFromWishlistGQL.fn({
+                            variables: {
+                                slug
+                            }
+                        })
+                    }
+                }
+            }>
+                {In ? iconFill : icon}
+                <p>Add to wishlist!</p>
+            </div>
+        )
+    }
+
     return (
-        <div className="wishlist btn-hover" onClick={wishListOnClick}>
-            <i className={`bi bi-heart${inList ? '-fill' : ''}`} />
-            <p>Add to wishlist!</p>
-        </div>
+        <WishlistProvider>
+            <Component></Component>
+        </WishlistProvider>
     )
 }
 
@@ -104,6 +160,7 @@ export function Details({ data }: { data: Product }) {
             <Information icon="bi bi-eye" />
             <AddToCart color={color} size={size} variants={data.variants} />
             <hr />
+            <AddToWishList slug={data.slug} />
             <Categories categories={[]} />
             <Socials />
         </div>
