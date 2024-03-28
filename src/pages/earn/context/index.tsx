@@ -64,15 +64,15 @@ export function EarnProvider({ children }: { children: any }) {
         return (
             <EarnContext.Provider
                 value={{
-                    streakGQL,
+                    loginRewardsGQL,
+                    startSessionGQL,
+                    checkDomainGQL,
                     userDomainsGQL,
                     lastClaimGQL,
-                    claimGQL,
-                    startSessionGQL,
-                    xpGQL,
-                    loginRewardsGQL,
-                    checkDomainGQL,
                     buyDomainGQL,
+                    streakGQL,
+                    claimGQL,
+                    xpGQL,
                     time
                 }}
             >
