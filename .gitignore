@@ -20,6 +20,6 @@ sketch
 config.ts
 
 
-/build
+# /build
 # End of https://www.toptal.com/developers/gitignore/api/react
 
