@@ -102,7 +102,6 @@ export function AddToWishList({ slug }: { slug: string }) {
         useEffect(() => {
             switch (userWishlistGQL.status) {
                 case 'success': {
-                    console.log(userWishlistGQL.data)
                     const item = userWishlistGQL.data.items.find((item: any) => {
                         return slug === item.slug
                     })
@@ -116,8 +115,6 @@ export function AddToWishList({ slug }: { slug: string }) {
             <div
                 className="wishlist btn-hover"
                 onClick={() => {
-                    console.log('clicked')
-
                     if (!In) {
                         addToWishlistGQL
                             .fn({

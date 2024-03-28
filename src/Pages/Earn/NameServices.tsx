@@ -73,7 +73,6 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
         if (checkDomainGQL.status) {
             switch (checkDomainGQL.status) {
                 case 'success': {
-                    console.log(checkDomainGQL.data)
                     setCheckDomain(checkDomainGQL.data)
                 }
             }
@@ -82,7 +81,6 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
 
     const [buyButton, setBuyButton] = useState<any>()
     useEffect(() => {
-        console.log(bnb)
         if (bnbPrice == 0) {
             setBuyButton(
                 <Button className="btn btn-primary" disabled>

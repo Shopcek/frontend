@@ -38,7 +38,6 @@ export function OrdersTab() {
             switch (userOrdersGQL.status) {
                 case 'success': {
                     const { data } = userOrdersGQL
-                    console.log(data)
                     setOrders(
                         <tbody>
                             {data.map((item: any, inx: any) => {

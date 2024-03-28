@@ -43,7 +43,6 @@ export function DomainsTab() {
         useEffect(() => {
             switch (userDomainsGQL.status) {
                 case 'success': {
-                    console.log(userDomainsGQL.data)
                     setDomains(
                         <tbody>
                             {userDomainsGQL.data.map((item: any, inx: any) => {

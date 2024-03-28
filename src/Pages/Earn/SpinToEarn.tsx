@@ -31,7 +31,6 @@ export default function SpinToEarn() {
                     downDuration={600}
                     fontFamily="Helvetica"
                     onFinished={() => {
-                        console.log()
                     }}
                 />
             )

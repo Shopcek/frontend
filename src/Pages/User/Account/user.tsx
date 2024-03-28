@@ -23,7 +23,6 @@ export function UserSection() {
 
         const [username, setUsername] = useState()
         useEffect(() => {
-            console.log(choosenGQL.data)
             switch (choosenGQL.status) {
                 case 'success': {
                     setUsername(choosenGQL.data.username)
