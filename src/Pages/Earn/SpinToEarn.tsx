@@ -2,7 +2,7 @@ import { Button } from 'react-bootstrap'
 // @ts-ignore
 import WheelComponent from 'react-wheel-of-prizes'
 
-import { EarnProvider, useEarn } from './context'
+import { EarnProvider, useEarn } from '../../context/earn'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 

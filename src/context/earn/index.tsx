@@ -18,8 +18,9 @@ const EarnContext = createContext<{
     checkDomainGQL: ReturnType<typeof useLazyQuery<any>>
     buyDomainGQL: ReturnType<typeof useMutation<any>>
     userDomainsGQL: ReturnType<typeof useLazyQuery<any>>
+    chooseDomainGQL: ReturnType<typeof useMutation<any>>
+    choosenGQL: ReturnType<typeof useLazyQuery<any>>
     time: any
-    //@ts-ignore
 }>()
 
 export function useEarn() {
@@ -56,6 +57,11 @@ export function EarnProvider({ children }: { children: any }) {
         const loginRewardsGQL = useQuery<any>(queries.loginRewards)
         const buyDomainGQL = useMutation<any>(mutations.buyDomain)
         const userDomainsGQL = useLazyQuery<any>(queries.userDomains)
+        const choosenGQL = useLazyQuery<any>(queries.choosen, {}, (data: any)=>{
+            console.log(data)
+            return !data.choosen
+        })
+        const chooseDomainGQL = useMutation<any>(mutations.chooseDomain)
         const checkDomainGQL = useLazyQuery<any>(queries.checkDomain, {
             fetchPolicy: 'no-cache',
             nextFetchPolicy: 'no-cache'
@@ -66,10 +72,12 @@ export function EarnProvider({ children }: { children: any }) {
                 value={{
                     loginRewardsGQL,
                     startSessionGQL,
+                    chooseDomainGQL,
                     checkDomainGQL,
                     userDomainsGQL,
                     lastClaimGQL,
                     buyDomainGQL,
+                    choosenGQL,
                     streakGQL,
                     claimGQL,
                     xpGQL,

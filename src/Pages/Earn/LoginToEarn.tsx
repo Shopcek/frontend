@@ -6,7 +6,7 @@ import largeReward from '../../assets/images/earn/large-reward.png'
 import { useState, useEffect } from 'react'
 
 import { useUser } from 'context/user'
-import { EarnProvider, useEarn } from './context'
+import { EarnProvider, useEarn } from '../../context/earn'
 
 import moment from 'moment'
 

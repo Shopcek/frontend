@@ -43,9 +43,18 @@ export const checkDomain = gql`
     }
 `
 
-
 export const userDomains = gql`
     query {
-        userDomains
+        userDomains {
+            username
+        }
+    }
+`
+
+export const choosen = gql`
+    query {
+        choosen {
+            username
+        }
     }
 `

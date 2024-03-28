@@ -4,15 +4,53 @@ import { Dropdown, Form, Button } from 'react-bootstrap'
 
 import { User } from 'Components/Images/Icons'
 import { useUser, UserProvider } from 'context/user'
+import { useEarn, EarnProvider } from 'context/earn'
 
 import { useConnectModal } from '@rainbow-me/rainbowkit'
+import { useEffect, useState } from 'react'
 
 export function Account() {
     function Component() {
-        let { address, disconnect } = useUser()
-        let navigate = useNavigate()
-        address = address!
-        let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
+        const { address, disconnect } = useUser()
+        const { xpGQL, choosenGQL } = useEarn()
+        const navigate = useNavigate()
+
+        //@ts-ignore
+        const sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
+
+        useEffect(() => {
+            xpGQL.fn()
+            choosenGQL.fn()
+        }, [])
+
+        const [xp, setXp] = useState<any>()
+        useEffect(() => {
+            switch (xpGQL.status) {
+                case 'success': {
+                    setXp(
+                        <Dropdown.Item
+                            onClick={() => {
+                                navigate('/account/xp-points')
+                            }}
+                        >
+                            <div className="xp-points">
+                                <span className="align-middle">XP Points</span>
+                                {xpGQL.data}
+                            </div>
+                        </Dropdown.Item>
+                    )
+                }
+            }
+        }, [xpGQL.status])
+
+        const [username, setUsername] = useState<any>()
+        useEffect(() => {
+            switch(choosenGQL.status){
+                case 'success':{
+                    setUsername(choosenGQL.data.username)
+                }
+            }
+        }, [choosenGQL.status])
 
         return (
             <div className="dropdown header-item dropdown-hover-end">
@@ -26,7 +64,7 @@ export function Account() {
                             <div className="user">
                                 <User className="rounded-circle header-profile-user" />
                                 <div className="user-info">
-                                    {/* <span>{choosenDomain.choosenDomain === address? sliced : choosenDomain.choosenDomain}</span> */}
+                                    <span>{username}</span>
                                     <span>{sliced}</span>
                                 </div>
                             </div>
@@ -59,16 +97,7 @@ export function Account() {
 
                         <div className="dropdown-divider"></div>
 
-                        <Dropdown.Item
-                            onClick={() => {
-                                navigate('/account/xp-points')
-                            }}
-                        >
-                            <div className="xp-points">
-                                <span className="align-middle">XP Points</span>
-                                {0}
-                            </div>
-                        </Dropdown.Item>
+                        {xp}
 
                         <div className="dropdown-divider"></div>
                         <div className="theme">
@@ -93,9 +122,9 @@ export function Account() {
     }
 
     return (
-        <UserProvider>
+        <EarnProvider>
             <Component />
-        </UserProvider>
+        </EarnProvider>
     )
 }
 

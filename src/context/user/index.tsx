@@ -7,18 +7,17 @@ import * as queries from './queries'
 import { useAccount, useDisconnect } from 'wagmi'
 import { wagmiConfig } from 'lib/rainbow'
 
+//@ts-ignore
 export const UserContext = createContext<{
     status: string
-    logout?: boolean
-    disconnect?: Function
-    connectWalletGQL?: any
-    userOrdersGQL?: ReturnType<typeof useLazyQuery<any>>
+    logout: boolean
+    disconnect: Function
+    connectWalletGQL: any
+    userOrdersGQL: ReturnType<typeof useLazyQuery<any>>
     jwt?: string
-    address?: string
+    address?: `0x${string}`
     sessionStartTime?: string
-}>({
-    status: 'disconnected'
-})
+}>()
 
 export function useUser() {
     return useContext(UserContext)

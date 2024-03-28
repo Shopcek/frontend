@@ -4,7 +4,7 @@ import moment from 'moment'
 
 import { useEffect, useState } from 'react'
 
-import { EarnProvider, useEarn } from './context'
+import { EarnProvider, useEarn } from '../../context/earn'
 import { useUser } from 'context/user'
 import { useNavigate } from 'react-router-dom'
 

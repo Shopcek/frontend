@@ -13,7 +13,7 @@ import length9 from '../../assets/images/earn/domain/9.png'
 import { BinanceProvider, useBinance } from 'context/binance'
 import { buyWithWallet } from 'lib/rainbow'
 
-import { useEarn, EarnProvider } from './context'
+import { useEarn, EarnProvider } from '../../context/earn'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -83,17 +83,30 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
         console.log(bnb)
         if (bnbPrice == 0) {
             setBuyButton(
-                <Button className="btn btn-primary" disabled={true}>
+                <Button className="btn btn-primary" disabled>
                     Price Calculating
                 </Button>
             )
-        } else {
+
+        }else if (process) {
+            setBuyButton(
+                <Button
+                    className="btn btn-primary"
+                    disabled
+                >
+                    Payment process in progress
+                    
+                </Button>
+            )
+        }  else {
             setBuyButton(
                 <Button
                     className="btn btn-primary"
                     onClick={() => {
                         buyWithWallet(
-                            () => {},
+                            () => {
+                                setProcess(true)
+                            },
                             ({ transaction }) => {
                                 buyDomainGQL
                                     .fn({
@@ -103,13 +116,13 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                                         }
                                     })
                                     .then(() => {
+                                        setProcess(false)
                                         navigate('/account/domains')
                                     })
                             },
                             bnbPrice
                         )
                     }}
-                    disabled={process}
                 >
                     Pay {bnbPrice.toFixed(5)} BNB
                 </Button>

@@ -13,9 +13,13 @@ export const startSession = gql`
 `
 
 export const buyDomain = gql`
-    mutation ($username: String!){
-        buyDomain(username: $username)
+    mutation ($username: String!, $transaction: String!){
+        buyDomain(username: $username, transaction: $transaction)
     }
 `
 
-
+export const chooseDomain = gql`
+    mutation ($username: String!){
+        chooseDomain(username: $username)
+    }
+`
