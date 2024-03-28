@@ -6,11 +6,14 @@ import { useUser } from 'context/user'
 
 import { useEffect, useState } from 'react'
 
+import { useRefetch } from 'context/refetch'
+
 export function WishList() {
-    function Component(){
+    function Component() {
         const { userWishlistGQL } = useWishlist()
         const { status } = useUser()
-    
+        const { wishlist } = useRefetch()
+
         useEffect(() => {
             switch (status) {
                 case 'connected': {
@@ -18,8 +21,8 @@ export function WishList() {
                     break
                 }
             }
-        }, [status])
-    
+        }, [status, wishlist.refetched])
+
         const [len, setLen] = useState<any>()
         useEffect(() => {
             switch (userWishlistGQL.status) {
@@ -31,8 +34,8 @@ export function WishList() {
                     )
                 }
             }
-        }, [userWishlistGQL.status])
-    
+        }, [userWishlistGQL.status, wishlist.refetched])
+
         return (
             <div className="topbar-head-dropdown ms-1 header-item">
                 <Link
@@ -50,9 +53,9 @@ export function WishList() {
         )
     }
 
-    return <WishlistProvider>
-        <Component>
-            
-        </Component>
-    </WishlistProvider>
+    return (
+        <WishlistProvider>
+            <Component></Component>
+        </WishlistProvider>
+    )
 }

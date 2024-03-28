@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { WishlistProvider, useWishlist } from 'context/wishlist'
 import { useEffect, useState } from 'react'
 import { useUser } from 'context/user'
+import { useRefetch } from 'context/refetch'
 
 
 
@@ -32,6 +33,7 @@ export function WishListTab() {
         const navigate = useNavigate()
         const { userWishlistGQL, removeFromWishlistGQL } = useWishlist()
         const { status } = useUser()
+        const {wishlist:wishlistRefetch} = useRefetch()
 
         useEffect(() => {
             switch (status) {
@@ -39,7 +41,7 @@ export function WishListTab() {
                     userWishlistGQL.fn()
                 }
             }
-        }, [])
+        }, [status, wishlistRefetch.refetched])
 
         const [wishlist, setWishlist] = useState<any>()
         useEffect(() => {
@@ -85,6 +87,8 @@ export function WishListTab() {
                                                                 variables: {
                                                                     slug: item.slug
                                                                 }
+                                                            }).then((data:any)=>{
+                                                                wishlistRefetch.refetch()
                                                             })
                                                         }}
                                                         className="btn btn-soft-danger btn-icon btn-xl"
@@ -102,7 +106,7 @@ export function WishListTab() {
                     )
                 }
             }
-        }, [userWishlistGQL.status])
+        }, [userWishlistGQL.status, wishlistRefetch.refetched])
 
         return (
             <Tab.Pane eventKey="wishlist">
