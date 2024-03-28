@@ -14,6 +14,10 @@ export const WishlistContext = createContext<{
     userWishlistGQL: ReturnType<typeof useLazyQuery<any>>
 }>()
 
+export function useWishlist(){
+    return useContext(WishlistContext)
+}
+
 export function WishlistProvider({ children }: { children: any }) {
     function Component() {
         const {} = useUser()
