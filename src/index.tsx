@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
-import { Route, Routes } from 'react-router-dom'
+import { RefetchProvider } from 'context/refetch'
 
 import { ApolloProvider } from 'lib/apollo-wrapper'
 import { RainbowProvider } from 'lib/rainbow'
@@ -18,7 +18,9 @@ root.render(
             <RainbowProvider>
                 <ApolloProvider>
                     <ScrollToTop />
-                    <App />
+                    <RefetchProvider>
+                        <App />
+                    </RefetchProvider>
                 </ApolloProvider>
             </RainbowProvider>
         </BrowserRouter>

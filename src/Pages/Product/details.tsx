@@ -6,6 +6,8 @@ import { Variant, AddToCart, Colors } from './add-to-cart'
 import { WishlistProvider, useWishlist } from 'context/wishlist'
 import { useUser } from 'context/user'
 
+import { useRefetch } from 'context/refetch'
+
 export function Information(props: { icon?: string; className?: string }) {
     const { icon } = props
 
@@ -80,12 +82,12 @@ export function ProductInfo(props: { price: string; name: string }) {
 
 export function AddToWishList({ slug }: { slug: string }) {
     function Component() {
-
         const iconFill = <i className="bi bi-heart-fill"></i>
         const icon = <i className="bi bi-heart"></i>
 
         const { userWishlistGQL, addToWishlistGQL, removeFromWishlistGQL } = useWishlist()
         const { status } = useUser()
+        const { wishlist } = useRefetch()
 
         useEffect(() => {
             switch (status) {
@@ -94,43 +96,47 @@ export function AddToWishList({ slug }: { slug: string }) {
                     break
                 }
             }
-        }, [status])
-
+        }, [status, wishlist.refetched])
 
         const [In, setIn] = useState(false)
         useEffect(() => {
             switch (userWishlistGQL.status) {
                 case 'success': {
                     console.log(userWishlistGQL.data)
-                    const item = userWishlistGQL.data.items.find((item:any)=>{
+                    const item = userWishlistGQL.data.items.find((item: any) => {
                         return slug === item.slug
                     })
 
                     setIn(!!item)
                 }
             }
-        }, [userWishlistGQL.status])
+        }, [userWishlistGQL.status, wishlist.refetched])
 
         return (
-            <div className="wishlist btn-hover" onClick={
-                ()=>{
+            <div
+                className="wishlist btn-hover"
+                onClick={() => {
                     console.log('clicked')
 
-                    if (!In){
+                    if (!In) {
                         addToWishlistGQL.fn({
                             variables: {
                                 slug
                             }
+                        }).then((data:any)=>{
+                            wishlist.refetch()
                         })
-                    }else {
+                    } else {
                         removeFromWishlistGQL.fn({
                             variables: {
                                 slug
                             }
+                        }).then((data:any)=>{
+                            wishlist.refetch()
                         })
                     }
-                }
-            }>
+                }}
+            >
                 {In ? iconFill : icon}
                 <p>Add to wishlist!</p>
             </div>
