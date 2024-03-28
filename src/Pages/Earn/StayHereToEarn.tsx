@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { EarnProvider, useEarn } from '../../context/earn'
 import { useUser } from 'context/user'
 import { useNavigate } from 'react-router-dom'
+import { useRefetch } from 'context/refetch'
 
 function addOneZero(time: number) {
     if (time < 10) {
@@ -18,6 +19,7 @@ function addOneZero(time: number) {
 
 export default function StayHereToEarn() {
     function Component() {
+        const {xp} = useRefetch()
         const navigate = useNavigate()
         const { xpGQL, time, claimGQL, lastClaimGQL } = useEarn()
         const { sessionStartTime, status } = useUser()
@@ -104,6 +106,7 @@ export default function StayHereToEarn() {
                                                 seconds: 0,
                                                 days: 0
                                             })
+                                            xp.refetch()
                                         }
                                     )
                                 }}

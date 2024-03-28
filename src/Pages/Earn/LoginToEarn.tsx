@@ -9,6 +9,7 @@ import { useUser } from 'context/user'
 import { EarnProvider, useEarn } from '../../context/earn'
 
 import moment from 'moment'
+import { useRefetch } from 'context/refetch'
 
 let smallImg = <Image src={smallReward} className="small-image" />
 let mediumImg = <Image src={mediumReward} className="medium-image" />
@@ -39,6 +40,7 @@ export default function LoginToEarn() {
         const { streakGQL, loginRewardsGQL, claimGQL, lastClaimGQL, time } = useEarn()
         const { status } = useUser()
         const [days, setDays] = useState<any>()
+        const {xp} = useRefetch()
 
         useEffect(() => {
             switch (status) {
@@ -94,7 +96,7 @@ export default function LoginToEarn() {
         useEffect(() => {
             switch (lastClaimGQL.status){
                 case 'success': {
-                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'hours') <= 24)
+                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'seconds') <= 15)
                     break
                 }
                 default: {
@@ -135,6 +137,8 @@ export default function LoginToEarn() {
                                             variables: {
                                                 service: 'login'
                                             }
+                                        }).then((data:any)=>{
+                                            xp.refetch()
                                         })
                                     }}
                                     disabled={disabled}

@@ -14,7 +14,7 @@ export function Account() {
     function Component() {
         const { address, disconnect } = useUser()
         const { xpGQL, choosenGQL } = useEarn()
-        const { xp:xpRefetch } = useRefetch()
+        const { xp: xpRefetch } = useRefetch()
         const navigate = useNavigate()
 
         //@ts-ignore
