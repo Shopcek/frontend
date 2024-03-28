@@ -2,6 +2,10 @@ import { Nav, Tab, Button, Card } from 'react-bootstrap'
 import { Address } from 'Components/address'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { useRefetch } from 'context/refetch'
+import { useUser } from 'context/user'
+
 export function AddressNav() {
     const navigate = useNavigate()
 
@@ -18,17 +22,28 @@ export function AddressNav() {
 
 export function AddressTab() {
     const [values, setValues] = useState()
+    const { recipient } = useRefetch()
+    const { recipientGQL, updateRecipientGQL } = useUser()
 
     useEffect(() => {
-        console.log(values)
-    }, [values])
+        recipientGQL.fn()
+    }, [])
+
+    const [address, setAddress] = useState<any>()
+    useEffect(() => {
+        switch (recipientGQL.status) {
+            case 'success': {
+                setAddress(<Address setData={setValues} initialValues={recipientGQL.data}></Address>)
+            }
+        }
+    }, [recipient.refetched, recipientGQL.status])
 
     return (
         <Tab.Pane eventKey="address">
             <div className="tab-pane fade show" id="custom-v-pills-setting" role="tabpanel">
                 <Card>
                     <Card.Body>
-                        <Address setData={setValues} initialValues={{}}></Address>
+                        {address}
                         <Button className="btn btn-secondary">Update</Button>{' '}
                     </Card.Body>
                 </Card>

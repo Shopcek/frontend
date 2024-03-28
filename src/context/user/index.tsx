@@ -13,6 +13,8 @@ export const UserContext = createContext<{
     logout: boolean
     disconnect: Function
     connectWalletGQL: any
+    recipientGQL: ReturnType<typeof useLazyQuery<any>>
+    updateRecipientGQL: ReturnType<typeof useMutation<any>>
     userOrdersGQL: ReturnType<typeof useLazyQuery<any>>
     jwt?: string
     address?: `0x${string}`
@@ -34,6 +36,8 @@ export function UserProvider({ children }: { children: any }) {
     })
 
     const userOrdersGQL = useLazyQuery<any>(queries.userOrders)
+    const recipientGQL = useLazyQuery<any>(queries.recipient)
+    const updateRecipientGQL = useMutation<any>(mutations.recipient)
 
     const cartId = localStorage.getItem('cartId')
 
@@ -116,7 +120,7 @@ export function UserProvider({ children }: { children: any }) {
     })
 
     return (
-        <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout, userOrdersGQL, sessionStartTime }}>
+        <UserContext.Provider value={{ status, jwt, address, disconnect, connectWalletGQL, logout, userOrdersGQL, sessionStartTime, recipientGQL, updateRecipientGQL }}>
             {children}
         </UserContext.Provider>
     )

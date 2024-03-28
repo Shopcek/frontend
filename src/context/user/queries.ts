@@ -11,3 +11,9 @@ export const userOrders = gql`
         }
     }
 `
+
+export const recipient = gql`
+    query {
+        recipientByUser
+    }
+`

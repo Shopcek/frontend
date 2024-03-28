@@ -8,11 +8,13 @@ import { useEarn, EarnProvider } from 'context/earn'
 
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useEffect, useState } from 'react'
+import { useRefetch } from 'context/refetch'
 
 export function Account() {
     function Component() {
         const { address, disconnect } = useUser()
         const { xpGQL, choosenGQL } = useEarn()
+        const { xp:xpRefetch } = useRefetch()
         const navigate = useNavigate()
 
         //@ts-ignore
@@ -20,8 +22,7 @@ export function Account() {
 
         useEffect(() => {
             xpGQL.fn()
-            choosenGQL.fn()
-        }, [])
+        }, [xpRefetch.refetched])
 
         const [xp, setXp] = useState<any>()
         useEffect(() => {
@@ -41,7 +42,7 @@ export function Account() {
                     )
                 }
             }
-        }, [xpGQL.status])
+        }, [xpGQL.status, xpRefetch.refetched])
 
         const [username, setUsername] = useState<any>()
         useEffect(() => {

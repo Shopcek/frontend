@@ -5,29 +5,56 @@ import { Shoporder } from 'pages/shop/checkout/sidebar'
 import { Products } from './products'
 import { Address } from 'Components/address'
 
-
 import { useNavigate } from 'react-router-dom'
 
+import { UserProvider, useUser } from 'context/user'
+import { useRefetch } from 'context/refetch'
+
 const Checkout = () => {
-    let navigate = useNavigate()
-    const [values, setValues] = useState()
+    function Component() {
+        const navigate = useNavigate()
+        const [values, setValues] = useState()
+        const { recipient } = useRefetch()
+        const { recipientGQL, updateRecipientGQL } = useUser()
+
+        useEffect(() => {
+            recipientGQL.fn()
+        }, [])
+
+        const [address, setAddress] = useState<any>()
+        const [recipientData, setRecipientData] = useState({})
+        useEffect(() => {
+            switch (recipientGQL.status) {
+                case 'success': {
+                    setRecipientData(recipientGQL.data)
+                    setAddress(<Address setData={setValues} initialValues={recipientData}></Address>)
+                }
+            }
+        }, [recipient.refetched, recipientGQL.status])
+
+        return (
+            <React.Fragment>
+                <section className="section">
+                    <Container>
+                        <Row>
+                            <Col lg={8}>
+                                {address}
+                            </Col>
+                            <Col lg={4}>
+                                <Products />
+                                <Shoporder />
+                            </Col>
+                        </Row>
+                    </Container>
+                </section>
+            </React.Fragment>
+        )
+    }
 
     return (
-        <React.Fragment>
-            <section className="section">
-                <Container>
-                    <Row>
-                        <Col lg={8}>
-                            <Address setData={setValues} initialValues={{}}></Address>
-                        </Col>
-                        <Col lg={4}>
-                            <Products />
-                            <Shoporder />
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-        </React.Fragment>
+        <UserProvider>
+            <Component></Component>
+        </UserProvider>
     )
 }
 

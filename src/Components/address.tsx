@@ -1,6 +1,7 @@
 import { Nav, Tab, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { useEffect } from 'react';
 
 export function Address({ setData, initialValues }: { setData: (values: any) => any; initialValues: any }) {
     const formik = useFormik({
@@ -20,6 +21,10 @@ export function Address({ setData, initialValues }: { setData: (values: any) => 
             phone: Yup.string().matches(RegExp('[0-9]{7}')).required('Please Enter Your Phone')
         })
     })
+
+    useEffect(()=>{
+        formik.values=initialValues
+    },[])
 
     function handleChange(value: any) {
         setData(formik.values)

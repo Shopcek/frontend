@@ -27,12 +27,14 @@ export const CardModal = ({ show, handleClose }: any) => {
         const [items, setItems] = useState<any>()
 
         const [cartCount, setCartCount] = useState<any>()
+        const [total, setTotalPrice] = useState(0)
         useEffect(() => {
             if (cartGQL) {
                 switch (cartGQL.status) {
                     case 'success': {
                         setCartCount(<span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>)
                         setItems(<Items items={cartGQL.data!.items}></Items>)
+                        setTotalPrice(cartGQL?.data!.price)
                         break
                     }
                 }
@@ -56,7 +58,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             <h6 className="m-0 fs-16 text-muted">Total:</h6>
                             <div className="px-2">
-                                <h6 className="m-0 fs-16 cart-total">${formatNumber(0)}</h6>
+                                <h6 className="m-0 fs-16 cart-total">${formatNumber(total)}</h6>
                             </div>
                         </div>
 

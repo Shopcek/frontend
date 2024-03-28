@@ -14,6 +14,7 @@ export const RefetchContext = createContext<{
     wishlist:refetch
     cart:refetch
     xp:refetch
+    recipient:refetch
 }>()
 
 
@@ -48,7 +49,7 @@ export function RefetchProvider({ children }: { children: any }) {
         })
     }, [wishlist])
 
-    //wishlist
+    //xp
     const [xp, setXp] = useState(false)
     const [xpRefetch, setXpRefetch] = useState(false)
     const xpGQL = useLazyQuery(queries.earn.xp)
@@ -57,6 +58,16 @@ export function RefetchProvider({ children }: { children: any }) {
             setXpRefetch(!xpRefetch)
         })
     }, [xp])
+
+    //recipient
+    const [recipient, setRecipient] = useState(false)
+    const [recipientRefetch, setRecipientRefetch] = useState(false)
+    const recipientGQL = useLazyQuery(queries.user.recipient)
+    useEffect(() => {
+        recipientGQL.refetch().then((data: any)=>{
+            setRecipientRefetch(!recipientRefetch)
+        })
+    }, [recipient])
 
     return (
         <RefetchContext.Provider
@@ -72,6 +83,10 @@ export function RefetchProvider({ children }: { children: any }) {
                 xp: {
                     refetch: refetch(xp, setXp),
                     refetched: xpRefetch
+                },
+                recipient: {
+                    refetch: refetch(recipient, setRecipient),
+                    refetched: recipientRefetch
                 }
             }}
         >

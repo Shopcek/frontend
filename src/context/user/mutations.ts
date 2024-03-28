@@ -12,3 +12,9 @@ export const startSession = gql`
         startSessionTime
     }
 `
+
+export const recipient = gql`
+    mutation ($recipient: JSON!) {
+        recipientByUser(recipient: $recipient)
+    }
+`
