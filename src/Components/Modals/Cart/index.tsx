@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCart, CartProvider } from 'context/cart'
 import { simplifyResponse } from 'lib/simplify-response'
 
-import { Items } from './Items'
+import { Items } from './items'
 import { useRefetch } from 'context/refetch'
 
 function formatNumber(num: number) {
