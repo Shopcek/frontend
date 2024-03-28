@@ -155,6 +155,15 @@ export function Details({ data }: { data: Product }) {
     const [color, setColor] = useState<Option>()
     const [size, setSize] = useState<Option>()
 
+    useEffect(()=>{
+        if (data.colors.length == 1){
+            setColor(data.colors[0])
+        }
+        if (data.sizes.length == 1){
+            setSize(data.sizes[0])
+        }
+    }, [])
+
     return (
         <div className="product-details">
             <ProductInfo price={data.price.toFixed(2)} name={data.name} />

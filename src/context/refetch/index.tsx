@@ -24,7 +24,6 @@ export function useRefetch() {
 
 export function refetch(state: any, setState: CallableFunction) {
     return () => {
-        (!state)
         setState(!state)
     }
 }
