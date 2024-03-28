@@ -24,6 +24,7 @@ export function useRefetch() {
 
 export function refetch(state: any, setState: CallableFunction) {
     return () => {
+        console.log(!state)
         setState(!state)
     }
 }
@@ -74,6 +75,7 @@ export function RefetchProvider({ children }: { children: any }) {
     const [choosenRefetch, setChoosenRefetch] = useState(false)
     const choosenGQL = useLazyQuery(queries.earn.choosen)
     useEffect(() => {
+        console.log('refresh')
         choosenGQL.refetch().then((data: any) => {
             setChoosenRefetch(!choosenRefetch)
         })

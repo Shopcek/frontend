@@ -5,11 +5,17 @@ import { Link } from 'react-router-dom'
 import { useUser } from 'context/user'
 import { useEarn, EarnProvider } from 'context/earn'
 import { useEffect, useState } from 'react'
+import { useRefetch } from 'context/refetch'
 
 export function UserSection() {
     function Component() {
         const { address } = useUser()
         const { choosenGQL } = useEarn()
+        const {choosen} = useRefetch()
+
+        useEffect(() => {
+            choosenGQL.refetch()
+        }, [choosen.refetched])
 
         useEffect(() => {
             choosenGQL.fn()
@@ -17,12 +23,13 @@ export function UserSection() {
 
         const [username, setUsername] = useState()
         useEffect(() => {
+            console.log(choosenGQL.data)
             switch (choosenGQL.status) {
                 case 'success': {
                     setUsername(choosenGQL.data.username)
                 }
             }
-        }, [choosenGQL.status])
+        }, [choosenGQL.status, choosen.refetched])
 
         //@ts-ignore
         let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`

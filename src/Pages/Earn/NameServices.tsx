@@ -16,6 +16,7 @@ import { buyWithWallet } from 'lib/rainbow'
 import { useEarn, EarnProvider } from '../../context/earn'
 
 import { useNavigate } from 'react-router-dom'
+import { useRefetch } from 'context/refetch'
 
 let images = {
     1: length3,
@@ -48,6 +49,7 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
     const [bnbPrice, setBnbPrice] = useState(0)
     const [price, setPrice] = useState({ min: 0, max: 0, price: 0, xp: 0 })
     const { bnb } = useBinance()
+    const {domains} = useRefetch()
 
     const [process, setProcess] = useState(false)
 
@@ -112,6 +114,7 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                                     })
                                     .then(() => {
                                         setProcess(false)
+                                        domains.refetch()
                                         navigate('/account/domains')
                                     })
                             },

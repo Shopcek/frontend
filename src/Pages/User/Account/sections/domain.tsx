@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { useEarn, EarnProvider } from 'context/earn'
 import { useEffect, useState } from 'react'
+import { useRefetch } from 'context/refetch'
 
 export function DomainsNav() {
     const navigate = useNavigate()
@@ -29,6 +30,16 @@ export function DomainsTab() {
         const navigate = useNavigate()
         const { userDomainsGQL, chooseDomainGQL } = useEarn()
         const [domains, setDomains] = useState<any>()
+        const {domains:domainsRefetch, choosen} = useRefetch()
+
+        useEffect(()=>{
+            switch(chooseDomainGQL.status){
+                case 'success':{
+                    choosen.refetch()
+                }
+            }
+        },[chooseDomainGQL.status])
+
         useEffect(() => {
             switch (userDomainsGQL.status) {
                 case 'success': {
@@ -60,7 +71,7 @@ export function DomainsTab() {
                     )
                 }
             }
-        }, [userDomainsGQL.status])
+        }, [userDomainsGQL.status, domainsRefetch.refetched])
 
         useEffect(() => {
             userDomainsGQL.refetch()

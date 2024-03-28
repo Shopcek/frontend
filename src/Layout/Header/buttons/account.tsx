@@ -14,7 +14,7 @@ export function Account() {
     function Component() {
         const { address, disconnect } = useUser()
         const { xpGQL, choosenGQL } = useEarn()
-        const { xp: xpRefetch } = useRefetch()
+        const { xp: xpRefetch, choosen } = useRefetch()
         const navigate = useNavigate()
 
         //@ts-ignore
@@ -45,13 +45,18 @@ export function Account() {
         }, [xpGQL.status, xpRefetch.refetched])
 
         const [username, setUsername] = useState<any>()
+
+        useEffect(() => {
+            choosenGQL.fn()
+        
+        }, [choosen.refetched])
         useEffect(() => {
             switch (choosenGQL.status) {
                 case 'success': {
                     setUsername(choosenGQL.data.username)
                 }
             }
-        }, [choosenGQL.status])
+        }, [choosenGQL.status, choosen.refetched])
 
         return (
             <div className="dropdown header-item dropdown-hover-end">
