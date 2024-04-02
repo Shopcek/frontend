@@ -40,7 +40,7 @@ const Slider = ({ items, title }: { items: any[]; title: string }) => {
                         }}
                         loop={true}
                         autoplay={{ delay: 2500, disableOnInteraction: false }}
-                        className="latest-slider swiper-pointer-events"
+                        className="latest-slider q"
                     >
                         {/* Slider sağ sol butonları */}
                         <div
