@@ -164,10 +164,13 @@ export function Details({ data }: { data: Product }) {
         }
     }, [])
 
+
+    console.log(data.colors)
+
     return (
         <div className="product-details">
             <ProductInfo price={data.price.toFixed(2)} name={data.name} />
-
+            
             <Sold icon="bi bi-fire" />
             {data.colors.length !== 1 ? <Colors colorsList={data.colors} setColor={setColor} /> : ''}
 
