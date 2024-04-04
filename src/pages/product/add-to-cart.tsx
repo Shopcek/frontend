@@ -1,7 +1,7 @@
 import { Dropdown, Form, Button } from 'react-bootstrap'
 import { useState } from 'react'
 import type { Option } from './context/types'
-import { colors } from 'data/colors'
+// import { colors } from 'data/colors'
 
 import { useCartOperations, CartOperationsProvider } from 'context/cart-operations'
 import { useProduct } from './context'
@@ -28,7 +28,7 @@ export function Colors({ colorsList, setColor }: { colorsList: Option[]; setColo
                                 className="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
                                 htmlFor={color.value}
                                 style={{
-                                    backgroundColor: `${(colors as any)[color.value].value}`
+                                    backgroundColor: `${color.hex}`
                                 }}
                             />
                         </li>
