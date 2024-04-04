@@ -31,6 +31,7 @@ export const product = gql`
                 data {
                     attributes {
                         value
+                        hex
                     }
                 }
             }

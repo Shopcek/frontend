@@ -1,5 +1,6 @@
 export type Option = {
     value: string
+    hex?: string
 }
 
 export type Product = {
