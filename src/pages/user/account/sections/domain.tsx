@@ -30,15 +30,15 @@ export function DomainsTab() {
         const navigate = useNavigate()
         const { userDomainsGQL, chooseDomainGQL } = useEarn()
         const [domains, setDomains] = useState<any>()
-        const {domains:domainsRefetch, choosen} = useRefetch()
+        const { domains: domainsRefetch, choosen } = useRefetch()
 
-        useEffect(()=>{
-            switch(chooseDomainGQL.status){
-                case 'success':{
+        useEffect(() => {
+            switch (chooseDomainGQL.status) {
+                case 'success': {
                     choosen.refetch()
                 }
             }
-        },[chooseDomainGQL.status])
+        }, [chooseDomainGQL.status])
 
         useEffect(() => {
             switch (userDomainsGQL.status) {

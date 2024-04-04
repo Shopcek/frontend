@@ -11,7 +11,7 @@ export function UserSection() {
     function Component() {
         const { address } = useUser()
         const { choosenGQL } = useEarn()
-        const {choosen} = useRefetch()
+        const { choosen } = useRefetch()
 
         useEffect(() => {
             choosenGQL.refetch()

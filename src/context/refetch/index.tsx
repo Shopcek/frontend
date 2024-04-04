@@ -79,7 +79,6 @@ export function RefetchProvider({ children }: { children: any }) {
         })
     }, [choosen])
 
-
     //domains
     const [domains, setDomains] = useState(false)
     const [domainsRefetch, setDomainsRefetch] = useState(false)
@@ -115,7 +114,7 @@ export function RefetchProvider({ children }: { children: any }) {
                 domains: {
                     refetch: refetch(domains, setDomains),
                     refetched: domainsRefetch
-                },
+                }
             }}
         >
             {children}

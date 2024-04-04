@@ -32,7 +32,7 @@ export const Shoporder = () => {
         const { placeOrderGQL } = useOrder()
         const { status } = useUser()
         const [payment, setPayment] = useState(false)
-        const {cart} = useRefetch()
+        const { cart } = useRefetch()
 
         useEffect(() => {
             cartGQL?.fn({

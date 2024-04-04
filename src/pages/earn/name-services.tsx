@@ -49,7 +49,7 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
     const [bnbPrice, setBnbPrice] = useState(0)
     const [price, setPrice] = useState({ min: 0, max: 0, price: 0, xp: 0 })
     const { bnb } = useBinance()
-    const {domains} = useRefetch()
+    const { domains } = useRefetch()
 
     const [process, setProcess] = useState(false)
 

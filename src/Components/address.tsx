@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 export function Address({ setData, initialValues }: { setData: (values: any) => any; initialValues: any }) {
     const formik = useFormik({
         initialValues,
-        onSubmit: ()=>{},
+        onSubmit: () => {},
         validationSchema: Yup.object({
             name: Yup.string().required('Please Enter Your Name'),
             address1: Yup.string().required('Please Enter Your Address Line'),

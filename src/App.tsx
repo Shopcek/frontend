@@ -6,7 +6,7 @@ import Route from './routes'
 function App() {
     return (
         <React.Fragment>
-                <Route />
+            <Route />
         </React.Fragment>
     )
 }

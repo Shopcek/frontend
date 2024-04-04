@@ -48,7 +48,6 @@ export function Account() {
 
         useEffect(() => {
             choosenGQL.fn()
-        
         }, [choosen.refetched])
         useEffect(() => {
             switch (choosenGQL.status) {
