@@ -11,7 +11,7 @@
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "module": "esnext",
-        "baseUrl": "./src", // This must be specified if "paths" is.
+        "baseUrl": "src1", // This must be specified if "paths" is.
         //   "paths": {
         //      "@component/*": ["Components/views/*"],
         //      "@common/*": ["Components/Common/*"],
@@ -25,6 +25,6 @@
         "noEmit": true,
         "jsx": "react-jsx"
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/product/Email Product"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src1/pages/product/Email Product"],
     "exclude": ["node_modules"]
 }
