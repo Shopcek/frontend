@@ -1,0 +1,8 @@
+export { AddressNav, AddressTab } from './address'
+export { LogoutNav } from './logout'
+export { OrdersNav, OrdersTab } from './orders'
+export { ProfileNav, ProfileTab } from './profile'
+export { StakeNav } from './stake'
+export { WishListNav, WishListTab } from './wishlist'
+export { XpNav, XpTab } from './xp'
+export { DomainsNav, DomainsTab } from './domain'
