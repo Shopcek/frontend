@@ -1,0 +1,112 @@
+.success-info-box {
+    width: 100%;
+    min-height: 30rem;
+    background-color: white;
+    border-radius: 15px;
+
+    .top {
+        display: flex;
+        padding: 20px;
+
+        gap: 20px;
+        flex-direction: column;
+
+        .title {
+            font-size: x-large;
+            font-weight: 800;
+            color: $secondary;
+        }
+
+        .success-message {
+            font-size: x-large;
+            font-weight: 300;
+        }
+    }
+
+    .tables {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+
+        td {
+            border-color: $primary;
+            border-width: 1px;
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+            --tb-table-bg-type: unset;
+        }
+
+        .information-table {
+            padding: 20px;
+            padding-top: 0px;
+            width: 100%;
+
+            .title {
+                font-size: x-large;
+                font-weight: 300;
+                color: $secondary;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}
+
+.success-info-box.shipping {
+    .title {
+        font-weight: 300 !important;
+        padding: 20px !important;
+        font-size: x-large;
+        color: $secondary;
+    }
+
+    .details {
+        padding: 2rem;
+
+        .col {
+            gap: 3rem !important;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notes {
+            margin-top: -1rem;
+        }
+    }
+}
+
+.success-page {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    td {
+        text-align: center;
+    }
+
+    .info {
+        padding: 11% 0;
+    }
+    .price {
+        padding-top: 35%;
+    }
+
+    // .error {
+    //     width: 100%;
+    //     min-height: 30rem;
+    //     background-color: rgb(255, 0, 0);
+    //     border-radius: 15px;
+    // }
+}
+
+.products {
+    td.image {
+        width: 7rem !important;
+
+        .avatar-md {
+            height: 6.5rem;
+            width: 6.5rem;
+            border-radius: 10px;
+        }
+    }
+}
