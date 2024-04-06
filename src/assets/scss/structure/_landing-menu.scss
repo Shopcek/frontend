@@ -294,3 +294,13 @@
         right: 20px !important;
     }
 }
+
+
+
+a.carousel-control-next, a.carousel-control-prev  {
+    display: none;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: #000
+}

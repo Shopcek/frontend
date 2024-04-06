@@ -3,47 +3,46 @@ import { gql } from '@apollo/client'
 export const product = gql`
     query ($slug: String!) {
         product(slug: $slug) {
-            slug
             variants {
-                data {
-                    id
-                    attributes {
-                        color {
-                            data {
-                                attributes {
-                                    value
-                                }
-                            }
+                color {
+                    data {
+                        attributes {
+                            value
+                            hex
                         }
-                        size {
-                            data {
-                                attributes {
-                                    value
-                                }
-                            }
+                    }
+                }
+                size {
+                    data {
+                        attributes {
+                            value
                         }
-                        image
                     }
                 }
+                image
             }
-            colors {
-                data {
-                    attributes {
-                        value
+            product {
+                slug
+                colors {
+                    data {
+                        attributes {
+                            value
+                            hex
+                        }
                     }
                 }
-            }
-            sizes {
-                data {
-                    attributes {
-                        value
+                sizes {
+                    data {
+                        attributes {
+                            value
+                        }
                     }
                 }
+                image
+                description
+                price
+                name
             }
-            image
-            description
-            price
-            name
         }
     }
 `

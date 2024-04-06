@@ -2,7 +2,9 @@ import campaign1 from '../../assets/images/campaigns/campaign1.png'
 import campaign2 from '../../assets/images/campaigns/campaign2.png'
 import campaign3 from '../../assets/images/campaigns/campaign3.png'
 import campaign4 from '../../assets/images/campaigns/campaign4.png'
-// import campaign5 from '../../assets/images/campaigns/campaign5.png'
+import campaign5 from '../../assets/images/campaigns/campaign5.png'
+import campaign6 from '../../assets/images/campaigns/campaign6.png'
+import campaign7 from '../../assets/images/campaigns/campaign7.png'
 
 import { Image } from 'react-bootstrap'
 
@@ -23,5 +25,15 @@ export function Campaign4({ className }: { className: string }) {
 }
 
 export function Campaign5({ className }: { className: string }) {
-    return <Image src={campaign4} className={className} />
+    return <Image src={campaign5} className={className} />
 }
+
+export function Campaign6({ className }: { className: string }) {
+    return <Image src={campaign6} className={className} />
+}
+
+export function Campaign7({ className }: { className: string }) {
+    return <Image src={campaign7} className={className} />
+}
+
+

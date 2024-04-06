@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Container, Navbar, Nav, Form } from 'react-bootstrap'
 
 import { CardModal } from 'components/modals/cart'
+import { CollectionModal } from 'components/modals/collections'
 
 import { useUser } from 'context/user'
 
@@ -33,6 +34,13 @@ const Header = (props: any) => {
         }
         const handlecardShow = () => setCard(true)
 
+        const [collections, setcollections] = useState(false)
+        const handleCollectionsClose = () => {
+            setcollections(false)
+            navigate(window.location.pathname)
+        }
+        const handleCollectionsShow = () => setcollections(true)
+
         return (
             <React.Fragment>
                 <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
@@ -52,10 +60,11 @@ const Header = (props: any) => {
                     </Container>
                 </Navbar>
                 <CardModal show={card} handleClose={handlecardClose} />
+                <CollectionModal show={collections} handleClose={handleCollectionsClose} />
 
                 <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
                     <Container className="navbar-nav">
-                        <Collections />
+                        <Collections onClick={handleCollectionsShow} />
                         <Pages />
                         <Delivery />
                     </Container>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
-import Footer from './footer'
+import {Footer} from './footer/newfooter'
 import Header from './header'
 import { MainModal } from 'components/modals'
 

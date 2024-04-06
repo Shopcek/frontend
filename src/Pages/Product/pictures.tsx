@@ -1,22 +1,57 @@
 import ModalImage from 'react-modal-image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-import { Button } from 'react-bootstrap'
+import { Button, Image } from 'react-bootstrap'
 
-export function Pictures({ images, image }: { images: string[]; image: string }) {
-    const [sliderImg, setSliderImg] = useState(images)
+import { useProduct } from './context'
+import { Option } from './context/types'
+
+type img = { image: string; color: Option }
+
+export function Pictures({ images, image, colors }: { images: img[]; image: string; colors: Option[] }) {
+
+    const [bigImage, setBigImage] = useState(image)
+    const [smallImages, setSmallImage] = useState<img[]>(
+        colors.map((color) => {
+            return images.find((item) => {
+                return color.value === item.color.value
+            })
+        }) as img[]
+    )
+
     const [sliderId, setSliderId] = useState(1)
+    const [sliderImg, setSliderImg] = useState(smallImages)
+
+    const { color: colorState } = useProduct()
+    const [color, setColor] = colorState
+    useEffect(() => {
+        const newImage = smallImages.find((image) => {
+            return image.color.value === color?.value
+        })
+
+        if (newImage) {
+            setBigImage(newImage.image)
+        }
+    }, [color])
 
     const handleSetImg = (id: any) => {
         setSliderId(id)
-        setSliderImg(images.filter((selectImg: any) => selectImg.id === id))
+        setSliderImg(smallImages.filter((selectImg: any) => selectImg.id === id))
     }
 
     return (
         <div className="pictures">
             <div className="small-pictures">
-                {(images.length <= 4 ? images : images.slice(sliderId - 1, sliderId + 3))?.map((item: any, idx: number) => {
-                    return <ModalImage small={item} large={item} key={idx} />
+                {(smallImages.length <= 4 ? smallImages : smallImages.slice(sliderId - 1, sliderId + 3))?.map((item: any, idx: number) => {
+                    return (
+                        <Image
+                            src={item.image}
+                            key={idx}
+                            onClick={() => {
+                                setColor(item.color)
+                            }}
+                        />
+                    )
                 })}
                 <div className="buttons">
                     <Button
@@ -33,7 +68,7 @@ export function Pictures({ images, image }: { images: string[]; image: string })
                     </Button>
                     <Button
                         onClick={() => {
-                            if (sliderId + 3 >= images.length) {
+                            if (sliderId + 3 >= smallImages.length) {
                                 return
                             }
 
@@ -46,7 +81,7 @@ export function Pictures({ images, image }: { images: string[]; image: string })
                 </div>
             </div>
             <div className="big-picture">
-                <ModalImage className="modal-image" small={image} large={image} />
+                <ModalImage className="modal-image" small={bigImage} large={bigImage} />
             </div>
         </div>
     )

@@ -1,0 +1,79 @@
+.collections-modal {
+    width: 14em !important;
+    z-index: 9999;
+    border-right: 0px !important;
+
+    font-size: larger;
+
+    // padding: 2em;
+    display: flex;
+    flex-direction: column;
+
+    img {
+        width: 10%;
+    }
+
+    .body {
+        padding: 0px 20px 0px 20px;
+
+    }
+
+    .simplebar-content {
+        display: flex;
+        flex-direction: column;
+
+        img {
+            width: 10%;
+        }
+    }
+
+}
+
+.collections-modal.extended {
+    .header {
+        width: calc(100% + 12em);
+    }
+
+
+
+}
+
+.details-modal {
+    width: 12em !important;
+    position: absolute;
+    left: 14em !important;
+    border-left: 0px !important;
+
+    font-size: larger;
+
+    .header {
+        .box {
+            height: 1.5em;
+        }
+    }
+
+    .projects {
+        display: flex;
+        flex-direction: column;
+        gap: .6em;
+        
+        img {
+            width: 10%;
+        }
+        .items {
+
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 0.4em;
+            }
+        }
+    }
+
+    .ogs {
+    }
+
+    .exchanges {
+    }
+}

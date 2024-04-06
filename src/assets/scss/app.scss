@@ -20,7 +20,8 @@ File: Main Css File
 // Structure
 @import 'structure/topbar';
 @import 'structure/page-head';
-@import 'structure/footer';
+// @import 'structure/footer';
+@import 'structure/new-footer';
 @import 'structure/vertical';
 @import 'structure/horizontal';
 @import 'structure/two-column';
@@ -42,6 +43,7 @@ File: Main Css File
 @import 'components/product-cart';
 @import 'components/swiper';
 @import 'components/card-modal';
+@import 'components/collections-modal';
 
 // Bootstrap components
 @import 'components/root';

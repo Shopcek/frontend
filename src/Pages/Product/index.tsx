@@ -29,10 +29,15 @@ function ProductDetails() {
                     details = <Details data={productGQL.data!} />
                     pictures = (
                         <Pictures
-                            image={productGQL.data!.image}
+                            image={productGQL.data!.product.image}
                             images={productGQL.data!.variants.map((variant) => {
-                                return variant.image
+                                return {
+                                    image : variant.image,
+                                    color: variant.color
+                                }
+                            
                             })}
+                            colors={productGQL.data!.product.colors}
                         />
                     )
                     break

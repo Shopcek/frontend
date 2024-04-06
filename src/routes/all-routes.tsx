@@ -11,6 +11,9 @@ import Account from 'pages/user/account'
 //Productdetails
 import ProductDetails from 'pages/product'
 
+//category
+import { Category } from 'pages/category'
+
 import Earn from 'pages/earn'
 
 const authProtectedRoutes = [
@@ -24,6 +27,8 @@ const authProtectedRoutes = [
     { path: '/', component: <Home /> },
     { path: '*', component: <Navigate to="/" /> },
 
-    { path: '/product-details/:slug', component: <ProductDetails /> }
+    { path: '/product-details/:slug', component: <ProductDetails /> },
+
+    {path: '/products/:type/:slug', component: <Category/>}
 ]
 export { authProtectedRoutes }

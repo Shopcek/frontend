@@ -7,6 +7,7 @@ import { WishlistProvider, useWishlist } from 'context/wishlist'
 import { useUser } from 'context/user'
 
 import { useRefetch } from 'context/refetch'
+import { useProduct } from './context'
 
 export function Information(props: { icon?: string; className?: string }) {
     const { icon } = props
@@ -152,31 +153,38 @@ export function AddToWishList({ slug }: { slug: string }) {
 }
 
 export function Details({ data }: { data: Product }) {
-    const [color, setColor] = useState<Option>()
+    const {color: colorState} = useProduct()
+    const [color, setColor] = colorState
+
     const [size, setSize] = useState<Option>()
 
     useEffect(()=>{
-        if (data.colors.length == 1){
-            setColor(data.colors[0])
+        if (data.product.colors.length == 1){
+            setColor(data.product.colors[0])
         }
-        if (data.sizes.length == 1){
-            setSize(data.sizes[0])
+        if (data.product.sizes.length == 1){
+            setSize(data.product.sizes[0])
         }
     }, [])
 
+
+    
+
+
+
     return (
         <div className="product-details">
-            <ProductInfo price={data.price.toFixed(2)} name={data.name} />
+            <ProductInfo price={data.product.price.toFixed(2)} name={data.product.name} />
 
             <Sold icon="bi bi-fire" />
-            {data.colors.length !== 1 ? <Colors colorsList={data.colors} setColor={setColor} /> : ''}
+            {data.product.colors.length !== 1 ? <Colors colorsList={data.product.colors} setColor={setColor} /> : ''}
 
-            {data.sizes.length !== 1 ? <Variant title="Choose an option" options={data.sizes} option={size} setOption={setSize} /> : ''}
+            {data.product.sizes.length !== 1 ? <Variant title="Choose an option" options={data.product.sizes} option={size} setOption={setSize} /> : ''}
 
             <Information icon="bi bi-eye" />
             <AddToCart color={color} size={size} variants={data.variants} />
             <hr />
-            <AddToWishList slug={data.slug} />
+            <AddToWishList slug={data.product.slug} />
             <Categories categories={[]} />
             <Socials />
         </div>

@@ -1,8 +1,8 @@
 import { Collections as CollectionsIcon } from 'components/images/Icons'
 
-export function Collections() {
+export function Collections({ onClick }: any) {
     return (
-        <div className="d-flex align-items-center nav-item">
+        <div className="d-flex align-items-center nav-item" onClick={onClick}>
             <div className="collections">
                 <CollectionsIcon className="hamburger icon" />
                 <div>
