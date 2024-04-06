@@ -49,7 +49,7 @@ function Nav() {
                 <div className="left">
                     <div className="pages">
                         <HashLink smooth to="/#partnership" className="page">
-                            T-SHIRT
+                            T-SHIRTS
                         </HashLink>
                         <HashLink smooth to="/#faq" className="page">
                             SWEATSHIRTS

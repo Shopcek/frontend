@@ -56,11 +56,11 @@ export function Pictures({ images, image, colors }: { images: img[]; image: stri
                 <div className="buttons">
                     <Button
                         onClick={() => {
-                            if (sliderId <= 1) {
+                            if (sliderId + 3 >= smallImages.length) {
                                 return
                             }
 
-                            handleSetImg(sliderId - 1)
+                            handleSetImg(sliderId + 1)
                         }}
                         className="btn-primary"
                     >
@@ -68,11 +68,10 @@ export function Pictures({ images, image, colors }: { images: img[]; image: stri
                     </Button>
                     <Button
                         onClick={() => {
-                            if (sliderId + 3 >= smallImages.length) {
+                            if (sliderId <= 1) {
                                 return
                             }
-
-                            handleSetImg(sliderId + 1)
+                            handleSetImg(sliderId - 1)
                         }}
                         className="btn-secondary"
                     >
