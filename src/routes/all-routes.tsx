@@ -12,7 +12,7 @@ import Account from 'pages/user/account'
 import ProductDetails from 'pages/product'
 
 //category
-import { Category } from 'pages/category'
+import  Category  from 'pages/category'
 
 import Earn from 'pages/earn'
 

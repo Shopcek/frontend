@@ -2,7 +2,7 @@ import { Accessories, Refill, Home, Clothes, Earn } from '../components/images/I
 
 export const items = [
     {
-        url: '/category/clothes',
+        url: '/products/category/t-shirts',
         title: 'T-SHIRTS',
         // items: [
         //     {
@@ -45,7 +45,7 @@ export const items = [
         icon: <Clothes className="page-icons" />
     },
     {
-        url: '/category/accessories',
+        url: '/products/category/sweatshirts',
         title: 'SWEATSHIRTS',
         // items: [
         //     {
@@ -64,7 +64,7 @@ export const items = [
         icon: <Accessories className="page-icons" />
     },
     {
-        url: '/category/home-and-living',
+        url: '/products/category/hoodies',
         title: 'HOODIES',
         // items: [
         //     {
@@ -83,12 +83,12 @@ export const items = [
         icon: <Home className="page-icons" />
     },
     {
-        url: '/category/eco-friendly',
+        url: '/products/category/hats',
         title: 'HATS',
         icon: <Refill className="page-icons" />
     },
     {
-        url: '/category/eco-friendly',
+        url: '/products/category/eco-friendly',
         title: 'ECO-FRIENDLY',
         icon: <Refill className="page-icons" />
     },

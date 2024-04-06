@@ -9,6 +9,7 @@ import { DetailsModal } from './details'
 
 import ethereum from '../../../assets/images/ethereum-eth-logo.png'
 import bitcoin from '../../../assets/images/bitcoin-btc-logo.png'
+import { useNavigate } from 'react-router-dom'
 
 const collections_data = [
     {
@@ -52,6 +53,8 @@ export const CollectionModal = ({ show, handleClose }: any) => {
         }
         const handlecardShow = () => setCard(true)
 
+        const navigate = useNavigate()
+
         const [extended, setExtended] = useState<string | undefined>(undefined)
         useEffect(() => {
             if (card) {
@@ -72,7 +75,9 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                 <div className={slug}>
                     <div className="items">
                     {contents.sub_collections.map((item: any) => {
-                        return <div className='item' onClick={console.log}>
+                        return <div className='item' onClick={()=>{
+                            navigate(`/products/collection/${item.slug}`)
+                        }}>
                             <img src={item.image} alt="" />
                             <div>{item.name}</div>
                          </div>

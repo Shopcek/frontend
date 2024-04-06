@@ -1,0 +1,40 @@
+.categrory-widgets {
+    position: relative;
+
+    .category-img {
+        position: absolute;
+        right: -20px;
+        bottom: 0;
+        max-width: 120px;
+        opacity: 0.25;
+    }
+}
+
+#remove-actions {
+    display: none;
+}
+
+
+
+.category-page {
+    .title {
+        font-size: xx-large;
+        padding-bottom: 1em;
+    }
+
+    .products {
+        .product-cart {
+            width: 22%;
+        }
+
+        display: flex;
+        justify-content: space-between;
+        height: 100vh;
+        flex-direction: column;
+        .product-row{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}
