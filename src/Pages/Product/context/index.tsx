@@ -20,7 +20,10 @@ export function ProductProvider({ children }: { children: any }) {
     function productNotFound(data: any) {
         return !data.product
     }
-    const productGQL = useLazyQuery<Product>(queries.product, {}, productNotFound)
+    const productGQL = useLazyQuery<Product>(queries.product, {
+        nextFetchPolicy: 'no-cache',
+        fetchPolicy: 'no-cache'
+    }, productNotFound)
 
     const [color, setColor] = useState<Option>()
 

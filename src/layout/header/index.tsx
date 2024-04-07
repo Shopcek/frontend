@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Navbar, Nav, Form } from 'react-bootstrap'
 
-import { CardModal } from 'components/modals/cart'
-import { CollectionModal } from 'components/modals/collections'
-
+import { SearchModal, CollectionModal, CardModal } from 'components/modals'
 import { useUser } from 'context/user'
 
 import { Logo } from './logo'
@@ -18,7 +16,6 @@ import { Delivery } from './icons/delivery'
 
 import { UserProvider } from 'context/user'
 
-import { useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Header = (props: any) => {
@@ -27,19 +24,22 @@ const Header = (props: any) => {
         const { status } = useUser()
 
         const [card, setCard] = useState(false)
-        const [_, forceUpdate] = useReducer((x) => x + 1, 0)
         const handlecardClose = () => {
             setCard(false)
-            navigate(window.location.pathname)
         }
         const handlecardShow = () => setCard(true)
 
         const [collections, setcollections] = useState(false)
         const handleCollectionsClose = () => {
             setcollections(false)
-            navigate(window.location.pathname)
         }
         const handleCollectionsShow = () => setcollections(true)
+
+        const [search, setSearch] = useState(false)
+        const handleSearchClose = () => {
+            setSearch(false)
+        }
+        const handleSearchShow = () => setSearch(true)
 
         return (
             <React.Fragment>
@@ -48,7 +48,7 @@ const Header = (props: any) => {
                         <Logo />
                         <Navbar.Collapse id="navbarSupportedContent">
                             <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
-                                <Form.Control className="search-bar" size="lg" type="text" placeholder="Search for product" />
+                                <SearchModal show={search} handleClose={handleSearchClose} handleShow={handleSearchShow} />
                             </Nav>
                         </Navbar.Collapse>
 
@@ -61,6 +61,7 @@ const Header = (props: any) => {
                 </Navbar>
                 <CardModal show={card} handleClose={handlecardClose} />
                 <CollectionModal show={collections} handleClose={handleCollectionsClose} />
+                
 
                 <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
                     <Container className="navbar-nav">

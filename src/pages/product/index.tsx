@@ -20,7 +20,7 @@ function ProductDetails() {
                     }
                 })
             }
-        }, [])
+        }, [slug])
 
         let details, pictures
         if (productGQL) {

@@ -101,6 +101,23 @@
     background-color: #f7f7ff;
 }
 
+#searchModal {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    top: -13px !important;
+
+    .search-bar {
+        padding-right: unset !important;
+    }
+
+    .modal-content {
+        padding: 3em;
+        width: 105%;
+        border-radius: 15px !important;
+    }
+}
+
 .carousel-item {
     border-radius: 18px;
 }

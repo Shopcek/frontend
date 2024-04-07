@@ -1,5 +1,5 @@
 export { CardModal } from './cart'
 export { DeleteModal } from './delete-modal'
-export { SearchModal } from './search-modal'
+export { SearchModal } from './search'
 export { MainModal } from './main-modal'
 export { CollectionModal } from './collections'
