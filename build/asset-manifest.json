@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.cdce8728.css",
-    "main.js": "/static/js/main.71703bf0.js",
+    "main.css": "/static/css/main.db8f8578.css",
+    "main.js": "/static/js/main.3c158215.js",
     "static/js/366.f19a75ef.chunk.js": "/static/js/366.f19a75ef.chunk.js",
     "static/js/4894.9e97f690.chunk.js": "/static/js/4894.9e97f690.chunk.js",
     "static/js/2957.7677fdbc.chunk.js": "/static/js/2957.7677fdbc.chunk.js",
@@ -92,6 +92,7 @@
     "static/media/7.png": "/static/media/7.8036b7eecfbe9fdebf20.png",
     "static/media/4.png": "/static/media/4.445a8e4af5f390a8101c.png",
     "static/media/text.png": "/static/media/text.a2cd7e1d3cc69b29dadd.png",
+    "static/media/weed.png": "/static/media/weed.f2a3a62bd3a3a1cdb8f6.png",
     "static/media/remixicon.woff2?t=1590207869815": "/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
     "static/media/bootstrap-icons.woff2?": "/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
     "static/media/Archivo-Black.ttf": "/static/media/Archivo-Black.a614d376bd34cc72dc03.ttf",
@@ -125,7 +126,7 @@
     "static/media/home.svg": "/static/media/home.53c7942d467e6a73e970db82c1762068.svg"
   },
   "entrypoints": [
-    "static/css/main.cdce8728.css",
-    "static/js/main.71703bf0.js"
+    "static/css/main.db8f8578.css",
+    "static/js/main.3c158215.js"
   ]
 }

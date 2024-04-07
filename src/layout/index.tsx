@@ -1,9 +1,12 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
-import {Footer} from './footer/newfooter'
+import { Footer } from './footer/newfooter'
 import Header from './header'
 import { MainModal } from 'components/modals'
+import Collections from './collections'
+
+import { CollectionsProvider, useCollections } from 'context/collections'
 
 const Layout = (props: any) => {
     let location = useLocation()
@@ -30,14 +33,16 @@ const Layout = (props: any) => {
     return (
         <React.Fragment>
             {location.pathname && <MainModal location={location.pathname} />}
-
-            <Header />
-            {props.children}
-            <Footer />
-
-            <Button onClick={() => ScrollbarTop()} variant="info" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
-                <i className="ri-arrow-up-line"></i>
-            </Button>
+            <div className="layout">
+                <CollectionsProvider>
+                    <Collections></Collections>
+                    <div className="page">
+                        <Header />
+                        {props.children}
+                        <Footer />
+                    </div>
+                </CollectionsProvider>
+            </div>
         </React.Fragment>
     )
 }

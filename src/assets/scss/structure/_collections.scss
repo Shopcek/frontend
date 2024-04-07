@@ -1,0 +1,21 @@
+.collections-sidebar {
+    width: 4%;
+    z-index: 15;
+    background: white;
+    // position: fixed;
+
+
+    .header {
+        height: 85px;
+    }
+
+    .icons {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        img {
+            width: 95%;
+        }
+    }
+}

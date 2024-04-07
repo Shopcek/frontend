@@ -11,6 +11,8 @@ import ethereum from '../../../assets/images/ethereum-eth-logo.png'
 import bitcoin from '../../../assets/images/bitcoin-btc-logo.png'
 import { useNavigate } from 'react-router-dom'
 
+import weed from '../../../assets/images/weed.png'
+
 const collections_data = [
     {
         name: 'PROJECTS',
@@ -77,6 +79,7 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                     {contents.sub_collections.map((item: any) => {
                         return <div className='item' onClick={()=>{
                             navigate(`/products/collection/${item.slug}`)
+                            handleClose()
                         }}>
                             <img src={item.image} alt="" />
                             <div>{item.name}</div>
@@ -101,11 +104,15 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                             {collections_data.map((item: any) => {
                                 return (
                                     <div
-                                        onClick={() => {
-                                            setNewContent(item.slug)
+                                        className='item'
+                                        onMouseEnter={() => {
+                                            setTimeout(()=>{
+                                                setNewContent(item.slug)
                                             handlecardShow()
+                                            }, 100)
                                         }}
                                     >
+                                        <img src={weed} alt="" />
                                         {item.name}
                                     </div>
                                 )

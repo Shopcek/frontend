@@ -161,6 +161,16 @@
     }
 }
 
+
+.layout {
+    overflow-x:hidden;
+    display: flex;
+
+    .page {
+        width: 96%;
+    }
+}
+
 // .different-layout {
 //     width: 100%;
 //     margin: 0;
