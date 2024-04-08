@@ -259,7 +259,7 @@
         border: $form-check-input-border;
         border-radius: $border-radius;
         padding: 1rem;
-        overflow: hidden;
+        overflow: clip;
         text-overflow: ellipsis;
         white-space: nowrap;
         display: block;

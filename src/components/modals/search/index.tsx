@@ -72,8 +72,9 @@ export const SearchModal = ({ show, handleClose, handleShow }: any) => {
 
         return (
             <React.Fragment>
+                <div className="input-group">
                 <Form.Control
-                    onClick={!inSearch ? handleShow : ()=>{}}
+                    // onClick={!inSearch ? handleShow : ()=>{}}
                     className="search-bar"
                     onChange={(e:any)=>{
                         setValue(e.target.value)
@@ -86,7 +87,14 @@ export const SearchModal = ({ show, handleClose, handleShow }: any) => {
                     size="lg"
                     type="text"
                     placeholder="Search for product"
-                />
+                    />
+                    <span className="input-group-append">
+
+                     
+               <i className="bi bi-search search-icon"></i>
+                </span>
+                </div>
+
 
                 <Modal show={show} backdrop={true} onHide={handleClose} size="lg" contentClassName="rounded" id="searchModal">
                     <Modal.Header className="p-3">

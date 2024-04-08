@@ -11,13 +11,16 @@ import ethereum from '../../../assets/images/ethereum-eth-logo.png'
 import bitcoin from '../../../assets/images/bitcoin-btc-logo.png'
 import { useNavigate } from 'react-router-dom'
 
-import weed from '../../../assets/images/weed.png'
+import projects from '../../../assets/images/projects.png'
+import ogs from '../../../assets/images/ogs.png'
+import boutique from '../../../assets/images/boutique.png'
 
-const collections_data = [
+export const collections_data = [
     {
         name: 'PROJECTS',
         image: '',
         slug: 'projects',
+        icon: projects,
         sub_collections: [
             {
                 name: 'ETHEREUM',
@@ -32,16 +35,18 @@ const collections_data = [
         ]
     },
     {
-        name: 'OG\'s',
+        name: "OG's",
         image: '',
         slug: 'og-s',
+        icon: ogs,
         sub_collections: []
     },
 
     {
-        name: "Bitcoin Boutique",
+        name: 'Bitcoin Boutique',
         image: '',
         slug: 'bitcoin-boutique',
+        icon: boutique,
         sub_collections: []
     }
 ]
@@ -76,15 +81,20 @@ export const CollectionModal = ({ show, handleClose }: any) => {
             setContent(
                 <div className={slug}>
                     <div className="items">
-                    {contents.sub_collections.map((item: any) => {
-                        return <div className='item' onClick={()=>{
-                            navigate(`/products/collection/${item.slug}`)
-                            handleClose()
-                        }}>
-                            <img src={item.image} alt="" />
-                            <div>{item.name}</div>
-                         </div>
-                    })}
+                        {contents.sub_collections.map((item: any) => {
+                            return (
+                                <div
+                                    className="item"
+                                    onClick={() => {
+                                        navigate(`/products/collection/${item.slug}`)
+                                        handleClose()
+                                    }}
+                                >
+                                    <img src={item.image} alt="" />
+                                    <div>{item.name}</div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             )
@@ -104,15 +114,15 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                             {collections_data.map((item: any) => {
                                 return (
                                     <div
-                                        className='item'
+                                        className="item"
                                         onMouseEnter={() => {
-                                            setTimeout(()=>{
+                                            setTimeout(() => {
                                                 setNewContent(item.slug)
-                                            handlecardShow()
+                                                handlecardShow()
                                             }, 100)
                                         }}
                                     >
-                                        <img src={weed} alt="" />
+                                        <img src={item.icon} alt="" />
                                         {item.name}
                                     </div>
                                 )

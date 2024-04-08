@@ -129,7 +129,7 @@ section.account.py-5 {
 //activity-timeline
 .acitivity-timeline {
     position: relative;
-    overflow: hidden;
+    overflow: clip;
 
     .acitivity-item {
         position: relative;

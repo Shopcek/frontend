@@ -91,14 +91,25 @@
 }
 
 .search-bar {
-    padding-right: 610px !important;
+    width: 810px !important;
     border-radius: 35px !important;
     color: $secondary !important;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 15px;
     font-size: 15px;
     background-color: #f7f7ff;
+}
+
+.input-group {
+    align-items: center !important;
+}
+
+
+.search-icon {
+    position: relative;
+    margin-left: -2em;
+    opacity: 0.6;
+    font-size: 1.5em;
 }
 
 #searchModal {
@@ -110,6 +121,8 @@
     .search-bar {
         padding-right: unset !important;
     }
+
+
 
     .modal-content {
         padding: 3em;
@@ -228,7 +241,7 @@
 .custom-hover-nav-tabs {
     .nav-item {
         text-align: center;
-        overflow: hidden;
+        overflow: clip;
 
         .nav-link {
             width: 120px;
@@ -318,7 +331,7 @@
             color: var(--#{$prefix}body-color);
             border-radius: 4px;
             position: relative;
-            overflow: hidden;
+            overflow: clip;
             transition: all 0.4s;
             z-index: 1;
 
@@ -669,7 +682,7 @@
 .nav-customs {
     &.nav {
         padding-left: 34px;
-        overflow: hidden;
+        overflow: clip;
 
         .nav-link {
             position: relative;

@@ -166,7 +166,7 @@
     border-radius: $form-select-border-radius !important;
     font-size: $input-font-size;
     min-height: 40.59px;
-    overflow: hidden;
+    overflow: clip;
 }
 
 .is-focused,
@@ -243,7 +243,7 @@
     padding: 10px 10px 20px 10px;
     border-bottom-left-radius: 2.5px;
     border-bottom-right-radius: 2.5px;
-    overflow: hidden;
+    overflow: clip;
     word-break: break-all;
     will-change: visibility;
     animation-duration: 0.3s;

@@ -1,6 +1,9 @@
 import { useCollections } from 'context/collections'
-import weed from '../../assets/images/weed.png'
 import { useEffect } from 'react'
+
+import { collections_data } from 'components/modals/collections'
+
+import logo from '../../assets/images/icon.svg'
 
 export default function Collections() {
     function Component() {
@@ -15,11 +18,13 @@ export default function Collections() {
                 onMouseEnter={handleCollectionsShow}
                 className="collections-sidebar"
             >
-                <div className="header"></div>
+                <div className="header">
+                    <img src={logo} alt="" />
+                </div>
                 <div className="icons">
-                    <img src={weed} alt="" />
-                    <img src={weed} alt="" />
-                    <img src={weed} alt="" />
+                {collections_data.map(item=>{
+                    return <img src={item.icon} alt="" />
+                })}
                 </div>
 
 

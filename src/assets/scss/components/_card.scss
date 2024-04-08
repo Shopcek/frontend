@@ -131,7 +131,7 @@
 
 .card-overlay {
     position: relative;
-    overflow: hidden;
+    overflow: clip;
     &:before {
         content: '';
         background-color: rgba($primary, 0.7);

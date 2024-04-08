@@ -38,6 +38,7 @@ const Layout = (props: any) => {
                     <Collections></Collections>
                     <div className="page">
                         <Header />
+                        <div className="tampon-bolge"></div>
                         {props.children}
                         <Footer />
                     </div>

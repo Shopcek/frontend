@@ -45,7 +45,7 @@
 
     // label arrow
     &.label-arrow {
-        overflow: hidden;
+        overflow: clip;
         .label-icon {
             &:after {
                 content: '';
@@ -212,7 +212,7 @@
 }
 
 .alert-modern {
-    overflow: hidden;
+    overflow: clip;
     position: relative;
     .icons {
         position: absolute;

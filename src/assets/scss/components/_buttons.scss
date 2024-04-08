@@ -143,7 +143,7 @@ a {
 // Animation Button
 
 .btn-animation {
-    overflow: hidden;
+    overflow: clip;
     transition:
         border-color 0.3s,
         background-color 0.3s;
@@ -359,7 +359,7 @@ a {
 .link-effect {
     display: inline-flex;
     padding-bottom: 3px;
-    overflow: hidden;
+    overflow: clip;
 
     &::before {
         content: '';

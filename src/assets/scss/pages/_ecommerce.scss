@@ -558,7 +558,7 @@
 .insta-img {
     background-color: $secondary;
     display: block;
-    overflow: hidden;
+    overflow: clip;
     position: relative;
 
     img {

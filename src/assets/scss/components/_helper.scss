@@ -187,7 +187,7 @@ code {
 
 // text-truncate-two-lines
 .text-truncate-two-lines {
-    overflow: hidden;
+    overflow: clip;
     text-overflow: ellipsis;
     -webkit-line-clamp: 3;
     display: -webkit-box;
@@ -197,7 +197,7 @@ code {
 
 // text-truncate-three-lines
 .text-truncate-three-lines {
-    overflow: hidden;
+    overflow: clip;
     text-overflow: ellipsis;
     -webkit-line-clamp: 3;
     display: -webkit-box;

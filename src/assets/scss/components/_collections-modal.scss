@@ -1,7 +1,7 @@
 .collections-modal {
     width: 14em !important;
     z-index: 9999;
-    border-right: 0px !important;
+    // border-right: 0px !important;
 
     
 
@@ -10,11 +10,6 @@
     // padding: 2em;
     display: flex;
     flex-direction: column;
-
-    .modal-backdrop {
-        background-color: red;
-    }
-
     img {
         width: 10%;
     }
@@ -26,9 +21,10 @@
             display: flex;
             align-items: center;
             gap: 0.3em;
+            padding-bottom: 1em;
 
             img {
-                width: calc(100vw*0.04*0.97);
+                width: calc(100vw*0.04*0.7);
             }
         }
     }
@@ -67,7 +63,9 @@
         }
     }
 
+
     .projects {
+        padding: 15px;
         display: flex;
         flex-direction: column;
         gap: .6em;

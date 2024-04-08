@@ -48,7 +48,7 @@
     position: relative;
 
     .mini-stat-icon {
-        overflow: hidden;
+        overflow: clip;
         position: relative;
 
         &:before,
