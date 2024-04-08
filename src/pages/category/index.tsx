@@ -46,7 +46,7 @@ export default () => {
                             </div>
                         )
                     }
-                    setProducts(tempProducts)
+                    setProducts(<div className="products">{tempProducts}</div>)
                     break
                 }
 
@@ -61,7 +61,7 @@ export default () => {
             <section className="section category-page">
                 <Container>
                     <div className="title">{`${type?.toUpperCase()} / ${slug?.toUpperCase()}`}</div>
-                    <div className="products">{products}</div>
+                    {products}
                 </Container>
             </section>
         )

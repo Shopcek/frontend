@@ -32,16 +32,16 @@ const collections_data = [
         ]
     },
     {
-        name: 'EXCHANGES',
+        name: 'OG\'s',
         image: '',
-        slug: 'exchanges',
+        slug: 'og-s',
         sub_collections: []
     },
 
     {
-        name: "OG's",
+        name: "Bitcoin Boutique",
         image: '',
-        slug: 'og-s',
+        slug: 'bitcoin-boutique',
         sub_collections: []
     }
 ]

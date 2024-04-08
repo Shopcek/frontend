@@ -12,9 +12,10 @@ import Account from 'pages/user/account'
 import ProductDetails from 'pages/product'
 
 //category
-import  Category  from 'pages/category'
+import Category from 'pages/category'
 
 import Earn from 'pages/earn'
+import { Search } from 'pages/search'
 
 const authProtectedRoutes = [
     { path: '/shop/checkout', component: <Checkout /> },
@@ -29,6 +30,8 @@ const authProtectedRoutes = [
 
     { path: '/product-details/:slug', component: <ProductDetails /> },
 
-    {path: '/products/:type/:slug', component: <Category/>}
+    { path: '/products/:type/:slug', component: <Category /> },
+
+    { path: '/search/', component: <Search /> }
 ]
 export { authProtectedRoutes }

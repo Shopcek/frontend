@@ -29,12 +29,12 @@
 
         display: flex;
         justify-content: space-between;
-        height: 100vh;
         flex-direction: column;
         .product-row{
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 3%;
         }
     }
 }

@@ -3,13 +3,29 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import { Col, Modal, Row, Card, Offcanvas, Table, Form, Button, Image, Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
-import { SearchProvider, useSearch } from './context'
+import { SearchProvider, useSearch } from '../../../context/search'
 
 export const SearchModal = ({ show, handleClose, handleShow }: any) => {
     function Component() {
         const { searchGQL } = useSearch()
+        const navigate = useNavigate()
+        const [searchParams, setSearchParams] = useSearchParams()
+
+        const [inSearch, setInSearch] = useState(false)
+        useEffect(() => {
+            if (window.location.pathname === '/search') {
+                const name = searchParams.get('name')
+                if (name) {
+                    setValue(name)
+                }
+
+                setInSearch(true)
+            }
+        }, [window.location.pathname])
+
+        useEffect(() => {}, [])
 
         const [value, setValue] = useState('')
 
@@ -18,13 +34,13 @@ export const SearchModal = ({ show, handleClose, handleShow }: any) => {
         }
 
         useEffect(() => {
-            if (value !== ''){
+            if (value !== '') {
                 searchGQL.fn({
                     variables: {
                         name: value
                     }
                 })
-            }else {
+            } else {
                 setProducts([])
             }
         }, [value])
@@ -56,7 +72,21 @@ export const SearchModal = ({ show, handleClose, handleShow }: any) => {
 
         return (
             <React.Fragment>
-                <Form.Control onClick={handleShow} className="search-bar" value={value} size="lg" type="text" placeholder="Search for product" />
+                <Form.Control
+                    onClick={!inSearch ? handleShow : ()=>{}}
+                    className="search-bar"
+                    onChange={(e:any)=>{
+                        setValue(e.target.value)
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter")
+                            navigate(`/search?name=${value}`);
+                        }}
+                    value={value}
+                    size="lg"
+                    type="text"
+                    placeholder="Search for product"
+                />
 
                 <Modal show={show} backdrop={true} onHide={handleClose} size="lg" contentClassName="rounded" id="searchModal">
                     <Modal.Header className="p-3">
@@ -68,6 +98,10 @@ export const SearchModal = ({ show, handleClose, handleShow }: any) => {
                                 id="search-options"
                                 value={value}
                                 onChange={(e: any) => onChange(e.target)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter")
+                                        navigate(`/search?name=${value}`);
+                                    }}
                             />
                             <span className="bi bi-search search-widget-icon fs-17"></span>
                             <Link
@@ -81,9 +115,7 @@ export const SearchModal = ({ show, handleClose, handleShow }: any) => {
                     </Modal.Header>
                     <SimpleBar className="pe-2 ps-3 mt-3">
                         <div className="list-group list-group-flush border-dashed">
-                            <div className="notification-group-list">
-                                {products}
-                            </div>
+                            <div className="notification-group-list">{products}</div>
                         </div>
                     </SimpleBar>
                 </Modal>
