@@ -47,7 +47,7 @@ const Header = (props: any) => {
 
         return (
             <React.Fragment>
-                <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
+                <Navbar className="navbar-expand-lg ecommerce-navbar top-navbar" id="navbar" expanded={false}>
                     <Container>
                         <Logo />
                         <Navbar.Collapse id="navbarSupportedContent">

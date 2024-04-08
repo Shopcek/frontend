@@ -24,7 +24,7 @@
             padding-bottom: 1em;
 
             img {
-                width: calc(100vw*0.04*0.7);
+                width: calc(100vw*0.04*0.5);
             }
         }
     }
@@ -68,7 +68,7 @@
         padding: 15px;
         display: flex;
         flex-direction: column;
-        gap: .6em;
+        gap: 1em;
         
         img {
             width: 10%;
