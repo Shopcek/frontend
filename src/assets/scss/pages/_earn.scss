@@ -7,27 +7,42 @@
     display: flex;
     border-radius: 8px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     text-align: center;
     flex-direction: column;
-    height: 16rem;
+    height: 17rem;
     width: auto;
+    font-weight: 600;
+    border: solid;
+
+    img {
+        padding: 0.5em;
+    }
+
+    p {
+        margin-bottom: 0px;
+    }
 
     img.small-image {
-        width: 8rem;
+        width: 9rem;
     }
 
     img.medium-image {
-        width: 10rem;
+        width: 11rem;
     }
 
     img.large-image {
-        width: 12rem;
+        width: 13rem;
+    }
+    
+    img.check{
+        padding: unset;
+        width: 2rem;
     }
 }
 
-.more-purple {
-    background-color: #ff5bc0 !important;
+.less-purple {
+    background-color: #FFEEF8 !important;
 }
 
 .blue-box {
@@ -71,7 +86,7 @@
 .blue-box-container {
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 2rem;
 
     .col {
         display: flex;
@@ -82,14 +97,8 @@
 
 .purple-box-container {
     display: flex;
-    justify-content: center;
-    gap: 3.5rem;
-    font-family: 'Archivo';
+    justify-content: space-between;
     font-size: x-large;
-
-    p {
-        padding-top: 1rem;
-    }
 }
 
 .name-services {
@@ -99,7 +108,6 @@
 
     h1 {
         color: $secondary;
-        font-family: Archivo;
     }
 
     input {
@@ -193,7 +201,6 @@
     }
 
     button {
-        font-family: 'Archivo';
         width: 10rem !important;
         font-size: x-large;
     }
@@ -202,7 +209,6 @@
 .task-rewards {
     h1 {
         color: $primary;
-        font-family: 'Archivo';
     }
 
     .row {
@@ -232,9 +238,14 @@
 }
 
 .login-to-earn {
+    .claim {
+        padding-bottom: 2.4em !important;
+    }
+
+
     h1 {
         color: $secondary;
-        font-family: 'Archivo';
+        font-weight: 800;
     }
 }
 
@@ -252,27 +263,25 @@
 .stay-here-to-earn {
     h1 {
         color: $primary;
-        font-family: 'Archivo' !important;
+        font-weight: 800;
     }
 
-    font-family: Arial;
 
     .title {
         display: flex;
-        justify-content: end;
+        // justify-content: end;
     }
 
     p.time {
         font-size: 30px !important;
         color: $primary;
-        font-family: Archivo !important;
     }
 }
 
 .spin-to-earn {
     h1 {
         color: $secondary;
-        font-family: 'Archivo';
+        font-weight: 800;
     }
 
     .title {
@@ -312,14 +321,16 @@
     .claim {
         display: flex;
         justify-content: space-between;
+        padding-bottom: 1.2em;
+        align-items: flex-end;
 
         p {
+            margin: 0px !important;
             font-size: 18px;
         }
 
         button {
-            margin-bottom: 18px;
-            width: 8rem;
+            height: 2.5em;
         }
     }
 }

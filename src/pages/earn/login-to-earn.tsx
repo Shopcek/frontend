@@ -3,6 +3,8 @@ import { Image, Button, Container } from 'react-bootstrap'
 import smallReward from '../../assets/images/earn/small-reward.png'
 import mediumReward from '../../assets/images/earn/medium-reward.png'
 import largeReward from '../../assets/images/earn/large-reward.png'
+import check from '../../assets/images/earn/check.png'
+
 import { useState, useEffect } from 'react'
 
 import { useUser } from 'context/user'
@@ -25,10 +27,11 @@ let boxData: { img: any; exp: number }[] = [
     { img: largeImg, exp: 80 }
 ]
 
-export function Box({ exp, img, day, streak }: { exp: number; img: any; day: number; streak?: boolean }) {
+export function Box({ exp, img, day, today, past }: { exp: number; img: any; day: number; today?: boolean, past: boolean  }) {
     return (
-        <div className={`purple-box ${streak ? 'more-purple' : ''}`}>
+        <div className={`purple-box ${today ? 'less-purple' : ''}`}>
             <p>Day {day}</p>
+            {past?<img src={check} className='check' />:undefined}
             <div>{img}</div>
             <p>+{exp} XP</p>
         </div>
@@ -66,7 +69,7 @@ export default function LoginToEarn() {
                     if (loginRewardsGQL.data?.rewards)
                         setDays(
                             loginRewardsGQL.data.rewards.map((reward: any, idx: number) => {
-                                return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward}></Box>
+                                return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward} today={idx === streakGQL.data} past={streakGQL.data>idx}></Box>
                             })
                         )
                 }
@@ -81,7 +84,7 @@ export default function LoginToEarn() {
                     if (loginRewardsGQL.data?.rewards)
                         setDays(
                             loginRewardsGQL.data.rewards.map((reward: any, idx: number) => {
-                                return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward} streak={idx === streakGQL.data}></Box>
+                                return <Box day={idx + 1} img={boxData[idx].img} exp={reward.reward} today={idx === streakGQL.data} past={streakGQL.data>idx}></Box>
                             })
                         )
                     break
@@ -127,9 +130,11 @@ export default function LoginToEarn() {
                 <section className="section pb-0">
                     <div className="login-to-earn">
                         <div className="top-container">
-                            <h1>Login To Earn</h1>
                             <div className="claim">
-                                <p>Login 7 days in a row, and your rewards will grow</p>
+                                <div className="">
+                                    <h1>LOGIN to EARN</h1>
+                                    <p>Login 7 days in a row, and your rewards will grow</p>
+                                </div>
                                 <Button
                                     className="btn btn btn-secondary"
                                     onClick={() => {

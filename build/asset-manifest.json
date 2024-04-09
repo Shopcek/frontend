@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e8d9456d.css",
-    "main.js": "/static/js/main.037fa1a1.js",
+    "main.css": "/static/css/main.3a6a9d48.css",
+    "main.js": "/static/js/main.8f6841c6.js",
     "static/js/366.f19a75ef.chunk.js": "/static/js/366.f19a75ef.chunk.js",
     "static/js/4894.9e97f690.chunk.js": "/static/js/4894.9e97f690.chunk.js",
     "static/js/2957.7677fdbc.chunk.js": "/static/js/2957.7677fdbc.chunk.js",
@@ -72,6 +72,7 @@
     "static/media/materialdesignicons-webfont.woff2?v=6.5.95": "/static/media/materialdesignicons-webfont.606b16427a59a5a97afb.woff2",
     "static/media/boxicons.woff": "/static/media/boxicons.1a7e2e2bf3a855e674d4.woff",
     "static/media/boxicons.ttf": "/static/media/boxicons.22afc8ee5cfc540cddff.ttf",
+    "static/media/Montserrat-ExtraBold.ttf": "/static/media/Montserrat-ExtraBold.6c8b198832c88c649faa.ttf",
     "static/media/Montserrat-Bold.ttf": "/static/media/Montserrat-Bold.50f0257aa1e905f4bfaf.ttf",
     "static/media/Montserrat-SemiBold.ttf": "/static/media/Montserrat-SemiBold.93b37a465fc4ec0d0415.ttf",
     "static/media/Montserrat-Medium.ttf": "/static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
@@ -113,6 +114,7 @@
     "static/media/hoodies.png": "/static/media/hoodies.bc407a3e6af171b54a95.png",
     "static/media/projects.png": "/static/media/projects.ba675508584bce3a5a23.png",
     "static/media/horizon.woff2": "/static/media/horizon.93d7ac066ffbdf8e2e53.woff2",
+    "static/media/check.png": "/static/media/check.6487290c7d3ee5ecafa6.png",
     "static/media/sweatshirts.png": "/static/media/sweatshirts.5511bd57c3cbd64444dc.png",
     "static/media/boutique.png": "/static/media/boutique.e1999e4165e278ab33e7.png",
     "static/media/tshirts.png": "/static/media/tshirts.101ec444d87e776fb9ff.png",
@@ -129,7 +131,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.e8d9456d.css",
-    "static/js/main.037fa1a1.js"
+    "static/css/main.3a6a9d48.css",
+    "static/js/main.8f6841c6.js"
   ]
 }
