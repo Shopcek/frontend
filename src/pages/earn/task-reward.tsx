@@ -60,7 +60,7 @@ export default function TaskRewards() {
     return (
         <section className="section pb-0 task-rewards">
             <div className="top-container">
-                <h1>Task Rewards</h1>
+                <h1>TASK REWARDS</h1>
                 <Row>
                     <Col>
                         {data.slice(0, 4).map((item) => {

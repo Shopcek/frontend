@@ -49,7 +49,7 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
     const [bnbPrice, setBnbPrice] = useState(0)
     const [price, setPrice] = useState({ min: 0, max: 0, price: 0, xp: 0 })
     const { bnb } = useBinance()
-    const {domains} = useRefetch()
+    const { domains } = useRefetch()
 
     const [process, setProcess] = useState(false)
 
@@ -131,12 +131,22 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
             <div className="payment">
                 <div className="prices">
                     <div className="top">
-                        <Image className="length" src={(images as any)[domain.length]} />
+                        {/* <Image className="length" src={(images as any)[domain.length]} /> */}
                         <div className="text">
-                            <div className="domain">{domain}</div>
+                            <div className="domain">
+                                {domain} 
+                                <div className={`info ${checkDomain?'available':'registered'}` }>
+                                    {checkDomain?'Available':'Registered'}
+                                </div>
+                            </div>
                             <div className="info">Username is {checkDomain ? 'locked, please complete payment' : 'already buyed.'}</div>
+
+
                         </div>
+
+
                     </div>
+
                     <div className="price">
                         <p>
                             {price!.min} - {price!.max} digits:
@@ -144,6 +154,7 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                         <p className="lined-text">00000000000</p>
                         <p>{price!.price} USD</p>
                     </div>
+                    
                 </div>
 
                 <div className="vl" />
@@ -177,22 +188,31 @@ export default function NameService() {
             <section className="section pb-0">
                 <div className="name-services">
                     <div className="top-container">
-                        <h1>Shopcek Domain Service</h1>
                         <div className="claim">
+                            <h1>USERNAME SERVICES</h1>
                             <p>Increase XP Gain multiplier</p>
                         </div>
                     </div>
 
                     <div className="input">
-                        <Form.Control
-                            size="lg"
-                            type="text"
-                            placeholder="Enter a Handle"
-                            value={domain}
-                            onChange={(e) => {
-                                setDomain(e.target.value)
-                            }}
-                        />
+                        <div className="input-group">
+                            <Form.Control
+                                size="lg"
+                                type="text"
+                                placeholder="Enter a Handle"
+                                value={domain}
+                                onChange={(e) => {
+                                    setDomain(e.target.value)
+                                }}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter")
+                                        setClose(false)
+                                }}
+                            />
+                            <span className="input-group-append">
+                                <i className="bi bi-search search-icon"></i>
+                            </span>
+                        </div>
                         <Button
                             className="btn btn btn-secondary"
                             onClick={() => {

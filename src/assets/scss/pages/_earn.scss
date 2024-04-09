@@ -46,7 +46,8 @@
 }
 
 .blue-box {
-    background-color: rgb(231, 245, 251);
+    background-color: #D7F6FF;
+    border:solid;
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -54,43 +55,31 @@
     height: 16rem;
     width: 16rem;
 
+    p {
+        margin: unset;
+    }
+
     display: flex;
     flex-direction: column;
 }
 
-.domain-modal {
-    // display: flex;
-    justify-content: center;
 
-    // height: 10rem;
-    // border-radius: 10px;
-
-    // background-color: #ff5bc0;
-
-    img.length {
-        width: 11rem;
-        object-fit: cover;
-    }
-
-    // button {
-
-    // }
-}
 
 .divider {
     font-size: 140px;
     font-weight: 800;
-    margin-top: 1rem;
 }
 
 .blue-box-container {
     display: flex;
     justify-content: center;
     gap: 2rem;
+    font-family: Arial;
 
     .col {
         display: flex;
         flex-direction: column;
+        gap: 1.2rem;
         align-items: center;
     }
 }
@@ -111,8 +100,10 @@
     }
 
     input {
-        border-radius: 10px;
+        border: solid;
+        border-radius: 10px !important;
         background-color: rgba(245, 86, 183, 0.3);
+        height: 100%;
     }
 
     .lined-text {
@@ -121,10 +112,20 @@
         color: rgba(0, 0, 0, 0);
     }
 
+    .claim {
+        padding-bottom: 0px !important;
+        align-items: flex-start !important;
+        flex-direction: column;
+    }
+
     .input {
         display: flex;
         gap: 1rem;
         height: 5rem;
+
+        .input-group {
+            height: 100%;
+        }
 
         button {
             width: 10%;
@@ -192,8 +193,90 @@
             gap: 1rem;
         }
     }
+
+    .prices {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+
+    }
+
+    .method {
+        padding-left: 3rem;
+        // align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+    }
 }
 
+
+.domain-modal {
+    // display: flex;
+    justify-content: center;
+
+    // height: 10rem;
+    // border-radius: 10px;
+
+    // background-color: #ff5bc0;
+
+    img.length {
+        width: 11rem;
+        object-fit: cover;
+    }
+
+    .prices {
+        align-items: flex-start !important;
+        display: flex;
+        gap: 1em;
+        align-items: center;
+        flex-direction: column;
+        width: 45%;
+
+    }
+
+    .method {
+        padding-left: 3rem;
+        // align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+    }
+
+    .text {
+        .domain {
+            font-size: xx-large !important;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1em;
+
+            .info{
+                padding: 10px 20px 10px 20px;
+                font-size: small !important;
+                border-radius: 30px;
+            }
+
+            .info.available {
+                color: #1daf83;
+                background-color: #e7f4ef;
+            }
+
+            .info.registered {
+                color: #c52f1b;
+                background-color: #f9e7e7;
+            }
+        }
+        .info {
+            font-size: x-large !important;  
+        }
+    }
+
+    // button {
+
+    // }
+}
 .earn-page {
     section.section {
         padding-top: 48px !important;
@@ -211,23 +294,30 @@
         color: $primary;
     }
 
+    box-sizing: unset !important;
+
     .row {
-        padding-top: 2rem;
-        width: 110%;
+        width: 108%;
+        margin-left: -0.3em;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
     }
 
     .task {
-        background-color: rgb(231, 245, 251);
+        background-color: #D7F6FF;
+        border:solid;
         border-radius: 10px;
-        height: 5rem;
+        height: 6rem;
         width: 80%;
 
         display: flex;
         justify-content: space-between;
         align-items: center;
 
+        padding: 0px 25px !important;
+
         button {
-            height: 50%;
+            border-radius: 10px;
             font-size: large !important;
         }
     }
@@ -275,6 +365,7 @@
     p.time {
         font-size: 30px !important;
         color: $primary;
+        margin-bottom: 0px;
     }
 }
 
@@ -321,7 +412,7 @@
     .claim {
         display: flex;
         justify-content: space-between;
-        padding-bottom: 1.2em;
+        padding-bottom: 2.4em;
         align-items: flex-end;
 
         p {
