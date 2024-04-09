@@ -118,9 +118,18 @@ function Socials() {
 }
 
 export function Footer() {
+
+    const [page, setPage] = useState<any>()
+    useEffect(()=>{
+        const paths = window.location.pathname.split('/')
+
+        setPage(paths[1])
+    }, [window.location.pathname])
+
+
     return (
         <React.Fragment>
-            <footer>
+            <footer className={page}>
                 <Container>
                     <div className="top">
                         <Logo />

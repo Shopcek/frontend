@@ -4,7 +4,9 @@ export const product = gql`
     query ($slug: String!) {
         product(slug: $slug) {
             variants {
-                color {
+                id
+              	variant {
+                  color {
                     data {
                         attributes {
                             value
@@ -20,7 +22,8 @@ export const product = gql`
                     }
                 }
                 image
-            }
+                }
+             }
             product {
                 slug
                 colors {
@@ -46,3 +49,6 @@ export const product = gql`
         }
     }
 `
+
+
+

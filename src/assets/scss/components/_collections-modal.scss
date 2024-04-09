@@ -1,3 +1,16 @@
+.offcanvas-header {
+    flex-direction: column !important;
+    align-items: start;
+
+    hr {
+        border-bottom: solid gray 0.5px;
+        width: 80%;
+        height: 0px;
+        margin-bottom: 0px;
+    }
+}
+
+
 .collections-modal {
     width: 18em !important;
     z-index: 9999;
@@ -6,7 +19,8 @@
     .header {
         img {
             position: relative;
-            width: calc(100vw*0.04*0.59);
+            height: calc(100vw*0.04*0.59);
+            width: unset;
         }
     }
     

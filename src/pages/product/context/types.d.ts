@@ -14,8 +14,10 @@ export type Product = {
     }
     variants: {
         id: string
-        image: string
-        size: Option
-        color: Option
+        variant:  {
+            image: string
+            size: Option
+            color: Option
+        }
     }[]
 }

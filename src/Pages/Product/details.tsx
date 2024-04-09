@@ -47,12 +47,6 @@ export function Socials() {
                 <Instagram className="social-icon" />
             </Link>
             <Link to="/">
-                <Linkedin className="social-icon" />
-            </Link>
-            <Link to="/">
-                <Medium className="social-icon" />
-            </Link>
-            <Link to="/">
                 <Telegram className="social-icon" />
             </Link>
             <Link to="/">

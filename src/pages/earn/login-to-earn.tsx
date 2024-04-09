@@ -126,7 +126,6 @@ export default function LoginToEarn() {
         }, [claimGQL.status])
 
         return (
-            <Container>
                 <section className="section pb-0">
                     <div className="login-to-earn">
                         <div className="top-container">
@@ -157,7 +156,6 @@ export default function LoginToEarn() {
                         <div className="purple-box-container">{days}</div>
                     </div>
                 </section>
-            </Container>
         )
     }
 

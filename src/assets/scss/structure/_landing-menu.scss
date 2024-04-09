@@ -24,7 +24,7 @@
                 // color: $primary;
                 font-size: 15px;
                 font-weight: 500;
-                padding: 0px 14px;
+                padding: 0px 25px;
                 height: 70px;
                 display: flex;
                 align-items: center;
@@ -131,6 +131,10 @@
             }
         }
     }
+}
+
+.bottom-navbar.product-details{
+    margin-bottom: unset;
 }
 
 .top-navbar {

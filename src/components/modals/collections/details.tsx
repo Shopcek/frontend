@@ -24,6 +24,7 @@ export const DetailsModal = ({ show, handleClose, content, header }: any) => {
                         <Offcanvas.Title id="ecommerceCartLabel" as="h5">
                             {header}
                         </Offcanvas.Title>
+                        <hr />
                     </Offcanvas.Header>
 
                     <Offcanvas.Body className="px-0">

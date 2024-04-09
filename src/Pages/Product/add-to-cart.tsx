@@ -93,8 +93,9 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
 
         let variant
         if (color && size) {
+            console.log(variants)
             variant = variants.find((item) => {
-                return item.color.value === color.value && item.size.value === size.value
+                return item.variant.color.value === color.value && item.variant.size.value === size.value
             })
         }
 
@@ -114,6 +115,7 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
                     variant="primary"
                     className="btn btn-hover w-100 operation"
                     onClick={() => {
+                        console.log(cartId, variant!)
                         addItemGQL
                             ?.fn({
                                 variables: { cartId, variantId: variant!.id, count }

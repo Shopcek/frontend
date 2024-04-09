@@ -106,11 +106,13 @@ export const CollectionModal = ({ show, handleClose }: any) => {
 
         return (
             <React.Fragment>
-                <Offcanvas show={show} onHide={handleClose} placement="start" className={`collections-modal ${extended}`}>
+                <Offcanvas show={show} onHide={handleClose} placement="start" className={`collections-modal`}>
                     <Offcanvas.Header className="header">
                         <Offcanvas.Title id="ecommerceCartLabel" as="h5">
                             <img src={icon} alt="" /> Collections
                         </Offcanvas.Title>
+
+                        <hr />
                     </Offcanvas.Header>
 
                     <Offcanvas.Body className="px-0">

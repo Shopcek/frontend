@@ -7,6 +7,14 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 import { CardComponent } from 'components/CardComponent'
 
+import ethereum from '../../assets/images/collections/ethereum.png'
+import bitcoin from '../../assets/images/collections/bitcoin.png'
+
+const banners = {
+    bitcoin,
+    ethereum
+}
+
 export default () => {
     function Category() {
         const { productsGQL } = useProduct()
@@ -21,6 +29,13 @@ export default () => {
                 }
             })
         }, [])
+
+        const [banner, setBanner] = useState<any>()
+        useEffect(() => {
+            if (type == 'collection' && slug) {
+                setBanner(<img className='banner' src={(banners as any)[slug as any]}></img>)
+            }
+        }, [type, slug])
 
         useEffect(() => {
             productsGQL.fn({
@@ -61,6 +76,7 @@ export default () => {
             <section className="section category-page">
                 <Container>
                     <div className="title">{`${type?.toUpperCase()} / ${slug?.toUpperCase()}`}</div>
+                    {banner}
                     {products}
                 </Container>
             </section>

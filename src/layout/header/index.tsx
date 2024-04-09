@@ -45,6 +45,15 @@ const Header = (props: any) => {
         }
         const handleSearchShow = () => setSearch(true)
 
+        const [page, setPage] = useState<any>()
+        useEffect(()=>{
+            const paths = window.location.pathname.split('/')
+    
+            setPage(paths[1])
+        }, [window.location.pathname])
+    
+    
+
         return (
             <React.Fragment>
                 <Navbar className="navbar-expand-lg ecommerce-navbar top-navbar" id="navbar" expanded={false}>
@@ -67,7 +76,7 @@ const Header = (props: any) => {
                 <CollectionModal show={collectionsShow} handleClose={handleCollectionsClose} />
                 
 
-                <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
+                <Navbar className={`navbar-expand-lg ecommerce-navbar bottom-navbar ${page}`} id="navbar" expanded={false}>
                     <Container className="navbar-nav">
                         <Collections onClick={handleCollectionsShow} />
                         <Pages />

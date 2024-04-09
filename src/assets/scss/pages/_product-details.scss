@@ -65,11 +65,17 @@
 
 .product-details-page {
     background-color: #fff;
+    padding: 40px 0px;
+
+
+    section:first-child {
+        padding-bottom: 10rem;
+    }
 }
 
 h5.text-primary.info {
     font-family: 'Montserrat';
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 400;
 }
 
@@ -92,7 +98,7 @@ span.ln-base.info {
     display: flex;
     flex-direction: column;
     span {
-        font-size: 2.6rem !important;
+        font-size: 1.7rem !important;
         font-weight: 500 !important;
     }
 
@@ -115,7 +121,7 @@ span.ln-base.info {
         border-radius: 9px;
 
         .text {
-            margin-bottom: -4px;
+            // margin-bottom: -4px;
         }
     }
 
@@ -134,9 +140,9 @@ span.ln-base.info {
         button {
             width: 19rem;
             height: 3rem;
-            background-color: rgb(246, 246, 246);
+            background-color: rgb(255, 255, 255);
             font-weight: 400;
-            border: solid 3px rgb(228, 228, 228);
+            border: solid 1.5px rgb(228, 228, 228);
             color: rgb(166, 166, 166);
             padding-left: 0.5rem;
             border-radius: 10px;

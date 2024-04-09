@@ -32,8 +32,8 @@ function ProductDetails() {
                             image={productGQL.data!.product.image}
                             images={productGQL.data!.variants.map((variant) => {
                                 return {
-                                    image : variant.image,
-                                    color: variant.color
+                                    image : variant.variant.image,
+                                    color: variant.variant.color
                                 }
                             
                             })}
@@ -111,8 +111,6 @@ function ProductDetails() {
                             </Row>
                         </Container>
                     </section>
-
-                    <hr />
 
                     <section className="section pt-0">{/* <Slider items={productsList} title="Related Products"></Slider> end row */}</section>
                 </div>
