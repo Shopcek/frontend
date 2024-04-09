@@ -14,7 +14,7 @@ import { simplifyResponse } from 'lib/simplify-response'
 import { useRefetch } from 'context/refetch'
 
 
-export const DetailsModal = ({ show, handleClose, content }: any) => {
+export const DetailsModal = ({ show, handleClose, content, header }: any) => {
     function Component() {
 
         return (
@@ -22,7 +22,7 @@ export const DetailsModal = ({ show, handleClose, content }: any) => {
                 <Offcanvas show={show} onHide={handleClose} placement="start" className="details-modal" backdrop={false}>
                     <Offcanvas.Header className="header">
                         <Offcanvas.Title id="ecommerceCartLabel" as="h5">
-                            <div className="box"/>
+                            {header}
                         </Offcanvas.Title>
                     </Offcanvas.Header>
 

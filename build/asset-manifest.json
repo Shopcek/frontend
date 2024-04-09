@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.be52ce78.css",
-    "main.js": "/static/js/main.0ff87e31.js",
+    "main.css": "/static/css/main.e8d9456d.css",
+    "main.js": "/static/js/main.037fa1a1.js",
     "static/js/366.f19a75ef.chunk.js": "/static/js/366.f19a75ef.chunk.js",
     "static/js/4894.9e97f690.chunk.js": "/static/js/4894.9e97f690.chunk.js",
     "static/js/2957.7677fdbc.chunk.js": "/static/js/2957.7677fdbc.chunk.js",
@@ -100,35 +100,36 @@
     "static/media/boxicons.woff2": "/static/media/boxicons.60f603cccbdff82a523c.woff2",
     "static/media/cart.png": "/static/media/cart.3d4fdbb9c58ad54a3547.png",
     "static/media/bitcoin-btc-logo.png": "/static/media/bitcoin-btc-logo.82491fef997ab841639c.png",
-    "static/media/ogs.png": "/static/media/ogs.f8c71f8241c2debbc609.png",
-    "static/media/projects.png": "/static/media/projects.c2cf8258bc25e6d86c44.png",
+    "static/media/delivery.png": "/static/media/delivery.f3664c7c2e5c18fb72e7.png",
     "static/media/campaign6.png": "/static/media/campaign6.39e199cce54ea61bb0a5.png",
+    "static/media/hats.png": "/static/media/hats.308691879a17bc773f45.png",
     "static/media/campaign2.png": "/static/media/campaign2.85bdce9d9e68933a28a9.png",
     "static/media/campaign3.png": "/static/media/campaign3.467e8c15fbc99654fe8d.png",
     "static/media/campaign5.png": "/static/media/campaign5.ff4212baaa1060744b97.png",
+    "static/media/earn.png": "/static/media/earn.8fdfdf32818b101edd88.png",
     "static/media/campaign7.png": "/static/media/campaign7.3494a50d3f640159d13f.png",
     "static/media/campaign4.png": "/static/media/campaign4.5bc04cd10bf5272977e4.png",
     "static/media/campaign1.png": "/static/media/campaign1.6e2675da4e14ef8845f9.png",
-    "static/media/boutique.png": "/static/media/boutique.22c2fccfb76c2ed5b790.png",
+    "static/media/hoodies.png": "/static/media/hoodies.bc407a3e6af171b54a95.png",
+    "static/media/projects.png": "/static/media/projects.ba675508584bce3a5a23.png",
     "static/media/horizon.woff2": "/static/media/horizon.93d7ac066ffbdf8e2e53.woff2",
+    "static/media/sweatshirts.png": "/static/media/sweatshirts.5511bd57c3cbd64444dc.png",
+    "static/media/boutique.png": "/static/media/boutique.e1999e4165e278ab33e7.png",
+    "static/media/tshirts.png": "/static/media/tshirts.101ec444d87e776fb9ff.png",
     "static/media/instagram.svg": "/static/media/instagram.ea74a8bd68174909216a8ca2f0bcfe65.svg",
     "static/media/refill.svg": "/static/media/refill.ca369d8a54d8e632ea58e9ce9cb1f307.svg",
     "static/media/twitter.svg": "/static/media/twitter.9ff7f3a3f06fd3ed9520d0150369eb32.svg",
-    "static/media/clothes.svg": "/static/media/clothes.a44681b9b635df1fdbf266f955e4cc05.svg",
     "static/media/telegram.svg": "/static/media/telegram.0993ee9f3f8e6a68d0e9ff17f29e1894.svg",
     "static/media/linkedin.svg": "/static/media/linkedin.3da0cd6e809a61e4ed7b7d71fc48e4c7.svg",
-    "static/media/earn.svg": "/static/media/earn.f638dcb570bfbd0a2bdd0995f20608e2.svg",
     "static/media/medium.svg": "/static/media/medium.a54e32578f01374ef34f7c1b0635d44b.svg",
     "static/media/facebook.svg": "/static/media/facebook.2aea556e3b749ad59f1244535758a9c9.svg",
     "static/media/tg.svg": "/static/media/tg.9c49a67dc8d1adc039ccafd4b68b698c.svg",
     "static/media/x.svg": "/static/media/x.c5a25d0f504c5d64a92963593667d1c8.svg",
     "static/media/gray.svg": "/static/media/gray.327b4eefc8807a0dd49bbf4d579292d8.svg",
-    "index.html": "/index.html",
-    "static/media/accessories.svg": "/static/media/accessories.afe761ee8cd43375ce20297e9cde162c.svg",
-    "static/media/home.svg": "/static/media/home.53c7942d467e6a73e970db82c1762068.svg"
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.be52ce78.css",
-    "static/js/main.0ff87e31.js"
+    "static/css/main.e8d9456d.css",
+    "static/js/main.037fa1a1.js"
   ]
 }

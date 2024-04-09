@@ -1,4 +1,4 @@
-import { Accessories, Refill, Home, Clothes, Earn } from '../components/images/Icons'
+import { TShirts, Refill, Sweatshirts, Hoodies, Earn , Hats} from '../components/images/Icons'
 
 export const items = [
     {
@@ -42,7 +42,7 @@ export const items = [
         //         ]
         //     }
         // ],
-        icon: <Clothes className="page-icons" />
+        icon: <TShirts className="page-icons" />
     },
     {
         url: '/products/category/sweatshirts',
@@ -61,7 +61,7 @@ export const items = [
         //         url: '/category/bags'
         //     }
         // ],
-        icon: <Accessories className="page-icons" />
+        icon: <Sweatshirts className="page-icons" />
     },
     {
         url: '/products/category/hoodies',
@@ -80,12 +80,12 @@ export const items = [
         //         url: '/category/drinkware-and-coasters'
         //     }
         // ],
-        icon: <Home className="page-icons" />
+        icon: <Hoodies className="page-icons" />
     },
     {
         url: '/products/category/hats',
         title: 'HATS',
-        icon: <Refill className="page-icons" />
+        icon: <Hats className="page-icons" />
     },
     {
         url: '/products/category/eco-friendly',

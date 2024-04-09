@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import projects from '../../../assets/images/projects.png'
 import ogs from '../../../assets/images/ogs.png'
 import boutique from '../../../assets/images/boutique.png'
+import icon from '../../../assets/images/icon.svg'
 
 export const collections_data = [
     {
@@ -23,14 +24,14 @@ export const collections_data = [
         icon: projects,
         sub_collections: [
             {
-                name: 'ETHEREUM',
-                image: ethereum,
-                slug: 'ethereum'
-            },
-            {
-                name: 'BITCOIN',
+                name: 'Bitcoin',
                 image: bitcoin,
                 slug: 'bitcoin'
+            },
+            {
+                name: 'Ethereum',
+                image: ethereum,
+                slug: 'ethereum'
             }
         ]
     },
@@ -72,6 +73,7 @@ export const CollectionModal = ({ show, handleClose }: any) => {
         }, [card])
 
         const [content, setContent] = useState<any>()
+        const [header, setHeader] = useState<any>()
 
         function setNewContent(slug: string) {
             const contents = collections_data.find((item) => {
@@ -98,14 +100,16 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                     </div>
                 </div>
             )
+
+            setHeader([<img src={contents.icon} alt="" />, contents.name])
         }
 
         return (
             <React.Fragment>
                 <Offcanvas show={show} onHide={handleClose} placement="start" className={`collections-modal ${extended}`}>
-                    <Offcanvas.Header closeButton className="header">
+                    <Offcanvas.Header className="header">
                         <Offcanvas.Title id="ecommerceCartLabel" as="h5">
-                            Collections
+                            <img src={icon} alt="" /> Collections
                         </Offcanvas.Title>
                     </Offcanvas.Header>
 
@@ -130,7 +134,7 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                         </SimpleBar>
                     </Offcanvas.Body>
 
-                    <DetailsModal show={card} handlecardClose={handlecardClose} content={content}></DetailsModal>
+                    <DetailsModal show={card} handlecardClose={handlecardClose} content={content} header={header}></DetailsModal>
                 </Offcanvas>
             </React.Fragment>
         )

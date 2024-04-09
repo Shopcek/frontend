@@ -1,9 +1,22 @@
 .collections-modal {
-    width: 14em !important;
+    width: 18em !important;
     z-index: 9999;
     // border-right: 0px !important;
 
+    .header {
+        img {
+            position: relative;
+            width: calc(100vw*0.04*0.59);
+        }
+    }
     
+
+    .offcanvas-title {
+        gap: .5em;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+    }
 
     font-size: larger;
 
@@ -15,13 +28,15 @@
     }
 
     .body {
+        text-transform: uppercase;
+        font-weight: 500;
         padding: 0px 20px 0px 20px;
         
         .item {
             display: flex;
             align-items: center;
-            gap: 0.3em;
-            padding-bottom: 1em;
+            padding-bottom: 1.5em;
+            gap: 0.55em;
 
             img {
                 width: calc(100vw*0.04*0.5);
@@ -42,17 +57,23 @@
 
 .collections-modal.extended {
     .header {
-        width: calc(100% + 12em);
+        width: calc(100% + 18em);
     }
-
-
-
 }
 
 .details-modal {
-    width: 12em !important;
+    .offcanvas-title {
+        gap: .5em;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+    }
+
+
+    border-radius: 0px 15px 0px 15px;
+    width: 18em !important;
     position: absolute;
-    left: 14em !important;
+    left: 18em !important;
     border-left: 0px !important;
 
     font-size: larger;
@@ -61,25 +82,33 @@
         .box {
             height: 1.5em;
         }
+
+        img {
+            position: relative;
+            width: 2.36vw;
+        }
     }
 
 
     .projects {
-        padding: 15px;
+        padding: 0px 0px 0px 19px;
         display: flex;
         flex-direction: column;
         gap: 1em;
         
-        img {
-            width: 10%;
-        }
         .items {
-
+            display: flex;
+            flex-direction: column;
+            gap: 0.7em;
 
             .item {
                 display: flex;
                 align-items: center;
                 gap: 0.4em;
+
+                img {
+                    width: 10%;
+                }
             }
         }
     }
