@@ -44,9 +44,9 @@ export const collections_data = [
     },
 
     {
-        name: 'Bitcoin Boutique',
+        name: 'BLOCKCHAIN Boutique',
         image: '',
-        slug: 'bitcoin-boutique',
+        slug: 'blockchain-boutique',
         icon: boutique,
         sub_collections: []
     }
@@ -123,8 +123,10 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                                         className="item"
                                         onMouseEnter={() => {
                                             setTimeout(() => {
-                                                setNewContent(item.slug)
-                                                handlecardShow()
+                                                if (item.slug !== 'blockchain-boutique'){
+                                                    setNewContent(item.slug)
+                                                    handlecardShow()
+                                                }
                                             }, 100)
                                         }}
                                     >

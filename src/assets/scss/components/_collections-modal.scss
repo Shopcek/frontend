@@ -47,6 +47,7 @@
         padding: 0px 20px 0px 20px;
         
         .item {
+            cursor: pointer;
             display: flex;
             align-items: center;
             padding-bottom: 1.5em;
@@ -73,6 +74,10 @@
     .header {
         width: calc(100% + 18em);
     }
+}
+
+li.nav-item {
+    cursor: pointer;
 }
 
 .details-modal {
@@ -116,6 +121,7 @@
             gap: 0.7em;
 
             .item {
+                cursor: pointer;
                 display: flex;
                 align-items: center;
                 gap: 0.4em;

@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react'
 import { Image, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export function Items({ items }: { items: any[] }) {
+
+export function Items({ items, openPopup }: { items: any[], openPopup:()=>void }) {
     function Component() {
         const { cart } = useRefetch()
         const { cartId, cartGQL } = useCart()
@@ -20,10 +21,12 @@ export function Items({ items }: { items: any[] }) {
                 }
         }, [updateCountGQL?.status])
 
+        const [open, setOpen]= useState(true)
         useEffect(() => {
             if (deleteItemGQL)
                 switch (deleteItemGQL.status) {
                     case 'success': {
+                        openPopup()
                         cart.refetch()
                     }
                 }
@@ -111,6 +114,8 @@ export function Items({ items }: { items: any[] }) {
                         </li>
                     )
                 })}
+
+
             </ul>
         )
     }

@@ -139,7 +139,7 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                                     {checkDomain?'Available':'Registered'}
                                 </div>
                             </div>
-                            <div className="info">Username is {checkDomain ? 'locked, please complete payment' : 'already buyed.'}</div>
+                            <div className="info">Username is {checkDomain ? 'reserved. Please complete payment.' : 'already registered.'}</div>
 
 
                         </div>

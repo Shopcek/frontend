@@ -11,7 +11,8 @@ import { useOrder, OrderProvider } from '../context'
 import { buyWithWallet } from 'lib/rainbow'
 import { useUser } from 'context/user'
 import { useRefetch } from 'context/refetch'
-// import { useOrder } from 'oldcontext/order'
+import bagIcon from '../../../assets/images/invoice.png'
+import { PopupT } from 'components/popup'
 
 export function order({ newOrder }: { newOrder: any }) {
     return ({ transaction }: { transaction: string }) => {
@@ -23,7 +24,7 @@ export function order({ newOrder }: { newOrder: any }) {
     }
 }
 
-export const Shoporder = () => {
+export const Shoporder = ({ onOrderSuccess }: { onOrderSuccess: (orderId: string | number) => void }) => {
     function Component() {
         const navigate = useNavigate()
 
@@ -32,7 +33,7 @@ export const Shoporder = () => {
         const { placeOrderGQL } = useOrder()
         const { status } = useUser()
         const [payment, setPayment] = useState(false)
-        const {cart} = useRefetch()
+        const { cart } = useRefetch()
 
         useEffect(() => {
             cartGQL?.fn({
@@ -48,7 +49,7 @@ export const Shoporder = () => {
                     case 'success': {
                         setPayment(false)
                         cart.refetch(placeOrderGQL.data)
-                        navigate(`/shop/order/${placeOrderGQL.data}`)
+                        onOrderSuccess(placeOrderGQL!.data)
                         break
                     }
                     case 'error': {

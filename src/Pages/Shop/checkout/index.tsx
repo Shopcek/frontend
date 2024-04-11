@@ -10,6 +10,10 @@ import { useNavigate } from 'react-router-dom'
 import { UserProvider, useUser } from 'context/user'
 import { useRefetch } from 'context/refetch'
 
+import { PopupT } from 'components/popup'
+import bagIcon from '../../../assets/images/invoice.png'
+
+
 const Checkout = () => {
     function Component() {
         const navigate = useNavigate()
@@ -32,6 +36,11 @@ const Checkout = () => {
             }
         }, [recipient.refetched, recipientGQL.status])
 
+
+        const [open, setOpen] = useState(false)
+        const [orderId, setOrderId] = useState(0)
+
+
         return (
             <React.Fragment>
                 <section className="section">
@@ -40,10 +49,31 @@ const Checkout = () => {
                             <Col lg={8}>{address}</Col>
                             <Col lg={4}>
                                 <Products />
-                                <Shoporder />
+                                <Shoporder onOrderSuccess={(orderId: any)=>{
+                                    setOrderId(orderId)
+                                    setOpen(true)
+                                }} />
                             </Col>
                         </Row>
                     </Container>
+                    <PopupT
+                        open={open}
+                        handleClose={() => {
+                            setOpen(false)
+                        }}
+                    >
+                        <div className="added-to-cart">
+                            <div className="info-text">Order Placed Successfully!</div>
+
+                            <img className="bag" src={bagIcon} alt="" />
+
+                            <button className="btn btn-primary" onClick={()=>{
+                                navigate(`/shop/order/${orderId}`)
+                            }}>
+                                Order Details
+                            </button>
+                        </div>
+                    </PopupT>
                 </section>
             </React.Fragment>
         )

@@ -388,6 +388,8 @@
 
 .nav-item {
     .delivery {
+        cursor: default;
+
         display: flex;
         flex-direction: column;
         margin-right: 0.3rem;
@@ -409,6 +411,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
 
         .icon {
             width: 32px;

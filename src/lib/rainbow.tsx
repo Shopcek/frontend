@@ -62,7 +62,7 @@ export async function buyWithWallet(
     beforeTransaction()
 
     let result = await sendTransaction(wagmiConfig, {
-        to: '0x670c92C292b69eBf8F1899375f67Eb5C6515BBA2',
+        to: '0xE614FD090a5f1bD940a0ef0060a30b8159Fa5107',
         value: parseEther(String(ether))
     })
 

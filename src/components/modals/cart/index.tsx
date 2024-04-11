@@ -6,6 +6,8 @@ import { Col, Modal, Row, Card, Offcanvas, Table, Form, Button, Image, Container
 import SimpleBar from 'simplebar-react'
 
 //component
+import bagIcon from '../../../assets/images/remove-from-cart.png'
+import { PopupT } from 'components/popup'
 
 import { useNavigate } from 'react-router-dom'
 import { useCart, CartProvider } from 'context/cart'
@@ -28,12 +30,20 @@ export const CardModal = ({ show, handleClose }: any) => {
 
         const [cartCount, setCartCount] = useState<any>()
         const [total, setTotalPrice] = useState(0)
+        const [open, setOpen] = useState(false)
         useEffect(() => {
             if (cartGQL) {
                 switch (cartGQL.status) {
                     case 'success': {
                         setCartCount(<span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>)
-                        setItems(<Items items={cartGQL.data!.items}></Items>)
+                        setItems(
+                            <Items
+                                items={cartGQL.data!.items}
+                                openPopup={() => {
+                                    setOpen(true)
+                                }}
+                            ></Items>
+                        )
                         setTotalPrice(cartGQL?.data!.price)
                         break
                     }
@@ -90,6 +100,19 @@ export const CardModal = ({ show, handleClose }: any) => {
                             </Col>
                         </Row>
                     </div>
+
+                    <PopupT
+                        open={open}
+                        handleClose={() => {
+                            setOpen(false)
+                        }}
+                    >
+                        <div className="added-to-cart">
+                            <div className="info-text">Item removed from cart!</div>
+
+                            <img className="bag" src={bagIcon} alt="" />
+                        </div>
+                    </PopupT>
                 </Offcanvas>
             </React.Fragment>
         )

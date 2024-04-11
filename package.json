@@ -36,6 +36,7 @@
         "react-spinning-wheel": "2.1.0",
         "react-table": "^7.8.0",
         "react-wheel-of-prizes": "^1.0.9",
+        "reactjs-popup": "^2.0.6",
         "reselect": "^5.0.1",
         "sass": "^1.69.5",
         "simplebar-react": "^3.2.4",

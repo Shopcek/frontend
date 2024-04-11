@@ -1,5 +1,5 @@
 import { Dropdown, Form, Button } from 'react-bootstrap'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Option } from './context/types'
 import { colors } from 'data/colors'
 
@@ -7,6 +7,10 @@ import { useCartOperations, CartOperationsProvider } from 'context/cart-operatio
 import { useProduct } from './context'
 import { useCart } from 'context/cart'
 import { useRefetch } from 'context/refetch'
+
+import { PopupT } from 'components/popup'
+
+import bagIcon from '../../assets/images/shopping-bag.png'
 
 export function Colors({ colorsList, setColor }: { colorsList: Option[]; setColor: Function }) {
     return (
@@ -99,6 +103,16 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
             })
         }
 
+        const [open, setOpen] = useState(false)
+        useEffect(()=>{
+            switch (addItemGQL?.status){
+                case 'success': {
+                    setOpen(true)
+                }
+            }
+
+        }, [addItemGQL?.status])
+
         return (
             <div className="hstack gap-2 add-to-cart">
                 <div className="input-step ms-2 operation">
@@ -131,6 +145,17 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
                 <Button variant="secondary" className="btn btn-hover w-100 h-10 operation" disabled={!variant}>
                     <div className="text">Buy Now</div>
                 </Button>
+
+
+                <PopupT open={open} handleClose={()=>{setOpen(false)}}>
+                    <div className="added-to-cart">
+                        <div className="info-text">
+                            Item successfully added to cart.
+                        </div>
+
+                        <img className='bag' src={bagIcon} alt="" />
+                    </div>
+                </PopupT>
             </div>
         )
     }

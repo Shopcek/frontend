@@ -93,6 +93,24 @@ span.ln-base.info {
     }
 }
 
+.popup {
+    .added-to-cart {
+        .info-text {
+            font-size: larger;
+            margin: unset;
+        }
+
+        img.bag {
+            width: 50%;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2em;
+    }
+}
+
 .product-details {
     gap: 1rem;
     display: flex;

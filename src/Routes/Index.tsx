@@ -18,18 +18,6 @@ const Index = () => {
                         <Route path={route.path} element={<Layout isLight={false}>{route.component}</Layout>} key={idx} />
                     ))}
                 </Route>
-                <Route>
-                    <Route
-                        path="/test"
-                        element={
-                            <UserProvider>
-                                <div>
-                                    <ConnectButton></ConnectButton>
-                                </div>
-                            </UserProvider>
-                        }
-                    />
-                </Route>
             </Routes>
         </React.Fragment>
     )

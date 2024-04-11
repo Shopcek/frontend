@@ -1,0 +1,31 @@
+.popup {
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    width: 30em;
+    height: 30em;
+    border: solid;
+    justify-content: space-between;
+
+    .header {
+        display: flex;
+        justify-content: flex-end;
+
+        img.close {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+    .content {
+
+    }
+}
+
+
+.offcanvas-backdrop {
+    z-index: 998 !important;
+}
