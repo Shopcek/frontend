@@ -40,9 +40,9 @@ export function UserNav() {
                         <Tab.Content>
                             <WishListTab />
                             <OrdersTab />
-                            <AddressTab />
-                            <XpTab />
                             <DomainsTab />
+                            <XpTab />
+                            <AddressTab />
                         </Tab.Content>
                     </Col>
                 </Row>

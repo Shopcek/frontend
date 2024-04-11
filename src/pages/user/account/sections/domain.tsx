@@ -19,7 +19,7 @@ export function DomainsNav() {
                 className="fs-15"
                 role="presentation"
             >
-                <i className="bi bi-bag align-middle me-1"></i> Domains
+                <i className="bi bi-bag align-middle me-1"></i> Username
             </Nav.Link>
         </Nav.Item>
     )
