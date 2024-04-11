@@ -36,7 +36,7 @@ let images = {
     15: length9
 }
 
-let prices = [
+export const prices = [
     { min: 3, max: 4, price: 69.99, xp: 6000 },
     { min: 5, max: 7, price: 39.99, xp: 4500 },
     { min: 8, max: 15, price: 6.99, xp: 3000 }
@@ -84,13 +84,13 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
         if (bnbPrice == 0) {
             setBuyButton(
                 <Button className="btn btn-primary" disabled>
-                    Price Calculating
+                    <div className="text">Price Calculating</div>
                 </Button>
             )
         } else if (process) {
             setBuyButton(
                 <Button className="btn btn-primary" disabled>
-                    Payment process in progress
+                    <div className="text">Payment process in progress</div>
                 </Button>
             )
         } else {
@@ -120,11 +120,20 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                         )
                     }}
                 >
-                    Pay {bnbPrice.toFixed(5)} BNB
+                    <div className="text">Pay {bnbPrice.toFixed(5)} BNB</div>
                 </Button>
             )
         }
+
+        console.log(process, bnb, bnbPrice)
     }, [process, bnb, bnbPrice])
+
+    useEffect(() => {
+        if (domain.length < 3) {
+            setBuyButton(undefined)
+        } else {
+        }
+    }, [domain])
 
     return (
         <div className="domain-modal">
@@ -134,17 +143,17 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                         {/* <Image className="length" src={(images as any)[domain.length]} /> */}
                         <div className="text">
                             <div className="domain">
-                                {domain} 
-                                <div className={`info ${checkDomain?'available':'registered'}` }>
-                                    {checkDomain?'Available':'Registered'}
+                                {domain}
+                                <div className={`info ${checkDomain ? (domain.length < 3 ? 'registered' : 'available') : 'registered'}`}>
+                                    {checkDomain ? (domain.length < 3 ? 'Minimum lenght is 3!' : 'Available') : 'Registered'}
                                 </div>
                             </div>
-                            <div className="info">Username is {checkDomain ? 'reserved. Please complete payment.' : 'already registered.'}</div>
-
-
+                            <div className="info">
+                                {domain.length < 3
+                                    ? undefined
+                                    : 'Username is ' + (checkDomain ? 'reserved. Please complete payment.' : 'already registered.')}
+                            </div>
                         </div>
-
-
                     </div>
 
                     <div className="price">
@@ -154,7 +163,6 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                         <p className="lined-text">00000000000</p>
                         <p>{price!.price} USD</p>
                     </div>
-                    
                 </div>
 
                 <div className="vl" />
@@ -169,7 +177,7 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
                                 setClose(true)
                             }}
                         >
-                            Cancel
+                            <div className="text">Cancel</div>
                         </Button>
                         {buyButton}
                     </div>
@@ -179,87 +187,97 @@ export function DomainModal({ domain, setClose }: { domain: string; setClose: Fu
     )
 }
 
-export default function NameService() {
-    function Component() {
-        const [close, setClose] = useState(true)
-        const [domain, setDomain] = useState('')
+function ComponentNameService() {
+    const [close, setClose] = useState(true)
+    const [domain, setDomain] = useState('')
 
-        return (
-            <section className="section pb-0">
-                <div className="name-services">
-                    <div className="top-container">
-                        <div className="claim">
-                            <h1>USERNAME SERVICES</h1>
-                            <p>Increase XP Gain multiplier</p>
-                        </div>
+    return (
+        <section className="section pb-0">
+            <div className="name-services">
+                <div className="top-container">
+                    <div className="claim">
+                        <h1>USERNAME SERVICES</h1>
+                        <p>Increase XP Gain multiplier</p>
                     </div>
-
-                    <div className="input">
-                        <div className="input-group">
-                            <Form.Control
-                                size="lg"
-                                type="text"
-                                placeholder="Enter a Handle"
-                                value={domain}
-                                onChange={(e) => {
-                                    setDomain(e.target.value)
-                                }}
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter")
-                                        setClose(false)
-                                }}
-                            />
-                            <span className="input-group-append">
-                                <i className="bi bi-search search-icon"></i>
-                            </span>
-                        </div>
-                        <Button
-                            className="btn btn btn-secondary"
-                            onClick={() => {
-                                setClose(false)
-                            }}
-                            disabled={!(domain.length >= 3 && domain.length <= 15)}
-                        >
-                            SEARCH
-                        </Button>
-                    </div>
-
-                    {!close ? (
-                        <DomainModal domain={domain} setClose={setClose} />
-                    ) : (
-                        <div className="payment">
-                            <div className="prices">
-                                {prices.map((price) => {
-                                    return (
-                                        <div className="price">
-                                            <p>
-                                                {price.min} - {price.max} digits:
-                                            </p>
-                                            <p className="lined-text">00000000000</p>
-                                            <p>{price.price} USD</p>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-
-                            <div className="vl" />
-
-                            <div className="method">
-                                <p>Payment Method</p>
-                                <ConnectButton />
-                            </div>
-                        </div>
-                    )}
                 </div>
-            </section>
-        )
-    }
 
+                <div className="input">
+                    <div className="input-group">
+                        <Form.Control
+                            id="domain-handle-input"
+                            size="lg"
+                            type="text"
+                            placeholder="Enter a Handle"
+                            value={domain}
+                            onChange={(e) => {
+                                setDomain(e.target.value)
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') setClose(false)
+                            }}
+                            maxLength={15}
+                            minLength={3}
+                        />
+                        <span className="input-group-append">
+                            <i className="bi bi-search search-icon"></i>
+                        </span>
+                    </div>
+                    <Button
+                        className="btn btn btn-secondary"
+                        onClick={() => {
+                            setClose(false)
+                        }}
+                        disabled={!(domain.length >= 3 && domain.length <= 15)}
+                    >
+                        SEARCH
+                    </Button>
+                </div>
+
+                {!close ? (
+                    <DomainModal domain={domain} setClose={setClose} />
+                ) : (
+                    <div className="payment">
+                        <div className="prices">
+                            {prices.map((price) => {
+                                return (
+                                    <div className="price">
+                                        <p>
+                                            {price.min} - {price.max} digits:
+                                        </p>
+                                        <p className="lined-text">00000000000</p>
+                                        <p>{price.price} USD</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+
+                        <div className="vl" />
+
+                        <div className="method">
+                            <p>Payment Method</p>
+                            <ConnectButton />
+                        </div>
+                    </div>
+                )}
+            </div>
+        </section>
+    )
+}
+
+export default function NameService() {
     return (
         <BinanceProvider>
             <EarnProvider>
-                <Component />
+                <ComponentNameService />
             </EarnProvider>
+        </BinanceProvider>
+    )
+}
+
+export function NameServiceWithoutEarnProvider() {
+    return (
+        <BinanceProvider>
+            <ComponentNameService></ComponentNameService>
         </BinanceProvider>
     )
 }

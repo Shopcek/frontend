@@ -47,6 +47,7 @@ export const userDomains = gql`
     query {
         userDomains {
             username
+            createdAt
         }
     }
 `

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
     OrdersNav,
     OrdersTab,
@@ -15,12 +16,13 @@ import {
 import { Col, Container, Row, Tab, Nav, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
-export function UserNav() {
-    let { section } = useParams()
+export function UserNav({section}: {section : string}) {
+    const [tabs, setTabs] = useState<any>()
+    
+    useEffect(()=>{
+        console.log(section)
 
-    return (
-        <Container>
-            <Tab.Container id="left-tabs-example" defaultActiveKey={section ? section : 'domains'}>
+        setTabs(<Tab.Container id="left-tabs-example" defaultActiveKey={section ? section : 'domains'}>
                 <Row>
                     <Col lg={3}>
                         <Card>
@@ -46,7 +48,14 @@ export function UserNav() {
                         </Tab.Content>
                     </Col>
                 </Row>
-            </Tab.Container>
+            </Tab.Container>)
+
+    } ,[section])
+    
+
+    return (
+        <Container>
+            {tabs}
         </Container>
     )
 }

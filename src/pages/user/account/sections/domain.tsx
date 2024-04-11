@@ -5,6 +5,9 @@ import { useEarn, EarnProvider } from 'context/earn'
 import { useEffect, useState } from 'react'
 import { useRefetch } from 'context/refetch'
 
+import NameService, { prices, NameServiceWithoutEarnProvider } from 'pages/earn/name-services'
+
+
 export function DomainsNav() {
     const navigate = useNavigate()
 
@@ -31,6 +34,12 @@ export function DomainsTab() {
         const { userDomainsGQL, chooseDomainGQL } = useEarn()
         const [domains, setDomains] = useState<any>()
         const {domains:domainsRefetch, choosen} = useRefetch()
+        
+        function findPrice(domain: string){
+            return prices.find(price=>{
+                return domain.length < price.max  && domain.length >= price.min
+            })?.price
+        }
 
         useEffect(()=>{
             switch(chooseDomainGQL.status){
@@ -49,7 +58,10 @@ export function DomainsTab() {
                                 return (
                                     <tr>
                                         <td>{item.username}</td>
+                                        <td>{findPrice(item.username)}$</td>
+                                        <td>{item.createdAt.slice(0,10)}</td>
                                         <td>
+                                            <div className="choose">
                                             <button
                                                 onClick={() => {
                                                     chooseDomainGQL.fn({
@@ -58,10 +70,11 @@ export function DomainsTab() {
                                                         }
                                                     })
                                                 }}
-                                                className="btn btn-primary w-100"
+                                                className="btn btn-primary"
                                             >
                                                 Choose
                                             </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 )
@@ -86,6 +99,8 @@ export function DomainsTab() {
                                     <thead>
                                         <tr>
                                             <th scope="col">Username</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Date</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -97,8 +112,14 @@ export function DomainsTab() {
                                     Continue Shopping <i className="ri-arrow-right-line align-middle ms-1"></i>
                                 </Link>
                             </div>
+
+                            <div className="earn-page">
+                            <NameServiceWithoutEarnProvider></NameServiceWithoutEarnProvider>
+                            </div>
                         </Card.Body>
                     </Card>
+
+                    
                 </div>
             </Tab.Pane>
         )

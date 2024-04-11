@@ -1,13 +1,15 @@
 import { Container } from 'react-bootstrap'
 import { User } from 'components/images/Icons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useUser } from 'context/user'
 import { useEarn, EarnProvider } from 'context/earn'
 import { useEffect, useState } from 'react'
 import { useRefetch } from 'context/refetch'
 
-export function UserSection() {
+export function UserSection({setTabSection}: {
+    setTabSection: (section:string)=>void
+}) {
     function Component() {
         const { address } = useUser()
         const { choosenGQL } = useEarn()
@@ -33,6 +35,8 @@ export function UserSection() {
         //@ts-ignore
         let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
 
+        const navigate = useNavigate()
+
         return (
             <Container className="account-top">
                 <div className="pt-3">
@@ -42,7 +46,12 @@ export function UserSection() {
                             <h5 className="fs-18">
                                 {username}
                                 <div className="edit">
-                                    <i className="bi bi-pen"></i> <p>change username</p>
+                                    <i className="bi bi-pen change-username" onClick={
+                                        ()=>{
+                                            navigate('/account/domains')
+                                            window.location.reload()
+                                        }
+                                    }></i>
                                 </div>
                             </h5>
                             <div className="text-muted">{sliced}</div>
