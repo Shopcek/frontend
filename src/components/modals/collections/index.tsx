@@ -129,7 +129,7 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                                                     handlecardShow()
                                                 } else {
                                                     handleClose()
-                                                    navigate('/collection/blockchain-boutique')
+                                                    navigate('/products/collection/blockchain-boutique')
                                                 }
                                         }}
                                     >
