@@ -41,6 +41,11 @@
         width: 10%;
     }
 
+    img.dropdown {
+        width: 5% !important;
+        rotate: 270deg;
+    }
+
     .body {
         text-transform: uppercase;
         font-weight: 500;
@@ -88,10 +93,14 @@ li.nav-item {
         text-transform: uppercase;
     }
 
+    backdrop-filter: blur(10px);
+    background-color: rgba(255,255,255,0.5);
+
+
 
     border-radius: 0px 15px 0px 15px;
     width: 18em !important;
-    position: absolute;
+    position: fixed;
     left: 18em !important;
     border-left: 0px !important;
 

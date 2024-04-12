@@ -99,7 +99,7 @@ export default function LoginToEarn() {
         useEffect(() => {
             switch (lastClaimGQL.status) {
                 case 'success': {
-                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'seconds') <= 15)
+                    setDisabled(moment().diff(moment(lastClaimGQL.data.createdAt), 'hours') <= 24)
                     break
                 }
                 default: {

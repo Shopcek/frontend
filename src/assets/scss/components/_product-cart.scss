@@ -7,23 +7,48 @@
     border-radius: 18px;
     transition: transform 0.2s;
 
+
+    .item-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .mt-3 {
+            margin-top: unset !important;
+        }
+    }
+
+
+
     .py-4 {
         padding-bottom: 0px !important;
 
         .gallery-product {
             img {
-                height: 18rem;
+                width: 18rem;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: contain;
                 border-radius: 18px;
             }
+
+
         }
     }
 }
 
 .swiper-slide {
     padding-top: 8px;
+
+    .product-cart {
+        .py-4 {
+            .gallery-product {
+                img {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
 }
 
 .product-cart:hover {

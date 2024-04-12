@@ -15,6 +15,7 @@ import projects from '../../../assets/images/projects.png'
 import ogs from '../../../assets/images/ogs.png'
 import boutique from '../../../assets/images/boutique.png'
 import icon from '../../../assets/images/icon.svg'
+import dropdown from '../../../assets/images/dropdown.png'
 
 export const collections_data = [
     {
@@ -94,6 +95,7 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                                 >
                                     <img src={item.image} alt="" />
                                     <div>{item.name}</div>
+                                    
                                 </div>
                             )
                         })}
@@ -121,17 +123,19 @@ export const CollectionModal = ({ show, handleClose }: any) => {
                                 return (
                                     <div
                                         className="item"
-                                        onMouseEnter={() => {
-                                            setTimeout(() => {
+                                        onClick={() => {
                                                 if (item.slug !== 'blockchain-boutique'){
                                                     setNewContent(item.slug)
                                                     handlecardShow()
+                                                } else {
+                                                    handleClose()
+                                                    navigate('/collection/blockchain-boutique')
                                                 }
-                                            }, 100)
                                         }}
                                     >
                                         <img src={item.icon} alt="" />
                                         {item.name}
+                                        {item.slug !== 'blockchain-boutique' ? <img src={dropdown} alt="" className="dropdown ${animation}" /> : undefined}
                                     </div>
                                 )
                             })}

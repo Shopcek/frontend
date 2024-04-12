@@ -45,7 +45,11 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            gap: 3%;
+            gap: 4%;
+        }
+
+        .product-row.left {
+            justify-content: flex-start;
         }
     }
 }

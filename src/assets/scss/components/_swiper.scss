@@ -2,3 +2,23 @@
     padding-left: 10px !important;
     padding-right: 10px !important;
 }
+
+
+section.slider {
+    .swiper-button {
+        background-color: unset !important;
+        background: unset !important;
+        margin: 0 -2.5em;
+        height: 5em !important;
+        width: 5em !important;
+        backdrop-filter: unset;
+    }
+
+    .swiper {
+        width: 98%;
+    }
+}
+
+
+
+

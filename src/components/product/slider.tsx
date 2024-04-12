@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
@@ -10,53 +10,47 @@ import { CardComponent } from 'components/CardComponent'
 
 import { CommonTitle } from 'components/CommonTitle'
 
+import right from '../../assets/images/right.svg'
+import left from '../../assets/images/left.svg'
+
 const Slider = ({ items, title }: { items: any[]; title: string }) => {
     return (
         <React.Fragment>
             <Container>
+                <CommonTitle title={title} />
                 <section className="section pb-0 slider">
-                    <CommonTitle title={title} />
+                <img
+                            src={right}
+                            className="swiper-button-next swiper-button"
+                            aria-controls="swiper-wrapper-2aa67f756d27c1eb"
+                            tabIndex={0}
+                            role="button"
+                            aria-label="Next slide"
+                            onClick={() => {
+                                //@ts-ignore
+                                const swiper = document.querySelector('#productSlider').swiper
+                                // swiper.activeIndex = swiper.activeIndex + 1
+                                swiper.slideNext()
+                                // swiper.activeIndex = swiper.activeIndex + 1
+                            }}
+                        ></img>
                     <Swiper
                         modules={[Navigation]}
+                        id="productSlider"
                         slidesPerView={5}
-                        spaceBetween={30}
+                        spaceBetween={15}
                         navigation={{
                             nextEl: '.swiper-button-next',
                             prevEl: '.swiper-button-prev'
-                        }}
-                        breakpoints={{
-                            640: {
-                                slidesPerView: 2,
-                                spaceBetween: 30
-                            },
-                            768: {
-                                slidesPerView: 3,
-                                spaceBetween: 30
-                            },
-                            1024: {
-                                slidesPerView: 4,
-                                spaceBetween: 30
-                            }
                         }}
                         loop={true}
                         autoplay={{ delay: 2500, disableOnInteraction: false }}
                         className="latest-slider q"
                     >
                         {/* Slider sağ sol butonları */}
-                        <div
-                            className="swiper-button-next h-auto"
-                            aria-controls="swiper-wrapper-2aa67f756d27c1eb"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Next slide"
-                        ></div>
-                        <div
-                            className="swiper-button-prev h-auto"
-                            aria-controls="swiper-wrapper-2aa67f756d27c1eb"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Previous slide"
-                        ></div>
+                        
+                        
+
                         <div className="swiper-wrapper">
                             {items.map((item: any) => {
                                 return (
@@ -67,6 +61,21 @@ const Slider = ({ items, title }: { items: any[]; title: string }) => {
                             })}
                         </div>
                     </Swiper>
+                    <img
+                            className="swiper-button-prev swiper-button"
+                            aria-controls="swiper-wrapper-2aa67f756d27c1eb"
+                            tabIndex={0}
+                            role="button"
+                            aria-label="Previous slide"
+                            onClick={() => {
+                                //@ts-ignore
+                                const swiper = document.querySelector('#productSlider').swiper
+                                console.log(swiper)
+                                // swiper.activeIndex = swiper.activeIndex - 1
+                                swiper.slidePrev()
+                            }}
+                            src={left}
+                        ></img>
                 </section>
             </Container>
         </React.Fragment>
