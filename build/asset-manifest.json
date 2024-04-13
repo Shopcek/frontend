@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.22883c20.css",
-    "main.js": "/static/js/main.ddad4cfe.js",
+    "main.css": "/static/css/main.ea54b76f.css",
+    "main.js": "/static/js/main.4e53d8d1.js",
     "static/js/366.f19a75ef.chunk.js": "/static/js/366.f19a75ef.chunk.js",
     "static/js/4894.9e97f690.chunk.js": "/static/js/4894.9e97f690.chunk.js",
     "static/js/2957.7677fdbc.chunk.js": "/static/js/2957.7677fdbc.chunk.js",
@@ -92,7 +92,6 @@
     "static/media/5.png": "/static/media/5.570e8208e96562c2a727.png",
     "static/media/7.png": "/static/media/7.8036b7eecfbe9fdebf20.png",
     "static/media/4.png": "/static/media/4.445a8e4af5f390a8101c.png",
-    "static/media/impact.ttf": "/static/media/impact.0294f8285a2493417c09.ttf",
     "static/media/text.png": "/static/media/text.a2cd7e1d3cc69b29dadd.png",
     "static/media/remixicon.woff2?t=1590207869815": "/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
     "static/media/bootstrap-icons.woff2?": "/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
@@ -120,6 +119,7 @@
     "static/media/projects.png": "/static/media/projects.ba675508584bce3a5a23.png",
     "static/media/horizon.woff2": "/static/media/horizon.93d7ac066ffbdf8e2e53.woff2",
     "static/media/invoice.png": "/static/media/invoice.f0ab83f5174acf7a0299.png",
+    "static/media/impact.woff2": "/static/media/impact.4a3a74d967ae7483e5ef.woff2",
     "static/media/check.png": "/static/media/check.6487290c7d3ee5ecafa6.png",
     "static/media/sweatshirts.png": "/static/media/sweatshirts.5511bd57c3cbd64444dc.png",
     "static/media/boutique.png": "/static/media/boutique.e1999e4165e278ab33e7.png",
@@ -139,7 +139,7 @@
     "static/media/left.svg": "/static/media/left.5f549b8bcd9f819f497ba3a9cdffd4a6.svg"
   },
   "entrypoints": [
-    "static/css/main.22883c20.css",
-    "static/js/main.ddad4cfe.js"
+    "static/css/main.ea54b76f.css",
+    "static/js/main.4e53d8d1.js"
   ]
 }

@@ -7,7 +7,7 @@ export function Delivery() {
                 <h6 className="text-secondary">WORLDWIDE</h6>
                 <h6 className="text-primary">SHIPPING</h6>
             </div>
-            <DeliveryIcon className="header-profile-user" />
+            <DeliveryIcon className="header-profile-user delivery" />
         </div>
     )
 }

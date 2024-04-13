@@ -10,13 +10,13 @@ function App() {
         <React.Fragment>
             {/* <AnimatedBackground> */}
 
-            <div className="bg">
+            {/* <div className="bg"> */}
                 <Route />
 {/* 
                 <div className="wave"></div>
                 <div className="wave"></div>
                 <div className="wave"></div> */}
-            </div>
+            {/* </div> */}
             {/* </AnimatedBackground> */}
         </React.Fragment>
     )

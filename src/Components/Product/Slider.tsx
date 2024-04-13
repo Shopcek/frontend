@@ -16,24 +16,24 @@ import left from '../../assets/images/left.svg'
 const Slider = ({ items, title }: { items: any[]; title: string }) => {
     return (
         <React.Fragment>
-            <Container>
+            <section className="section pb-0">
                 <CommonTitle title={title} />
-                <section className="section pb-0 slider">
-                <img
-                            src={right}
-                            className="swiper-button-next swiper-button"
-                            aria-controls="swiper-wrapper-2aa67f756d27c1eb"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Next slide"
-                            onClick={() => {
-                                //@ts-ignore
-                                const swiper = document.querySelector('#productSlider').swiper
-                                // swiper.activeIndex = swiper.activeIndex + 1
-                                swiper.slideNext()
-                                // swiper.activeIndex = swiper.activeIndex + 1
-                            }}
-                        ></img>
+                <Container className="slider">
+                    <img
+                        src={right}
+                        className="swiper-button-next swiper-button"
+                        aria-controls="swiper-wrapper-2aa67f756d27c1eb"
+                        tabIndex={0}
+                        role="button"
+                        aria-label="Next slide"
+                        onClick={() => {
+                            //@ts-ignore
+                            const swiper = document.querySelector('#productSlider').swiper
+                            // swiper.activeIndex = swiper.activeIndex + 1
+                            swiper.slideNext()
+                            // swiper.activeIndex = swiper.activeIndex + 1
+                        }}
+                    ></img>
                     <Swiper
                         modules={[Navigation]}
                         id="productSlider"
@@ -48,8 +48,6 @@ const Slider = ({ items, title }: { items: any[]; title: string }) => {
                         className="latest-slider q"
                     >
                         {/* Slider sağ sol butonları */}
-                        
-                        
 
                         <div className="swiper-wrapper">
                             {items.map((item: any) => {
@@ -62,22 +60,22 @@ const Slider = ({ items, title }: { items: any[]; title: string }) => {
                         </div>
                     </Swiper>
                     <img
-                            className="swiper-button-prev swiper-button"
-                            aria-controls="swiper-wrapper-2aa67f756d27c1eb"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Previous slide"
-                            onClick={() => {
-                                //@ts-ignore
-                                const swiper = document.querySelector('#productSlider').swiper
-                                console.log(swiper)
-                                // swiper.activeIndex = swiper.activeIndex - 1
-                                swiper.slidePrev()
-                            }}
-                            src={left}
-                        ></img>
-                </section>
-            </Container>
+                        className="swiper-button-prev swiper-button"
+                        aria-controls="swiper-wrapper-2aa67f756d27c1eb"
+                        tabIndex={0}
+                        role="button"
+                        aria-label="Previous slide"
+                        onClick={() => {
+                            //@ts-ignore
+                            const swiper = document.querySelector('#productSlider').swiper
+                            console.log(swiper)
+                            // swiper.activeIndex = swiper.activeIndex - 1
+                            swiper.slidePrev()
+                        }}
+                        src={left}
+                    ></img>
+                </Container>
+            </section>
         </React.Fragment>
     )
 }

@@ -35,7 +35,7 @@ export const CardComponent = ({ data }: { data: any }) => {
                                 </div>
                             </h5>
                             <div className="mt-3">
-                                <Link to={`/product-details/${data.slug}`} className="btn btn-secondary btn-hover w-100 add-btn">
+                                <Link to={`/product-details/${data.slug}`} className="w-100 add-btn">
                                     BUY
                                 </Link>
                             </div>

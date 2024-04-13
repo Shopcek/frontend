@@ -38,7 +38,9 @@ const Layout = (props: any) => {
                     <Collections></Collections>
                     <div className="page">
                         <Header />
+                        <div className="content" style={{paddingTop: '8rem'}}>
                         {props.children}
+                        </div>
                         <Footer />
                     </div>
                 </CollectionsProvider>
