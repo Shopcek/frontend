@@ -129,6 +129,19 @@
             .nav-link {
                 font-size: 14px;
             }
+
+            img {
+                // transition:  all 1s ease;
+            }
+        }
+        .nav-item:hover{
+            img {
+                filter:saturate(50%) drop-shadow(0px 0px 1px $secondary);
+            }
+
+            img.earn {
+                filter:saturate(50%) drop-shadow(0px 0px 1px $primary);
+            }
         }
     }
 }

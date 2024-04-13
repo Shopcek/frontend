@@ -95,6 +95,6 @@ export const items = [
     {
         url: '/earn',
         title: 'Earn',
-        icon: <Earn className="page-icons" />
+        icon: <Earn className="page-icons earn" />
     }
 ]
