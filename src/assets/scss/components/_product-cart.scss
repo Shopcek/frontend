@@ -7,17 +7,49 @@
     border-radius: 18px;
     transition: transform 0.2s;
 
+    .product-name{
+        display: flex;
+        justify-content: center;
+    }
 
     .item-info {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
 
         .mt-3 {
             margin-top: unset !important;
+            width: 65%;
         }
     }
 
+    .add-btn{
+        color: black;
+    }
+
+
+    .price {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        font-family: Impact;
+        font-size: 1.6rem;
+        
+        .bigger {
+            line-height: 1em;
+            font-size: 1em;
+            display: flex;
+            gap: 0.05em;
+
+            .number {
+                text-decoration: underline 4px;
+            }
+        }
+
+        .thinner {
+            font-size: .5em;
+        }
+    }
 
 
     .py-4 {
@@ -25,7 +57,7 @@
 
         .gallery-product {
             img {
-                width: 18rem;
+                width: 16rem;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: contain;
