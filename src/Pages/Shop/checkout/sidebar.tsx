@@ -33,7 +33,7 @@ export const Shoporder = ({ onOrderSuccess }: { onOrderSuccess: (orderId: string
         const { placeOrderGQL } = useOrder()
         const { status } = useUser()
         const [payment, setPayment] = useState(false)
-        const { cart } = useRefetch()
+        const { cart, order } = useRefetch()
 
         useEffect(() => {
             cartGQL?.fn({
@@ -50,6 +50,7 @@ export const Shoporder = ({ onOrderSuccess }: { onOrderSuccess: (orderId: string
                         setPayment(false)
                         cart.refetch(placeOrderGQL.data)
                         onOrderSuccess(placeOrderGQL!.data)
+                        order.refetch()
                         break
                     }
                     case 'error': {
@@ -86,6 +87,8 @@ export const Shoporder = ({ onOrderSuccess }: { onOrderSuccess: (orderId: string
                                                         transaction
                                                     }
                                                 })
+
+                                        
                                             },
                                             price
                                         )

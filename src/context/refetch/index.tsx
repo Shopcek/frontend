@@ -16,6 +16,7 @@ export const RefetchContext = createContext<{
     recipient: refetch
     choosen: refetch
     domains: refetch
+    order: refetch
 }>()
 
 export function useRefetch() {
@@ -89,9 +90,28 @@ export function RefetchProvider({ children }: { children: any }) {
             setDomainsRefetch(!domainsRefetch)
         })
     }, [domains])
+
+
+    //domains
+    const [orders, setOrders] = useState(false)
+    const [ordersRefetch, setOrdersRefetch] = useState(false)
+    const ordersGQL = useLazyQuery(queries.user.userOrders)
+    useEffect(() => {
+        ordersGQL.refetch().then((data: any) => {
+            setOrdersRefetch(!ordersRefetch)
+        })
+    }, [orders])
+    
+
+
     return (
         <RefetchContext.Provider
             value={{
+                order: {
+                    refetch: refetch(orders, setOrders),
+                    refetched: ordersRefetch
+                },
+
                 cart: {
                     refetch: refetch(cart, setCart),
                     refetched: cartRefetch
