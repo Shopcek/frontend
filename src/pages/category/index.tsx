@@ -8,11 +8,25 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { CardComponent } from 'components/CardComponent'
 
 import ethereum from '../../assets/images/collections/ethereum.png'
+import ecoFriendly from '../../assets/images/collections/eco-friendly.png'
+import hats from '../../assets/images/collections/hats.png'
+import hoodies from '../../assets/images/collections/hoodie.png'
+import skale from '../../assets/images/collections/skale.png'
+import sweatshirts from '../../assets/images/collections/sweats.png'
 import bitcoin from '../../assets/images/collections/bitcoin.png'
+import zetachain from '../../assets/images/collections/zeta.png'
+import tshirt from '../../assets/images/collections/t-shirt.png'
 
 const banners = {
     bitcoin,
-    ethereum
+    ethereum,
+    hats,
+    hoodies,
+    skale,
+    sweatshirts,
+    zetachain,
+    't-shirts': tshirt,
+    'eco-friendly': ecoFriendly
 }
 
 export default () => {
@@ -32,9 +46,7 @@ export default () => {
 
         const [banner, setBanner] = useState<any>()
         useEffect(() => {
-            if (type == 'collection' && slug) {
                 setBanner(<img className='banner' src={(banners as any)[slug as any]}></img>)
-            }
         }, [type, slug])
 
         useEffect(() => {

@@ -9,6 +9,8 @@ import { DetailsModal } from './details'
 
 import ethereum from '../../../assets/images/ethereum-eth-logo.png'
 import bitcoin from '../../../assets/images/bitcoin-btc-logo.png'
+import zetachain from '../../../assets/images/zetachain.png'
+import skale from '../../../assets/images/skale.png'
 import { useNavigate } from 'react-router-dom'
 
 import projects from '../../../assets/images/projects.png'
@@ -33,6 +35,16 @@ export const collections_data = [
                 name: 'Ethereum',
                 image: ethereum,
                 slug: 'ethereum'
+            },
+            {
+                name: 'ZetaChain',
+                image: zetachain,
+                slug: 'zetachain'
+            },
+            {
+                name: 'Skale',
+                image: skale,
+                slug: 'skale'
             }
         ]
     },

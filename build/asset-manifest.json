@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f6b9a6b4.css",
-    "main.js": "/static/js/main.8aa25a3c.js",
+    "main.css": "/static/css/main.32a1ad95.css",
+    "main.js": "/static/js/main.558b9707.js",
     "static/js/366.f19a75ef.chunk.js": "/static/js/366.f19a75ef.chunk.js",
     "static/js/4894.9e97f690.chunk.js": "/static/js/4894.9e97f690.chunk.js",
     "static/js/2957.7677fdbc.chunk.js": "/static/js/2957.7677fdbc.chunk.js",
@@ -59,6 +59,15 @@
     "static/js/6544.e62c7a5e.chunk.js": "/static/js/6544.e62c7a5e.chunk.js",
     "static/js/2836.2cbacf24.chunk.js": "/static/js/2836.2cbacf24.chunk.js",
     "static/js/4402.782c42e2.chunk.js": "/static/js/4402.782c42e2.chunk.js",
+    "static/media/bitcoin.png": "/static/media/bitcoin.eae60efda472cbd3c1c1.png",
+    "static/media/sweats.png": "/static/media/sweats.5243aa8e0780b24a476a.png",
+    "static/media/t-shirt.png": "/static/media/t-shirt.546413ce77acba063d36.png",
+    "static/media/hats.png": "/static/media/hats.308691879a17bc773f45.png",
+    "static/media/hoodie.png": "/static/media/hoodie.49195059ec661eb8b0e4.png",
+    "static/media/ethereum.png": "/static/media/ethereum.752dca3306b44571e199.png",
+    "static/media/eco-friendly.png": "/static/media/eco-friendly.2d194202e3e08030dbbd.png",
+    "static/media/zeta.png": "/static/media/zeta.cbe6f89b2cc31378d0e8.png",
+    "static/media/skale.png": "/static/media/skale.5c1cea3f8c57b2cb605a.png",
     "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.9cedd2150922ead84869.svg",
     "static/media/boxicons.svg": "/static/media/boxicons.17f6cb4eef77f07f2caa.svg",
     "static/media/materialdesignicons-webfont.eot": "/static/media/materialdesignicons-webfont.e044ed23c047e571c550.eot",
@@ -101,13 +110,10 @@
     "static/media/boxicons.woff2": "/static/media/boxicons.60f603cccbdff82a523c.woff2",
     "static/media/cart.png": "/static/media/cart.3d4fdbb9c58ad54a3547.png",
     "static/media/bitcoin-btc-logo.png": "/static/media/bitcoin-btc-logo.82491fef997ab841639c.png",
-    "static/media/ethereum.png": "/static/media/ethereum.e798baa5ec7afbd25a87.png",
-    "static/media/bitcoin.png": "/static/media/bitcoin.304943258b5945779b92.png",
     "static/media/play.png": "/static/media/play.2397ca51abbc2e243968.png",
     "static/media/delivery.png": "/static/media/delivery.f3664c7c2e5c18fb72e7.png",
     "static/media/shopping-bag.png": "/static/media/shopping-bag.f8c20fe2aa4e70e157e2.png",
     "static/media/campaign6.png": "/static/media/campaign6.39e199cce54ea61bb0a5.png",
-    "static/media/hats.png": "/static/media/hats.308691879a17bc773f45.png",
     "static/media/campaign2.png": "/static/media/campaign2.85bdce9d9e68933a28a9.png",
     "static/media/campaign3.png": "/static/media/campaign3.467e8c15fbc99654fe8d.png",
     "static/media/campaign5.png": "/static/media/campaign5.ff4212baaa1060744b97.png",
@@ -124,6 +130,7 @@
     "static/media/check.png": "/static/media/check.6487290c7d3ee5ecafa6.png",
     "static/media/sweatshirts.png": "/static/media/sweatshirts.5511bd57c3cbd64444dc.png",
     "static/media/boutique.png": "/static/media/boutique.e1999e4165e278ab33e7.png",
+    "static/media/zetachain.png": "/static/media/zetachain.eb819c5d6e315fe2cba8.png",
     "static/media/tshirts.png": "/static/media/tshirts.101ec444d87e776fb9ff.png",
     "static/media/instagram.svg": "/static/media/instagram.ea74a8bd68174909216a8ca2f0bcfe65.svg",
     "static/media/refill.svg": "/static/media/refill.ca369d8a54d8e632ea58e9ce9cb1f307.svg",
@@ -140,7 +147,7 @@
     "static/media/left.svg": "/static/media/left.5f549b8bcd9f819f497ba3a9cdffd4a6.svg"
   },
   "entrypoints": [
-    "static/css/main.f6b9a6b4.css",
-    "static/js/main.8aa25a3c.js"
+    "static/css/main.32a1ad95.css",
+    "static/js/main.558b9707.js"
   ]
 }
