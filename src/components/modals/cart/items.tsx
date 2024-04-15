@@ -26,7 +26,7 @@ export function Items({ items, openPopup }: { items: any[], openPopup:()=>void }
             if (deleteItemGQL)
                 switch (deleteItemGQL.status) {
                     case 'success': {
-                        openPopup()
+                        // openPopup()
                         cart.refetch()
                     }
                 }

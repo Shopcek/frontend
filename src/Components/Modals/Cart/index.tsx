@@ -15,6 +15,7 @@ import { simplifyResponse } from 'lib/simplify-response'
 
 import { Items } from './items'
 import { useRefetch } from 'context/refetch'
+import { useCartModalContext } from './context'
 
 function formatNumber(num: number) {
     return num.toFixed(2)
@@ -22,6 +23,8 @@ function formatNumber(num: number) {
 
 export const CardModal = ({ show, handleClose }: any) => {
     function Component() {
+        const {closeModal, isOpen} = useCartModalContext()
+
         let navigate = useNavigate()
         const { cartGQL, cartId } = useCart()
         const { cart } = useRefetch()
@@ -35,7 +38,7 @@ export const CardModal = ({ show, handleClose }: any) => {
             if (cartGQL) {
                 switch (cartGQL.status) {
                     case 'success': {
-                        setCartCount(<span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>)
+                        setCartCount(<span className="badge bg-secondary align-middle ms-1 cartitem-badge">{cartGQL.data!.items.length}</span>)
                         setItems(
                             <Items
                                 items={cartGQL.data!.items}
@@ -53,7 +56,7 @@ export const CardModal = ({ show, handleClose }: any) => {
 
         return (
             <React.Fragment>
-                <Offcanvas show={show} onHide={handleClose} placement="end">
+                <Offcanvas show={isOpen} onHide={closeModal} placement="end" className="cart-modal">
                     <Offcanvas.Header closeButton className="border-bottom">
                         <Offcanvas.Title id="ecommerceCartLabel" as="h5">
                             My Cart {cartCount}
@@ -80,7 +83,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                     id="reset-layout"
                                     onClick={() => {
                                         navigate('/')
-                                        handleClose()
+                                        closeModal()
                                     }}
                                 >
                                     Continue Shopping
@@ -92,7 +95,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                     className="btn btn-info w-100"
                                     onClick={() => {
                                         navigate('/shop/checkout')
-                                        handleClose()
+                                        closeModal()
                                     }}
                                 >
                                     Checkout

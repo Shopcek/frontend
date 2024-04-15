@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
 import { RefetchProvider } from 'context/refetch'
+import { CartModalProvider } from 'components/modals/cart/context'
 
 import { ApolloProvider } from 'lib/apollo-wrapper'
 import { RainbowProvider } from 'lib/rainbow'
@@ -19,7 +20,9 @@ root.render(
                 <ApolloProvider>
                     <ScrollToTop />
                     <RefetchProvider>
-                        <App />
+                        <CartModalProvider>
+                            <App />
+                        </CartModalProvider>
                     </RefetchProvider>
                 </ApolloProvider>
             </RainbowProvider>

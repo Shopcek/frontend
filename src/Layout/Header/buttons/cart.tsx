@@ -7,11 +7,13 @@ import { Cart as CartIcon } from 'components/images/Icons'
 import { useRefetch } from 'context/refetch'
 import { CartProvider, useCart } from 'context/cart'
 
+import { useCartModalContext } from 'components/modals/cart/context'
+
 export function Cart(props: { handlecardShow: any }) {
     function Component() {
         const { cart } = useRefetch()
         const { cartGQL } = useCart()
-
+        const { openModal } = useCartModalContext()
         useEffect(() => {
             cartGQL?.fn()
         }, [])
@@ -33,7 +35,7 @@ export function Cart(props: { handlecardShow: any }) {
                 style={{
                     cursor: 'pointer'
                 }}
-                onClick={props.handlecardShow}
+                onClick={openModal}
             >
                 <Button
                     type="button"

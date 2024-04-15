@@ -11,6 +11,7 @@ import { useRefetch } from 'context/refetch'
 import { PopupT } from 'components/popup'
 
 import bagIcon from '../../assets/images/shopping-bag.png'
+import { useCartModalContext } from 'components/modals/cart/context'
 
 export function Colors({ colorsList, setColor }: { colorsList: Option[]; setColor: Function }) {
     return (
@@ -83,6 +84,8 @@ export function Variant({
 
 export function AddToCart({ color, size, variants }: { color?: Option; size?: Option; variants: any[] }) {
     function Component() {
+        const {openModal}  = useCartModalContext()
+        
         const [count, setCount] = useState<number>(1)
         function updateCount(value: number) {
             if (value <= 0) {
@@ -107,7 +110,7 @@ export function AddToCart({ color, size, variants }: { color?: Option; size?: Op
         useEffect(()=>{
             switch (addItemGQL?.status){
                 case 'success': {
-                    setOpen(true)
+                    openModal()
                 }
             }
 
