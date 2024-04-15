@@ -6,7 +6,7 @@ import Section from './section'
 import { useQuery } from 'lib/query-wrapper'
 import { products } from 'lib/common-queries'
 
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+
 
 const Home = () => {
     document.title = 'Shopcek'

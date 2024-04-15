@@ -5,26 +5,34 @@ export const product = gql`
         product(slug: $slug) {
             variants {
                 id
-              	variant {
-                  color {
-                    data {
-                        attributes {
-                            value
-                            hex
+                variant {
+                    color {
+                        data {
+                            attributes {
+                                value
+                                hex
+                            }
                         }
                     }
-                }
-                size {
-                    data {
-                        attributes {
-                            value
+                    size {
+                        data {
+                            attributes {
+                                value
+                            }
                         }
                     }
+                    image
                 }
-                image
-                }
-             }
+            }
             product {
+                video {
+                    data {
+                        attributes {
+                            url
+                            previewUrl
+                        }
+                    }
+                }
                 slug
                 colors {
                     data {
@@ -49,6 +57,3 @@ export const product = gql`
         }
     }
 `
-
-
-

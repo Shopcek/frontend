@@ -5,6 +5,10 @@ export type Option = {
 
 export type Product = {
     product: {
+        video: {
+            url: string,
+            previewUrl: string
+        }
         slug: string
         name: string
         price: number

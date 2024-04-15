@@ -6,9 +6,17 @@ import { Button, Image } from 'react-bootstrap'
 import { useProduct } from './context'
 import { Option } from './context/types'
 
+import Popup from 'reactjs-popup'
+import config from 'config/config'
+
+import play from '../../assets/images/play.png'
+
 type img = { image: string; color: Option }
 
-export function Pictures({ images, image, colors }: { images: img[]; image: string; colors: Option[] }) {
+export function Pictures({ images, image, colors, video }: { images: img[]; image: string; colors: Option[]; video?: any }) {
+    const [isOpen, setOpen] = useState(false)
+
+    console.log(video)
 
     const [bigImage, setBigImage] = useState(image)
     const [smallImages, setSmallImage] = useState<img[]>(
@@ -18,6 +26,13 @@ export function Pictures({ images, image, colors }: { images: img[]; image: stri
             })
         }) as img[]
     )
+
+    useEffect(() => {
+        // add first line video
+        if (video && smallImages[0].color.value !== 'video') {
+            setSmallImage([{ image: config.serverUrl + video.previewUrl, color: { value: 'video' } }, ...smallImages])
+        }
+    }, [])
 
     const [sliderId, setSliderId] = useState(1)
     const [sliderImg, setSliderImg] = useState(smallImages)
@@ -43,6 +58,22 @@ export function Pictures({ images, image, colors }: { images: img[]; image: stri
         <div className="pictures">
             <div className="small-pictures">
                 {(smallImages.length <= 4 ? smallImages : smallImages.slice(sliderId - 1, sliderId + 3))?.map((item: any, idx: number) => {
+                    if (video) {
+                        if (item.color.value === 'video') {
+                            return (
+                                <div
+                                    onClick={() => {
+                                        setOpen(true)
+                                    }}
+                                    className="thumbnail"
+                                >
+                                    <Image src={item.image} key={idx} className="video" />
+                                    <Image src={play} className="button"></Image>
+                                </div>
+                            )
+                        }
+                    }
+
                     return (
                         <Image
                             src={item.image}
@@ -81,6 +112,18 @@ export function Pictures({ images, image, colors }: { images: img[]; image: stri
             </div>
             <div className="big-picture">
                 <ModalImage className="modal-image" small={bigImage} large={bigImage} />
+                {video ? (
+                    <Popup
+                        open={isOpen}
+                        onClose={() => {
+                            setOpen(false)
+                        }}
+                    >
+                        <video controls height={800} autoPlay>
+                            <source className="video" src={config.serverUrl + video.url} type="video/mp4"></source>
+                        </video>
+                    </Popup>
+                ) : undefined}
             </div>
         </div>
     )

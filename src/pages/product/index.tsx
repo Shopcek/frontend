@@ -38,6 +38,7 @@ function ProductDetails() {
                             
                             })}
                             colors={productGQL.data!.product.colors}
+                            video={productGQL.data!.product.video}
                         />
                     )
                     break
