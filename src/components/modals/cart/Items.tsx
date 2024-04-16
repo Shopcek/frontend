@@ -35,6 +35,10 @@ export function Items({ items, openPopup }: { items: any[], openPopup:()=>void }
         return (
             <ul className="list-group list-group-flush cartlist">
                 {items.map((item: any) => {
+                    if(!item.variant){
+                        return undefined
+                    }
+
                     return (
                         <li key={item.variant.product.slug} className="list-group-item product">
                             <div className="d-flex gap-3">

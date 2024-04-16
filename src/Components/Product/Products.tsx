@@ -12,7 +12,6 @@ const Products = ({ items, title }: any) => {
         const tempProducts = []
         for (let index = 0; index < rows; index++) {
             const productRow = items.slice(index * 4, (index + 1) * 4)
-            console.log(productRow)
             tempProducts.push(
                 <div className={`product-row ${productRow.length < 4 ? 'left' : ''}`}>
                     {productRow.map((product: any) => {

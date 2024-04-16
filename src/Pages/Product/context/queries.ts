@@ -25,6 +25,14 @@ export const product = gql`
                 }
             }
             product {
+                categories {
+                    data {
+                        attributes {
+                            slug
+                            name
+                        }
+                    }
+                }
                 video {
                     data {
                         attributes {

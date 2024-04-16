@@ -53,19 +53,23 @@ export default function Order() {
                                             <tbody>
                                                 <tr>
                                                     <td>Order Number</td>
-                                                    <td>{data.id}</td>
+                                                    <td>{125000 + data.id}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Transaction Hash</td>
-                                                    <td>{data.transaction}</td>
+                                                    <td>
+                                                        <a target='_blank' href={`https://testnet.bscscan.com/tx/${data.transaction}`}>{data.transaction}</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Date</td>
-                                                    <td>{data.createdAt}</td>
+                                                    <td>
+                                                        {data.createdAt.split('T')[0]} {data.createdAt.split('T')[1].split('.')[0]}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Discount Rate</td>
-                                                    <td>%10</td>
+                                                    <td>%95</td>
                                                 </tr>
                                                 <tr>
                                                     <td>

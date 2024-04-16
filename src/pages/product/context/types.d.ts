@@ -9,6 +9,10 @@ export type Product = {
             url: string,
             previewUrl: string
         }
+        categories: {
+            name
+            slug
+        }[]
         slug: string
         name: string
         price: number

@@ -75,7 +75,7 @@ export let login = gql`
 
 export let products = gql`
     query {
-        products {
+        products (pagination: { limit: 100 }){
             data {
                 attributes {
                     name

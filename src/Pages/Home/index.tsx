@@ -6,7 +6,17 @@ import Section from './section'
 import { useQuery } from 'lib/query-wrapper'
 import { products } from 'lib/common-queries'
 
+function chooseRandom({ data }: { data: [] }) {
+    console.log(data)
+    
+    if (!data) {
+        return []
+    }
 
+    return data.map((item) => {
+        return data[Math.floor(Math.random() * data.length)]
+    })
+}
 
 const Home = () => {
     document.title = 'Shopcek'
@@ -16,8 +26,8 @@ const Home = () => {
     return (
         <React.Fragment>
             <Section />
-            <Slider items={(data as any) || []} title="Best Sellers" />
-            <Products items={data || []} title="Hot Deals" />
+            <Slider items={chooseRandom({data: (data as any) || []})} title="Best Sellers" />
+            <Products items={chooseRandom({data: (data as any) || []})} title="Hot Deals" />
         </React.Fragment>
     )
 }

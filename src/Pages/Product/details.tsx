@@ -63,7 +63,7 @@ export function Categories(props: { categories: any[] }) {
         <div className="categories">
             <p>Categories:</p>
             {categories.map((item: any, index: number) => {
-                return <Link to={`/category/${item.slug}`}>{' ' + item.name + ','}</Link>
+                return <Link to={`/products/category/${item.slug}`}>{' ' + item.name + ','}</Link>
             })}
         </div>
     )
@@ -179,7 +179,7 @@ export function Details({ data }: { data: Product }) {
             <AddToCart color={color} size={size} variants={data.variants} />
             <hr />
             <AddToWishList slug={data.product.slug} />
-            <Categories categories={[]} />
+            <Categories categories={data.product.categories} />
             <Socials />
         </div>
     )

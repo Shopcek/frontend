@@ -46,7 +46,7 @@ export default () => {
 
         const [banner, setBanner] = useState<any>()
         useEffect(() => {
-                setBanner(<img className='banner' src={(banners as any)[slug as any]}></img>)
+            setBanner(<img className="banner" src={(banners as any)[slug as any]}></img>)
         }, [type, slug])
 
         useEffect(() => {
@@ -65,9 +65,11 @@ export default () => {
                     const rows = Math.ceil(data?.products.length! / 4)
                     const tempProducts = []
                     for (let index = 0; index < rows; index++) {
+                        const productRow = data?.products.slice(index * 4, (index + 1) * 4)
+
                         tempProducts.push(
-                            <div className="product-row">
-                                {data?.products.slice(index * 4, (index + 1) * 4).map((product) => {
+                            <div className={`product-row ${productRow!.length < 4 ? 'left' : ''}`}>
+                                {productRow!.map((product: any) => {
                                     return <CardComponent data={product}></CardComponent>
                                 })}
                             </div>
