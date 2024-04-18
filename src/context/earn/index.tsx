@@ -43,7 +43,7 @@ export function EarnProvider({ children }: { children: any }) {
         useEffect(() => {
             switch (status) {
                 case 'connected': {
-                    startSessionGQL.fn()
+                    // startSessionGQL.fn()
                     break
                 }
             }
