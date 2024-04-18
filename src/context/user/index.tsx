@@ -60,10 +60,10 @@ export function UserProvider({ children }: { children: any }) {
                             }
                         })
                         .then((data: any) => {
-                            startSessionGQL.fn()
+                            // startSessionGQL.fn()
                         })
                 } else {
-                    startSessionGQL.fn()
+                    // startSessionGQL.fn()
                 }
                 break
             }
